@@ -1,0 +1,26 @@
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+html {
+    font-family: 'Luckiest Guy', sans-serif;
+}
+
+h1 {
+    letter-spacing: 10px;
+    color: darkcyan;
+    text-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+canvas {
+    background-color: black;
+}
+
+
+@font-face {
+    font-family: 'Luckiest Guy';
+    src: url(./fonts/LuckiestGuy-Regular.ttf) format('truetype');
+}
