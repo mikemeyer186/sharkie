@@ -1,6 +1,9 @@
 class World {
     sharkie = new Sharkie();
     enemies = [new PufferFish(), new PufferFish(), new PufferFish()];
+    light = new Light();
+    floor = new Floor();
+    water = new Water();
     ctx;
     canvas;
 
@@ -14,13 +17,24 @@ class World {
         let self = this;
 
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-        this.ctx.drawImage(this.sharkie.img, this.sharkie.x, this.sharkie.y, this.sharkie.width, this.sharkie.height);
-        this.enemies.forEach((enemy) => {
-            this.ctx.drawImage(enemy.img, enemy.x, enemy.y, enemy.width, enemy.height);
-        });
+        this.addToCanvas(this.water);
+        this.addToCanvas(this.floor);
+        this.addToCanvas(this.light);
+        this.addToCanvas(this.sharkie);
+        this.addObjectsToCanvas(this.enemies);
 
         requestAnimationFrame(() => {
             self.draw();
+        });
+    }
+
+    addToCanvas(object) {
+        this.ctx.drawImage(object.img, object.x, object.y, object.width, object.height);
+    }
+
+    addObjectsToCanvas(objects) {
+        objects.forEach((o) => {
+            this.ctx.drawImage(o.img, o.x, o.y, o.width, o.height);
         });
     }
 }
