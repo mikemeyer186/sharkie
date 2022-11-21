@@ -7,7 +7,6 @@ class Sharkie extends MoveableObject {
         '../img/sharkie/swim/5.png',
         '../img/sharkie/swim/6.png',
     ];
-    currentImage = 0;
 
     constructor() {
         super();
