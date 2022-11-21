@@ -7,5 +7,12 @@ class Light extends MoveableObject {
     constructor() {
         super();
         this.loadImage('../img/background/light/complete.png');
+        this.animate();
+    }
+
+    animate() {
+        setInterval(() => {
+            this.x -= 0.05;
+        }, 1000 / 60);
     }
 }
