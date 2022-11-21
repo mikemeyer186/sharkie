@@ -1,4 +1,6 @@
 class Sharkie extends MoveableObject {
+    control;
+    speed = 3;
     images_swimming = [
         '../img/sharkie/swim/1.png',
         '../img/sharkie/swim/2.png',
@@ -17,9 +19,28 @@ class Sharkie extends MoveableObject {
 
     animate() {
         setInterval(() => {
-            let m = this.currentImage % this.images_swimming.length;
-            this.img = this.imageCache[m];
-            this.currentImage++;
-        }, 1000 / 5);
+            if (keyboard.ArrowRight || keyboard.ArrowLeft) {
+                let m = this.currentImage % this.images_swimming.length;
+                this.img = this.imageCache[m];
+                this.currentImage++;
+            }
+        }, 1000 / 10);
+
+        setInterval(() => {
+            if (keyboard.ArrowRight) {
+                this.otherDirection = false;
+                this.x += this.speed;
+            }
+            if (keyboard.ArrowLeft) {
+                this.otherDirection = true;
+                this.x -= this.speed;
+            }
+            if (keyboard.ArrowUp) {
+                this.y -= this.speed;
+            }
+            if (keyboard.ArrowDown) {
+                this.y += this.speed;
+            }
+        }, 1000 / 60);
     }
 }

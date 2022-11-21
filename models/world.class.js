@@ -1,4 +1,7 @@
 class World {
+    ctx;
+    canvas;
+    keyboard;
     sharkie = new Sharkie();
     enemies = [new PufferFish(), new PufferFish(), new PufferFish()];
     light = new Light();
@@ -8,13 +11,17 @@ class World {
         new BackgroundObjects('../img/background/fond_2/light1.png'),
         new BackgroundObjects('../img/background/floor/light1.png'),
     ];
-    ctx;
-    canvas;
 
-    constructor(canvas) {
+    constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
         this.canvas = canvas;
+        this.keyboard = keyboard;
         this.draw();
+        this.setControls();
+    }
+
+    setControls() {
+        this.sharkie.control = this.keyboard;
     }
 
     draw() {
@@ -32,12 +39,34 @@ class World {
     }
 
     addToCanvas(object) {
+        if (object.otherDirection) {
+            this.flipImage(object);
+        }
+
         this.ctx.drawImage(object.img, object.x, object.y, object.width, object.height);
+
+        if (object.otherDirection) {
+            this.flipImageReset(object);
+        }
     }
 
     addObjectsToCanvas(objects) {
         objects.forEach((o) => {
             this.addToCanvas(o);
         });
+    }
+
+    flipImage(object) {
+        this.ctx.save();
+        this.ctx.translate(object.width, 0);
+        this.ctx.scale(-1, 1);
+        object.x = object.x * -1;
+    }
+
+    flipImageReset(object) {
+        this.ctx.save();
+        this.ctx.translate(object.width, 0);
+        this.ctx.scale(-1, 1);
+        object.x = object.x * -1;
     }
 }

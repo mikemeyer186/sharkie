@@ -6,6 +6,7 @@ class MoveableObject {
     height = 250;
     imageCache = [];
     currentImage = 0;
+    otherDirection = false;
 
     loadImage(path) {
         this.img = new Image();
@@ -17,23 +18,30 @@ class MoveableObject {
             let img = new Image();
             img.src = path;
             this.imageCache.push(img);
-            console.log(this.imageCache);
         });
     }
 
-    moveLeft() {
-        console.log('Moving left');
+    moveLeft(speed) {
+        setInterval(() => {
+            this.x -= speed;
+        }, 1000 / 60);
     }
 
-    moveRight() {
-        console.log('Moving right');
+    moveRight(speed) {
+        setInterval(() => {
+            this.x += speed;
+        }, 1000 / 60);
     }
 
-    moveUp() {
-        console.log('Moving up');
+    moveUp(speed) {
+        setInterval(() => {
+            this.y -= speed;
+        }, 1000 / 60);
     }
 
-    moveDown() {
-        console.log('Moving down');
+    moveDown(speed) {
+        setInterval(() => {
+            this.y += speed;
+        }, 1000 / 60);
     }
 }
