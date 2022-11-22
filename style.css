@@ -1,8 +1,19 @@
+* {
+    box-sizing: border-box;
+}
+
 body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    background-image: url('./img/background/body.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
 }
 
 html {
@@ -11,7 +22,7 @@ html {
 
 h1 {
     letter-spacing: 10px;
-    color: darkcyan;
+    color: rgb(255, 252, 214);
     text-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
 }
 

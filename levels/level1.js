@@ -1,6 +1,6 @@
 const level1 = new Level(
     new Light(),
-    [new PufferFish(), new PufferFish(), new PufferFish()],
+    [new PufferFish(), new PufferFish(), new PufferFish(), new Endboss()],
     [
         new BackgroundObjects('../img/background/water/light2.png', -720),
         new BackgroundObjects('../img/background/fond_1/light2.png', -720),
@@ -30,5 +30,9 @@ const level1 = new Level(
         new BackgroundObjects('../img/background/fond_1/light2.png', 720 * 5),
         new BackgroundObjects('../img/background/fond_2/light2.png', 720 * 5),
         new BackgroundObjects('../img/background/floor/light2.png', 720 * 5),
+        new BackgroundObjects('../img/background/water/light1.png', 720 * 6),
+        new BackgroundObjects('../img/background/fond_1/light1.png', 720 * 6),
+        new BackgroundObjects('../img/background/fond_2/light1.png', 720 * 6),
+        new BackgroundObjects('../img/background/floor/light1.png', 720 * 6),
     ]
 );

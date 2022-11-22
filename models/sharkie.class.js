@@ -26,16 +26,14 @@ class Sharkie extends MoveableObject {
     animate() {
         setInterval(() => {
             if (keyboard.ArrowRight || keyboard.ArrowLeft) {
-                let m = this.currentImage % this.images_swimming.length;
-                this.img = this.imageCache[m];
-                this.currentImage++;
+                this.playAnimation(this.images_swimming);
             }
         }, 1000 / 10);
 
         setInterval(() => {
             this.audio_swim_up_down.pause();
             this.audio_swim_left_right.pause();
-            this.audio_swim_left_right.volume = 0.3;
+            this.audio_swim_left_right.volume = 0.2;
 
             if (keyboard.ArrowRight && this.x < this.level.levelEnd_x) {
                 this.otherDirection = false;

@@ -1,6 +1,8 @@
 let canvas;
 let world;
 let keyboard = new Keyboard();
+let audio_background = new Audio('../audio/background.mp3');
+let interact = false;
 
 function init() {
     canvas = document.getElementById('canvas');
@@ -9,6 +11,7 @@ function init() {
 
 document.addEventListener('keydown', (event) => {
     keyboard[`${event.code}`] = true;
+    playAudio();
 });
 
 document.addEventListener('keyup', () => {
@@ -18,3 +21,13 @@ document.addEventListener('keyup', () => {
     keyboard.ArrowDown = false;
     keyboard.Space = false;
 });
+
+function playAudio() {
+    interact = true;
+    if (interact == true) {
+        audio_background.play();
+        audio_background.addEventListener('ended', () => {
+            audio_background.play();
+        });
+    }
+}

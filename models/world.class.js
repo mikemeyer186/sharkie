@@ -5,7 +5,6 @@ class World {
     camera_x = 0;
     sharkie = new Sharkie();
     level = level1;
-    audio_background = new Audio('../audio/background.mp3');
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
@@ -13,7 +12,6 @@ class World {
         this.keyboard = keyboard;
         this.draw();
         this.setControls();
-        this.playAudio();
     }
 
     setControls() {
@@ -68,12 +66,5 @@ class World {
         this.ctx.translate(object.width, 0);
         this.ctx.scale(-1, 1);
         object.x = object.x * -1;
-    }
-
-    playAudio() {
-        this.audio_background.play();
-        this.audio_background.addEventListener('ended', () => {
-            this.audio_background.play();
-        });
     }
 }

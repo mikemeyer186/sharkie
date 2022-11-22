@@ -23,9 +23,7 @@ class PufferFish extends MoveableObject {
 
     animate() {
         setInterval(() => {
-            let m = this.currentImage % this.images_swimming.length;
-            this.img = this.imageCache[m];
-            this.currentImage++;
+            this.playAnimation(this.images_swimming);
         }, 1000 / 5);
     }
 }
