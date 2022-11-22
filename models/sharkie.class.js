@@ -3,7 +3,10 @@ class Sharkie extends MoveableObject {
     y = 70;
     control;
     camera_x;
+    level;
     speed = 3;
+    audio_swim_up_down = new Audio('../audio/swim_up_down.mp3');
+    audio_swim_left_right = new Audio('../audio/swim_left_right.mp3');
     images_swimming = [
         '../img/sharkie/swim/1.png',
         '../img/sharkie/swim/2.png',
@@ -30,19 +33,27 @@ class Sharkie extends MoveableObject {
         }, 1000 / 10);
 
         setInterval(() => {
-            if (keyboard.ArrowRight) {
+            this.audio_swim_up_down.pause();
+            this.audio_swim_left_right.pause();
+            this.audio_swim_left_right.volume = 0.3;
+
+            if (keyboard.ArrowRight && this.x < this.level.levelEnd_x) {
                 this.otherDirection = false;
                 this.x += this.speed;
+                this.audio_swim_left_right.play();
             }
-            if (keyboard.ArrowLeft) {
+            if (keyboard.ArrowLeft && this.x > -600) {
                 this.otherDirection = true;
                 this.x -= this.speed;
+                this.audio_swim_left_right.play();
             }
-            if (keyboard.ArrowUp) {
+            if (keyboard.ArrowUp && this.y > -110) {
                 this.y -= this.speed;
+                this.audio_swim_up_down.play();
             }
-            if (keyboard.ArrowDown) {
+            if (keyboard.ArrowDown && this.y < 250) {
                 this.y += this.speed;
+                this.audio_swim_up_down.play();
             }
             this.camera_x = -this.x + 80;
         }, 1000 / 60);
