@@ -1,0 +1,26 @@
+const level1 = new Level(
+    new Light(),
+    [new PufferFish(), new PufferFish(), new PufferFish()],
+    [
+        new BackgroundObjects('../img/background/water/light2.png', -720),
+        new BackgroundObjects('../img/background/fond_1/light2.png', -720),
+        new BackgroundObjects('../img/background/fond_2/light2.png', -720),
+        new BackgroundObjects('../img/background/floor/light2.png', -720),
+        new BackgroundObjects('../img/background/water/light1.png', 0),
+        new BackgroundObjects('../img/background/fond_1/light1.png', 0),
+        new BackgroundObjects('../img/background/fond_2/light1.png', 0),
+        new BackgroundObjects('../img/background/floor/light1.png', 0),
+        new BackgroundObjects('../img/background/water/light2.png', 720),
+        new BackgroundObjects('../img/background/fond_1/light2.png', 720),
+        new BackgroundObjects('../img/background/fond_2/light2.png', 720),
+        new BackgroundObjects('../img/background/floor/light2.png', 720),
+        new BackgroundObjects('../img/background/water/light1.png', 720 * 2),
+        new BackgroundObjects('../img/background/fond_1/light1.png', 720 * 2),
+        new BackgroundObjects('../img/background/fond_2/light1.png', 720 * 2),
+        new BackgroundObjects('../img/background/floor/light1.png', 720 * 2),
+        new BackgroundObjects('../img/background/water/light2.png', 720 * 3),
+        new BackgroundObjects('../img/background/fond_1/light2.png', 720 * 3),
+        new BackgroundObjects('../img/background/fond_2/light2.png', 720 * 3),
+        new BackgroundObjects('../img/background/floor/light2.png', 720 * 3),
+    ]
+);

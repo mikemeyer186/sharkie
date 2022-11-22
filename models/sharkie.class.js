@@ -1,5 +1,8 @@
 class Sharkie extends MoveableObject {
+    x = 80;
+    y = 70;
     control;
+    camera_x;
     speed = 3;
     images_swimming = [
         '../img/sharkie/swim/1.png',
@@ -41,6 +44,7 @@ class Sharkie extends MoveableObject {
             if (keyboard.ArrowDown) {
                 this.y += this.speed;
             }
+            this.camera_x = -this.x + 80;
         }, 1000 / 60);
     }
 }

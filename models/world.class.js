@@ -2,15 +2,11 @@ class World {
     ctx;
     canvas;
     keyboard;
+    camera_x = 0;
     sharkie = new Sharkie();
-    enemies = [new PufferFish(), new PufferFish(), new PufferFish()];
-    light = new Light();
-    background = [
-        new BackgroundObjects('../img/background/water/light1.png'),
-        new BackgroundObjects('../img/background/fond_1/light1.png'),
-        new BackgroundObjects('../img/background/fond_2/light1.png'),
-        new BackgroundObjects('../img/background/floor/light1.png'),
-    ];
+    enemies = level1.enemies;
+    light = level1.light;
+    background = level1.background;
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
@@ -22,16 +18,19 @@ class World {
 
     setControls() {
         this.sharkie.control = this.keyboard;
+        this.sharkie.camera_x = this.camera_x;
     }
 
     draw() {
         let self = this;
 
+        this.ctx.translate(this.sharkie.camera_x, 0);
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
         this.addObjectsToCanvas(this.background);
         this.addToCanvas(this.light);
         this.addObjectsToCanvas(this.enemies);
         this.addToCanvas(this.sharkie);
+        this.ctx.translate(-this.sharkie.camera_x, 0);
 
         requestAnimationFrame(() => {
             self.draw();
