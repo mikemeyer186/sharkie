@@ -41,7 +41,8 @@ class World {
             this.flipImage(object);
         }
 
-        this.ctx.drawImage(object.img, object.x, object.y, object.width, object.height);
+        object.draw(this.ctx);
+        object.drawRectangle(this.ctx);
 
         if (object.otherDirection) {
             this.flipImageReset(object);

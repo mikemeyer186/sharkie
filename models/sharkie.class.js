@@ -7,6 +7,7 @@ class Sharkie extends MoveableObject {
     speed = 3;
     audio_swim_up_down = new Audio('../audio/swim_up_down.mp3');
     audio_swim_left_right = new Audio('../audio/swim_left_right.mp3');
+    idleTime = 0;
     images_swimming = [
         '../img/sharkie/swim/1.png',
         '../img/sharkie/swim/2.png',
@@ -15,19 +16,65 @@ class Sharkie extends MoveableObject {
         '../img/sharkie/swim/5.png',
         '../img/sharkie/swim/6.png',
     ];
+    images_idle = [
+        '../img/sharkie/idle/1.png',
+        '../img/sharkie/idle/2.png',
+        '../img/sharkie/idle/3.png',
+        '../img/sharkie/idle/4.png',
+        '../img/sharkie/idle/5.png',
+        '../img/sharkie/idle/6.png',
+        '../img/sharkie/idle/7.png',
+        '../img/sharkie/idle/8.png',
+        '../img/sharkie/idle/9.png',
+        '../img/sharkie/idle/10.png',
+        '../img/sharkie/idle/11.png',
+        '../img/sharkie/idle/12.png',
+        '../img/sharkie/idle/13.png',
+        '../img/sharkie/idle/14.png',
+        '../img/sharkie/idle/15.png',
+        '../img/sharkie/idle/16.png',
+        '../img/sharkie/idle/17.png',
+        '../img/sharkie/idle/18.png',
+    ];
+    images_idle_long = [
+        '../img/sharkie/idle_long/1.png',
+        '../img/sharkie/idle_long/2.png',
+        '../img/sharkie/idle_long/3.png',
+        '../img/sharkie/idle_long/4.png',
+        '../img/sharkie/idle_long/5.png',
+        '../img/sharkie/idle_long/6.png',
+        '../img/sharkie/idle_long/7.png',
+        '../img/sharkie/idle_long/8.png',
+        '../img/sharkie/idle_long/9.png',
+        '../img/sharkie/idle_long/10.png',
+        '../img/sharkie/idle_long/11.png',
+        '../img/sharkie/idle_long/12.png',
+        '../img/sharkie/idle_long/13.png',
+        '../img/sharkie/idle_long/14.png',
+    ];
 
     constructor() {
         super();
         this.audio_swim_left_right.volume = 0.2;
         this.loadImage('../img/sharkie/swim/1.png');
         this.loadImages(this.images_swimming);
+        this.loadImages(this.images_idle);
+        this.loadImages(this.images_idle_long);
         this.animate();
+        this.setIdleTime();
     }
 
     animate() {
         setInterval(() => {
-            if (keyboard.ArrowRight || keyboard.ArrowLeft) {
+            if (keyboard.ArrowRight || keyboard.ArrowLeft || keyboard.ArrowUp || keyboard.ArrowDown) {
                 this.playAnimation(this.images_swimming);
+                this.idleTime = 0;
+            } else {
+                if (this.idleTime > 10) {
+                    this.playAnimation(this.images_idle_long);
+                } else {
+                    this.playAnimation(this.images_idle);
+                }
             }
         }, 1000 / 10);
 
@@ -59,5 +106,11 @@ class Sharkie extends MoveableObject {
     audioPause() {
         this.audio_swim_up_down.pause();
         this.audio_swim_left_right.pause();
+    }
+
+    setIdleTime() {
+        setInterval(() => {
+            this.idleTime++;
+        }, 1000);
     }
 }
