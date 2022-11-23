@@ -18,12 +18,15 @@ class PufferFish extends MoveableObject {
         this.y = 0 + Math.random() * 410;
         this.speed = 0.2 + Math.random() * 0.5;
         this.animate();
-        this.moveLeft(this.speed);
     }
 
     animate() {
         setInterval(() => {
             this.playAnimation(this.images_swimming);
         }, 1000 / 5);
+
+        setInterval(() => {
+            this.moveLeft(this.speed);
+        }, 1000 / 60);
     }
 }

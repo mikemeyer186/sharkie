@@ -18,6 +18,7 @@ class Sharkie extends MoveableObject {
 
     constructor() {
         super();
+        this.audio_swim_left_right.volume = 0.2;
         this.loadImage('../img/sharkie/swim/1.png');
         this.loadImages(this.images_swimming);
         this.animate();
@@ -31,29 +32,32 @@ class Sharkie extends MoveableObject {
         }, 1000 / 10);
 
         setInterval(() => {
-            this.audio_swim_up_down.pause();
-            this.audio_swim_left_right.pause();
-            this.audio_swim_left_right.volume = 0.2;
+            this.audioPause();
 
             if (keyboard.ArrowRight && this.x < this.level.levelEnd_x) {
+                this.moveRight(this.speed);
                 this.otherDirection = false;
-                this.x += this.speed;
                 this.audio_swim_left_right.play();
             }
             if (keyboard.ArrowLeft && this.x > -600) {
+                this.moveLeft(this.speed);
                 this.otherDirection = true;
-                this.x -= this.speed;
                 this.audio_swim_left_right.play();
             }
             if (keyboard.ArrowUp && this.y > -110) {
-                this.y -= this.speed;
+                this.moveUp(this.speed);
                 this.audio_swim_up_down.play();
             }
             if (keyboard.ArrowDown && this.y < 250) {
-                this.y += this.speed;
+                this.moveDown(this.speed);
                 this.audio_swim_up_down.play();
             }
             this.camera_x = -this.x + 80;
         }, 1000 / 60);
+    }
+
+    audioPause() {
+        this.audio_swim_up_down.pause();
+        this.audio_swim_left_right.pause();
     }
 }
