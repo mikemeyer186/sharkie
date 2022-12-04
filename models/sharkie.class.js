@@ -52,29 +52,33 @@ class Sharkie extends MoveableObject {
         '../img/sharkie/idle_long/13.png',
         '../img/sharkie/idle_long/14.png',
     ];
+    images_idle_sleeping = [
+        '../img/sharkie/idle_long/11.png',
+        '../img/sharkie/idle_long/12.png',
+        '../img/sharkie/idle_long/13.png',
+        '../img/sharkie/idle_long/14.png',
+    ];
 
     constructor() {
         super();
         this.audio_swim_left_right.volume = 0.2;
         this.loadImage('../img/sharkie/swim/1.png');
-        this.loadImages(this.images_swimming);
-        this.loadImages(this.images_idle);
-        this.loadImages(this.images_idle_long);
         this.animate();
         this.setIdleTime();
     }
 
     animate() {
         setInterval(() => {
-            if (keyboard.ArrowRight || keyboard.ArrowLeft || keyboard.ArrowUp || keyboard.ArrowDown) {
-                this.playAnimation(this.images_swimming);
-                this.idleTime = 0;
+            if (this.isIdleLong()) {
+                this.longIdleAnimation();
+            } else if (this.isSleeping()) {
+                this.sleepAnimation();
             } else {
-                if (this.idleTime > 10) {
-                    this.playAnimation(this.images_idle_long);
-                } else {
-                    this.playAnimation(this.images_idle);
-                }
+                this.idleAnimation();
+            }
+
+            if (keyboard.ArrowRight || keyboard.ArrowLeft || keyboard.ArrowUp || keyboard.ArrowDown) {
+                this.swimAnimation();
             }
         }, 1000 / 10);
 
@@ -112,5 +116,42 @@ class Sharkie extends MoveableObject {
         setInterval(() => {
             this.idleTime++;
         }, 1000);
+    }
+
+    isIdleLong() {
+        console.log(this.idleTime);
+        return this.idleTime == 5;
+    }
+
+    isSleeping() {
+        return this.idleTime >= 6;
+    }
+
+    longIdleAnimation() {
+        this.imageCache = [];
+        this.loadImages(this.images_idle_long);
+        this.playAnimation(this.images_idle_long);
+    }
+
+    sleepAnimation() {
+        this.imageCache = [];
+        this.loadImages(this.images_idle_sleeping);
+        this.playAnimation(this.images_idle_sleeping);
+        if (this.y < 250) {
+            this.y += 1;
+        }
+    }
+
+    idleAnimation() {
+        this.imageCache = [];
+        this.loadImages(this.images_idle);
+        this.playAnimation(this.images_idle);
+    }
+
+    swimAnimation() {
+        this.imageCache = [];
+        this.loadImages(this.images_swimming);
+        this.playAnimation(this.images_swimming);
+        this.idleTime = 0;
     }
 }

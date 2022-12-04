@@ -26,7 +26,7 @@ class MoveableObject {
     }
 
     drawRectangle(ctx) {
-        if (this instanceof Sharkie || this instanceof PufferFish) {
+        if (this instanceof Sharkie || this instanceof PufferFish || this instanceof Endboss) {
             ctx.beginPath();
             ctx.lineWidth = '3';
             ctx.strokeStyle = 'blue';
