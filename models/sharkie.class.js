@@ -8,6 +8,12 @@ class Sharkie extends MoveableObject {
     audio_swim_up_down = new Audio('../audio/swim_up_down.mp3');
     audio_swim_left_right = new Audio('../audio/swim_left_right.mp3');
     idleTime = 0;
+    offset = {
+        top: 120,
+        bottom: 180,
+        left: 50,
+        right: 100,
+    };
     images_swimming = [
         '../img/sharkie/swim/1.png',
         '../img/sharkie/swim/2.png',

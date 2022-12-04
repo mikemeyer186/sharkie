@@ -12,12 +12,23 @@ class World {
         this.keyboard = keyboard;
         this.draw();
         this.setControls();
+        this.checkCollisions();
     }
 
     setControls() {
         this.sharkie.control = this.keyboard;
         this.sharkie.camera_x = this.camera_x;
         this.sharkie.level = this.level;
+    }
+
+    checkCollisions() {
+        setInterval(() => {
+            this.level.enemies.forEach((enemy) => {
+                if (this.sharkie.isColliding(enemy)) {
+                    console.log('Collision with ', enemy);
+                }
+            });
+        }, 200);
     }
 
     draw() {
