@@ -71,8 +71,6 @@ class Sharkie extends MoveableObject {
         setInterval(() => {
             if (this.isIdleLong()) {
                 this.longIdleAnimation();
-            } else if (this.isSleeping()) {
-                this.sleepAnimation();
             } else {
                 this.idleAnimation();
             }
@@ -119,18 +117,17 @@ class Sharkie extends MoveableObject {
     }
 
     isIdleLong() {
-        console.log(this.idleTime);
-        return this.idleTime == 5;
-    }
-
-    isSleeping() {
-        return this.idleTime >= 6;
+        return this.idleTime >= 5;
     }
 
     longIdleAnimation() {
         this.imageCache = [];
-        this.loadImages(this.images_idle_long);
-        this.playAnimation(this.images_idle_long);
+        if (this.idleTime >= 6) {
+            this.sleepAnimation();
+        } else {
+            this.loadImages(this.images_idle_long);
+            this.playAnimation(this.images_idle_long);
+        }
     }
 
     sleepAnimation() {
