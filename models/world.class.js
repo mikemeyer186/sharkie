@@ -25,7 +25,8 @@ class World {
         setInterval(() => {
             this.level.enemies.forEach((enemy) => {
                 if (this.sharkie.isColliding(enemy)) {
-                    console.log('Collision with ', enemy);
+                    this.sharkie.decreaseEnergy();
+                    console.log(this.sharkie.energy);
                 }
             });
         }, 200);

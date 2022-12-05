@@ -36,7 +36,7 @@ class MoveableObject {
             ctx.beginPath();
             ctx.lineWidth = '3';
             ctx.strokeStyle = 'blue';
-            ctx.rect(this.x + this.offset.left, this.y + this.offset.top, this.width - this.offset.right, this.height - this.offset.bottom);
+            ctx.rect(this.x, this.y, this.width, this.height);
             ctx.stroke();
         }
     }
@@ -66,8 +66,8 @@ class MoveableObject {
     isColliding(obj) {
         return (
             this.x + this.width - this.offset.right >= obj.x + obj.offset.left &&
-            this.y + this.height - this.offset.bottom >= obj.y + obj.offset.top &&
             this.x + this.offset.left <= obj.x + obj.width - obj.offset.right &&
+            this.y + this.height - this.offset.bottom >= obj.y + obj.offset.top &&
             this.y + this.offset.top <= obj.y + obj.height - obj.offset.bottom
         ); //&&
         //obj.onCollisionCourse // Optional: hiermit könnten wir schauen, ob ein Objekt sich in die richtige Richtung bewegt. Nur dann kollidieren wir. Nützlich bei Gegenständen, auf denen man stehen kann.

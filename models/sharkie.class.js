@@ -8,11 +8,12 @@ class Sharkie extends MoveableObject {
     audio_swim_up_down = new Audio('../audio/swim_up_down.mp3');
     audio_swim_left_right = new Audio('../audio/swim_left_right.mp3');
     idleTime = 0;
+    energy = 100;
     offset = {
         top: 120,
-        bottom: 180,
-        left: 50,
-        right: 100,
+        bottom: 60,
+        left: 60,
+        right: 40,
     };
     images_swimming = [
         '../img/sharkie/swim/1.png',
@@ -64,6 +65,13 @@ class Sharkie extends MoveableObject {
         '../img/sharkie/idle_long/13.png',
         '../img/sharkie/idle_long/14.png',
     ];
+    images_hurt = [
+        '../img/sharkie/hurt/1.png',
+        '../img/sharkie/hurt/2.png',
+        '../img/sharkie/hurt/3.png',
+        '../img/sharkie/hurt/4.png',
+        '../img/sharkie/hurt/5.png',
+    ];
 
     constructor() {
         super();
@@ -79,6 +87,10 @@ class Sharkie extends MoveableObject {
                 this.longIdleAnimation();
             } else {
                 this.idleAnimation();
+            }
+
+            if (this.isHurt()) {
+                this.hurtAnimation();
             }
 
             if (keyboard.ArrowRight || keyboard.ArrowLeft || keyboard.ArrowUp || keyboard.ArrowDown) {
@@ -126,6 +138,14 @@ class Sharkie extends MoveableObject {
         return this.idleTime >= 5;
     }
 
+    isHurt() {
+        return true; //isColliding?
+    }
+
+    isDead() {
+        return this.energy == 0;
+    }
+
     longIdleAnimation() {
         this.imageCache = [];
         if (this.idleTime >= 6) {
@@ -156,5 +176,20 @@ class Sharkie extends MoveableObject {
         this.loadImages(this.images_swimming);
         this.playAnimation(this.images_swimming);
         this.idleTime = 0;
+    }
+
+    hurtAnimation() {
+        this.imageCache = [];
+        this.loadImages(this.images_hurt);
+        this.playAnimation(this.images_hurt);
+        this.idleTime = 0;
+    }
+
+    decreaseEnergy() {
+        if (this.energy == 0) {
+            this.energy = 0;
+        } else {
+            this.energy -= 5;
+        }
     }
 }
