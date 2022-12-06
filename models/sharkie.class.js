@@ -8,7 +8,6 @@ class Sharkie extends MoveableObject {
     audio_swim_up_down = new Audio('../audio/swim_up_down.mp3');
     audio_swim_left_right = new Audio('../audio/swim_left_right.mp3');
     idleTime = 0;
-    energy = 100;
     offset = {
         top: 120,
         bottom: 60,
@@ -72,6 +71,20 @@ class Sharkie extends MoveableObject {
         '../img/sharkie/hurt/4.png',
         '../img/sharkie/hurt/5.png',
     ];
+    images_dead = [
+        '../img/sharkie/dead/1.png',
+        '../img/sharkie/dead/2.png',
+        '../img/sharkie/dead/3.png',
+        '../img/sharkie/dead/4.png',
+        '../img/sharkie/dead/5.png',
+        '../img/sharkie/dead/6.png',
+        '../img/sharkie/dead/7.png',
+        '../img/sharkie/dead/8.png',
+        '../img/sharkie/dead/9.png',
+        '../img/sharkie/dead/10.png',
+        '../img/sharkie/dead/11.png',
+        '../img/sharkie/dead/12.png',
+    ];
 
     constructor() {
         super();
@@ -83,18 +96,16 @@ class Sharkie extends MoveableObject {
 
     animate() {
         setInterval(() => {
-            if (this.isIdleLong()) {
+            if (this.isSwimming()) {
+                this.swimAnimation();
+            } else if (this.isDead()) {
+                this.deadAnimation();
+            } else if (this.isHurt()) {
+                this.hurtAnimation();
+            } else if (this.isIdleLong()) {
                 this.longIdleAnimation();
             } else {
                 this.idleAnimation();
-            }
-
-            if (this.isHurt()) {
-                this.hurtAnimation();
-            }
-
-            if (keyboard.ArrowRight || keyboard.ArrowLeft || keyboard.ArrowUp || keyboard.ArrowDown) {
-                this.swimAnimation();
             }
         }, 1000 / 10);
 
@@ -135,15 +146,8 @@ class Sharkie extends MoveableObject {
     }
 
     isIdleLong() {
+        console.log(this.idleTime);
         return this.idleTime >= 5;
-    }
-
-    isHurt() {
-        return true; //isColliding?
-    }
-
-    isDead() {
-        return this.energy == 0;
     }
 
     longIdleAnimation() {
@@ -185,11 +189,14 @@ class Sharkie extends MoveableObject {
         this.idleTime = 0;
     }
 
-    decreaseEnergy() {
-        if (this.energy == 0) {
-            this.energy = 0;
-        } else {
-            this.energy -= 5;
-        }
+    deadAnimation() {
+        this.imageCache = [];
+        this.loadImages(this.images_dead);
+        this.playAnimation(this.images_dead);
+        this.idleTime = 0;
+    }
+
+    isSwimming() {
+        return keyboard.ArrowRight || keyboard.ArrowLeft || keyboard.ArrowUp || keyboard.ArrowDown;
     }
 }

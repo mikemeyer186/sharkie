@@ -7,6 +7,8 @@ class MoveableObject {
     imageCache = [];
     currentImage = 0;
     otherDirection = false;
+    energy = 100;
+    lastHurt = 0;
     offset = {
         top: 0,
         bottom: 0,
@@ -71,5 +73,24 @@ class MoveableObject {
             this.y + this.offset.top <= obj.y + obj.height - obj.offset.bottom
         ); //&&
         //obj.onCollisionCourse // Optional: hiermit könnten wir schauen, ob ein Objekt sich in die richtige Richtung bewegt. Nur dann kollidieren wir. Nützlich bei Gegenständen, auf denen man stehen kann.
+    }
+
+    decreaseEnergy() {
+        this.energy -= 5;
+        if (this.energy <= 0) {
+            this.energy = 0;
+        } else {
+            this.lastHurt = new Date().getTime();
+        }
+    }
+
+    isDead() {
+        return this.energy == 0;
+    }
+
+    isHurt() {
+        let timePassed = new Date().getTime() - this.lastHurt;
+        timePassed = timePassed / 1000;
+        return timePassed < 1;
     }
 }
