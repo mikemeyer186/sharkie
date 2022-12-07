@@ -194,6 +194,7 @@ class Sharkie extends MoveableObject {
         this.loadImages(this.images_dead);
         this.playAnimation(this.images_dead);
         this.idleTime = 0;
+        this.y -= 5;
     }
 
     isSwimming() {
