@@ -146,7 +146,7 @@ class Sharkie extends MoveableObject {
     }
 
     isIdleLong() {
-        console.log(this.idleTime);
+        //console.log(this.idleTime);
         return this.idleTime >= 5;
     }
 

@@ -5,6 +5,7 @@ class World {
     camera_x = 0;
     sharkie = new Sharkie();
     level = level1;
+    lifeBar = new StatusBar();
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
@@ -40,6 +41,7 @@ class World {
         this.addObjectsToCanvas(this.level.background);
         this.addToCanvas(this.level.light);
         this.addObjectsToCanvas(this.level.enemies);
+        this.addToCanvas(this.lifeBar);
         this.addToCanvas(this.sharkie);
         this.ctx.translate(-this.sharkie.camera_x, 0);
 
