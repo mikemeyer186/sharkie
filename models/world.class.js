@@ -16,6 +16,7 @@ class World {
         this.draw();
         this.setControls();
         this.checkCollisions();
+        this.checkCollisionsPoison();
     }
 
     setControls() {
@@ -30,7 +31,18 @@ class World {
                 if (this.sharkie.isColliding(enemy)) {
                     this.sharkie.decreaseEnergy();
                     this.lifeBar.setStatusBar(this.sharkie.energy);
-                    console.log(this.sharkie.energy);
+                }
+            });
+        }, 200);
+    }
+
+    checkCollisionsPoison() {
+        setInterval(() => {
+            this.level.poison.forEach((poison, index) => {
+                if (this.sharkie.isColliding(poison)) {
+                    this.sharkie.increasePoison();
+                    this.poisonBar.setStatusBar(this.sharkie.poison);
+                    this.level.poison.splice(index, 1);
                 }
             });
         }, 200);
@@ -42,6 +54,7 @@ class World {
         this.ctx.translate(this.sharkie.camera_x, 0);
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
         this.addObjectsToCanvas(this.level.background);
+        this.addObjectsToCanvas(this.level.poison);
         this.addToCanvas(this.level.light);
         this.addObjectsToCanvas(this.level.enemies);
 

@@ -1,6 +1,8 @@
 class MoveableObject extends DrawableObject {
     otherDirection = false;
     energy = 100;
+    poison = 0;
+    coins = 0;
     lastHurt = 0;
     offset = {
         top: 0,
@@ -47,6 +49,13 @@ class MoveableObject extends DrawableObject {
             this.energy = 0;
         } else {
             this.lastHurt = new Date().getTime();
+        }
+    }
+
+    increasePoison() {
+        this.poison += 20;
+        if (this.poison >= 100) {
+            this.energy = 100;
         }
     }
 

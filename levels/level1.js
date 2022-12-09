@@ -34,5 +34,12 @@ const level1 = new Level(
         new BackgroundObjects('../img/background/fond_1/light1.png', 720 * 6),
         new BackgroundObjects('../img/background/fond_2/light1.png', 720 * 6),
         new BackgroundObjects('../img/background/floor/light1.png', 720 * 6),
+    ],
+    [
+        new CollectableObjects(300),
+        new CollectableObjects(500),
+        new CollectableObjects(700),
+        new CollectableObjects(1000),
+        new CollectableObjects(1200),
     ]
 );
