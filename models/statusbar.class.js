@@ -1,26 +1,12 @@
 class StatusBar extends DrawableObject {
-    images_life = [
-        '../img/statusbar/life/life_0.png',
-        '../img/statusbar/life/life_20.png',
-        '../img/statusbar/life/life_40.png',
-        '../img/statusbar/life/life_60.png',
-        '../img/statusbar/life/life_80.png',
-        '../img/statusbar/life/life_100.png',
-    ];
+    x = 20;
+    y = 0;
+    width = 200;
+    height = 50;
 
-    lifeStatus = 100;
-
-    constructor() {
-        super();
-        this.loadImages(this.images_life);
-        this.x = 100;
-        this.y = 100;
-        this.setLifeStatus(100);
-    }
-
-    setLifeStatus(percentage) {
+    setStatusBar(percentage) {
         let index = this.returnImgIndex(percentage);
-        this.img = this.images_life[index]; /// Wo ist der Fehler??? Bild kann nicht geladen werden!
+        this.img.src = this.images[index];
     }
 
     returnImgIndex(percentage) {

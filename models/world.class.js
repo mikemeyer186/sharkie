@@ -5,7 +5,9 @@ class World {
     camera_x = 0;
     sharkie = new Sharkie();
     level = level1;
-    lifeBar = new StatusBar();
+    lifeBar = new LifeBar();
+    coinBar = new CoinBar();
+    poisonBar = new PoisonBar();
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
@@ -27,6 +29,7 @@ class World {
             this.level.enemies.forEach((enemy) => {
                 if (this.sharkie.isColliding(enemy)) {
                     this.sharkie.decreaseEnergy();
+                    this.lifeBar.setStatusBar(this.sharkie.energy);
                     console.log(this.sharkie.energy);
                 }
             });
@@ -41,7 +44,13 @@ class World {
         this.addObjectsToCanvas(this.level.background);
         this.addToCanvas(this.level.light);
         this.addObjectsToCanvas(this.level.enemies);
+
+        this.ctx.translate(-this.sharkie.camera_x, 0);
         this.addToCanvas(this.lifeBar);
+        this.addToCanvas(this.coinBar);
+        this.addToCanvas(this.poisonBar);
+        this.ctx.translate(this.sharkie.camera_x, 0);
+
         this.addToCanvas(this.sharkie);
         this.ctx.translate(-this.sharkie.camera_x, 0);
 
