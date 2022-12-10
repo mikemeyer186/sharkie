@@ -30,6 +30,10 @@ canvas {
     background-color: black;
 }
 
+.subtext {
+    cursor: pointer;
+}
+
 
 @font-face {
     font-family: 'Luckiest Guy';

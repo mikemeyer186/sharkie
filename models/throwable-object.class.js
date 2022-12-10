@@ -1,5 +1,19 @@
 class ThrowableObject extends MoveableObject {
-    speed;
+    width = 40;
+    height = 40;
+    speed = 1;
+    image = '../img/sharkie/bubbling/poison_bubble.png';
 
-    throw() {}
+    constructor(x, y) {
+        super();
+        this.x = x + 180;
+        this.y = y + 150;
+        this.loadImage(this.image);
+    }
+
+    poisonBubbling() {
+        setInterval(() => {
+            this.moveRight(this.speed);
+        }, 1000 / 60);
+    }
 }

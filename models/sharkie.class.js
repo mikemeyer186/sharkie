@@ -85,6 +85,16 @@ class Sharkie extends MoveableObject {
         '../img/sharkie/dead/11.png',
         '../img/sharkie/dead/12.png',
     ];
+    images_bubbling = [
+        '../img/sharkie/bubbling/1.png',
+        '../img/sharkie/bubbling/2.png',
+        '../img/sharkie/bubbling/3.png',
+        '../img/sharkie/bubbling/4.png',
+        '../img/sharkie/bubbling/5.png',
+        '../img/sharkie/bubbling/6.png',
+        '../img/sharkie/bubbling/7.png',
+        '../img/sharkie/bubbling/8.png',
+    ];
 
     constructor() {
         super();
@@ -95,7 +105,7 @@ class Sharkie extends MoveableObject {
     }
 
     animate() {
-        setInterval(() => {
+        let animationInterval = setInterval(() => {
             if (this.isSwimming()) {
                 this.swimAnimation();
             } else if (this.isDead()) {
@@ -104,6 +114,8 @@ class Sharkie extends MoveableObject {
                 this.hurtAnimation();
             } else if (this.isIdleLong()) {
                 this.longIdleAnimation();
+            } else if (this.isBubbling()) {
+                this.bubbleAnimation();
             } else {
                 this.idleAnimation();
             }
@@ -197,7 +209,18 @@ class Sharkie extends MoveableObject {
         this.y -= 5;
     }
 
+    bubbleAnimation() {
+        this.imageCache = [];
+        this.loadImages(this.images_bubbling);
+        this.playAnimation(this.images_bubbling);
+        this.idleTime = 0;
+    }
+
     isSwimming() {
         return keyboard.ArrowRight || keyboard.ArrowLeft || keyboard.ArrowUp || keyboard.ArrowDown;
+    }
+
+    isBubbling() {
+        return keyboard.Space;
     }
 }

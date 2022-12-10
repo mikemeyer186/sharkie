@@ -31,3 +31,7 @@ function playAudio() {
         });
     }
 }
+
+function toggleFullscreen() {
+    canvas.requestFullscreen();
+}

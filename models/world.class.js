@@ -8,6 +8,8 @@ class World {
     lifeBar = new LifeBar();
     coinBar = new CoinBar();
     poisonBar = new PoisonBar();
+    poisonBubbles = [];
+    availableBubbles = 0;
     audio_coin_pickup = new Audio('../audio/coin_pickup.mp3');
     audio_poison_pickup = new Audio('../audio/poison_pickup.mp3');
     audio_sharkie_hit = new Audio('../audio/sharkie_hit.mp3');
@@ -18,9 +20,7 @@ class World {
         this.keyboard = keyboard;
         this.draw();
         this.setControls();
-        this.checkCollisions();
-        this.checkCollisionsPoison();
-        this.checkCollisionsCoins();
+        this.activeInterval();
         this.audio_coin_pickup.volume = 0.3;
         this.audio_poison_pickup.volume = 0.7;
         this.audio_sharkie_hit.volume = 0.3;
@@ -32,42 +32,59 @@ class World {
         this.sharkie.level = this.level;
     }
 
-    checkCollisions() {
+    activeInterval() {
         setInterval(() => {
-            this.level.enemies.forEach((enemy) => {
-                if (this.sharkie.isColliding(enemy)) {
-                    this.audio_sharkie_hit.play();
-                    this.sharkie.decreaseEnergy();
-                    this.lifeBar.setStatusBar(this.sharkie.energy);
-                }
-            });
-        }, 200);
+            this.checkCollisions();
+            this.checkCollisionsPoison();
+            this.checkCollisionsCoins();
+            this.checkBubbling();
+        }, 50);
+    }
+
+    checkCollisions() {
+        this.level.enemies.forEach((enemy) => {
+            if (this.sharkie.isColliding(enemy)) {
+                this.audio_sharkie_hit.play();
+                this.sharkie.decreaseEnergy();
+                this.lifeBar.setStatusBar(this.sharkie.energy);
+            }
+        });
     }
 
     checkCollisionsPoison() {
-        setInterval(() => {
-            this.level.poison.forEach((poison, index) => {
-                if (this.sharkie.isColliding(poison)) {
-                    this.audio_poison_pickup.play();
-                    this.sharkie.increasePoison();
-                    this.poisonBar.setStatusBar(this.sharkie.poison);
-                    this.level.poison.splice(index, 1);
-                }
-            });
-        }, 200);
+        this.level.poison.forEach((poison, index) => {
+            if (this.sharkie.isColliding(poison)) {
+                this.audio_poison_pickup.play();
+                this.sharkie.increasePoison();
+                this.poisonBar.setStatusBar(this.sharkie.poison);
+                this.level.poison.splice(index, 1);
+                this.availableBubbles += 1;
+            }
+        });
+    }
+
+    checkBubbling() {
+        if (this.keyboard.Space) {
+            if (this.availableBubbles > 0) {
+                let poisonBubble = new ThrowableObject(this.sharkie.x, this.sharkie.y);
+                this.poisonBubbles.push(poisonBubble);
+                poisonBubble.poisonBubbling();
+                this.sharkie.decreasePoison();
+                this.poisonBar.setStatusBar(this.sharkie.poison);
+                this.availableBubbles -= 1;
+            }
+        }
     }
 
     checkCollisionsCoins() {
-        setInterval(() => {
-            this.level.coins.forEach((coin, index) => {
-                if (this.sharkie.isColliding(coin)) {
-                    this.audio_coin_pickup.play();
-                    this.sharkie.increaseCoin();
-                    this.coinBar.setStatusBar(this.sharkie.coins);
-                    this.level.coins.splice(index, 1);
-                }
-            });
-        }, 200);
+        this.level.coins.forEach((coin, index) => {
+            if (this.sharkie.isColliding(coin)) {
+                this.audio_coin_pickup.play();
+                this.sharkie.increaseCoin();
+                this.coinBar.setStatusBar(this.sharkie.coins);
+                this.level.coins.splice(index, 1);
+            }
+        });
     }
 
     draw() {
@@ -88,6 +105,7 @@ class World {
         this.ctx.translate(this.sharkie.camera_x, 0);
 
         this.addToCanvas(this.sharkie);
+        this.addObjectsToCanvas(this.poisonBubbles);
         this.ctx.translate(-this.sharkie.camera_x, 0);
 
         requestAnimationFrame(() => {
