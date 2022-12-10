@@ -55,7 +55,14 @@ class MoveableObject extends DrawableObject {
     increasePoison() {
         this.poison += 20;
         if (this.poison >= 100) {
-            this.energy = 100;
+            this.poison = 100;
+        }
+    }
+
+    increaseCoin() {
+        this.coins += 10;
+        if (this.coins >= 100) {
+            this.coins = 100;
         }
     }
 

@@ -17,6 +17,7 @@ class World {
         this.setControls();
         this.checkCollisions();
         this.checkCollisionsPoison();
+        this.checkCollisionsCoins();
     }
 
     setControls() {
@@ -48,12 +49,25 @@ class World {
         }, 200);
     }
 
+    checkCollisionsCoins() {
+        setInterval(() => {
+            this.level.coins.forEach((coin, index) => {
+                if (this.sharkie.isColliding(coin)) {
+                    this.sharkie.increaseCoin();
+                    this.coinBar.setStatusBar(this.sharkie.coins);
+                    this.level.coins.splice(index, 1);
+                }
+            });
+        }, 200);
+    }
+
     draw() {
         let self = this;
 
         this.ctx.translate(this.sharkie.camera_x, 0);
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
         this.addObjectsToCanvas(this.level.background);
+        this.addObjectsToCanvas(this.level.coins);
         this.addObjectsToCanvas(this.level.poison);
         this.addToCanvas(this.level.light);
         this.addObjectsToCanvas(this.level.enemies);
