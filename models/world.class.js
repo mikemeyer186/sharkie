@@ -13,6 +13,7 @@ class World {
     audio_coin_pickup = new Audio('../audio/coin_pickup.mp3');
     audio_poison_pickup = new Audio('../audio/poison_pickup.mp3');
     audio_sharkie_hit = new Audio('../audio/sharkie_hit.mp3');
+    audio_poison_bubble = new Audio('../audio/poison_bubble.mp3');
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
@@ -24,6 +25,7 @@ class World {
         this.audio_coin_pickup.volume = 0.3;
         this.audio_poison_pickup.volume = 0.7;
         this.audio_sharkie_hit.volume = 0.3;
+        this.audio_poison_bubble.volume = 0.8;
     }
 
     setControls() {
@@ -69,6 +71,7 @@ class World {
                 let poisonBubble = new ThrowableObject(this.sharkie.x, this.sharkie.y);
                 this.poisonBubbles.push(poisonBubble);
                 poisonBubble.poisonBubbling();
+                this.audio_poison_bubble.play();
                 this.sharkie.decreasePoison();
                 this.poisonBar.setStatusBar(this.sharkie.poison);
                 this.availableBubbles -= 1;
