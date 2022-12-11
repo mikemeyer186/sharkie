@@ -44,12 +44,13 @@ class MoveableObject extends DrawableObject {
     }
 
     decreaseEnergy() {
-        this.energy -= 5;
+        this.energy -= 2;
         if (this.energy <= 0) {
             this.energy = 0;
         } else {
             this.lastHurt = new Date().getTime();
         }
+        console.log(this.energy);
     }
 
     increasePoison() {

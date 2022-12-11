@@ -134,7 +134,7 @@ class Sharkie extends MoveableObject {
                 this.otherDirection = true;
                 this.audio_swim_left_right.play();
             }
-            if (keyboard.ArrowUp && this.y > -110) {
+            if (keyboard.ArrowUp && this.y > -70) {
                 this.moveUp(this.speed);
                 this.audio_swim_up_down.play();
             }
