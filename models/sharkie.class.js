@@ -105,7 +105,7 @@ class Sharkie extends MoveableObject {
     }
 
     animate() {
-        let animationInterval = setInterval(() => {
+        setInterval(() => {
             if (this.isSwimming()) {
                 this.swimAnimation();
             } else if (this.isDead()) {
@@ -158,7 +158,6 @@ class Sharkie extends MoveableObject {
     }
 
     isIdleLong() {
-        //console.log(this.idleTime);
         return this.idleTime >= 5;
     }
 
@@ -212,7 +211,7 @@ class Sharkie extends MoveableObject {
     bubbleAnimation() {
         this.imageCache = [];
         this.loadImages(this.images_bubbling);
-        this.playAnimation(this.images_bubbling);
+        this.playOnceAnimation(this.images_bubbling);
         this.idleTime = 0;
     }
 

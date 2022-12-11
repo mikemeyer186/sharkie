@@ -17,6 +17,8 @@ class MoveableObject extends DrawableObject {
         this.currentImage++;
     }
 
+    playOnceAnimation(imgArray) {}
+
     moveLeft(speed) {
         this.x -= speed;
     }
