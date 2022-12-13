@@ -1,16 +1,21 @@
 let canvas;
 let world;
-let startscreen;
+let startscreenImage;
+let startscreenStart;
+let screen;
 let keyboard = new Keyboard();
 let audio_background = new Audio('../audio/background.mp3');
 
 function init() {
-    startscreen = document.getElementById('startscreen');
+    screen = document.getElementById('screen');
+    startscreenImage = document.getElementById('startscreen-img');
+    startscreenStart = document.getElementById('startscreen-start');
     canvas = document.getElementById('canvas');
 }
 
 function startGame() {
-    startscreen.classList.add('no-opacity');
+    startscreenImage.classList.add('no-opacity');
+    startscreenStart.classList.add('d-none');
     startLevel1();
     world = new World(canvas, keyboard);
     playAudio();
@@ -19,7 +24,7 @@ function startGame() {
 
 function hideStartscreen() {
     setTimeout(() => {
-        startscreen.classList.add('d-none');
+        startscreenImage.classList.add('d-none');
     }, 1000);
 }
 
@@ -43,6 +48,5 @@ function playAudio() {
 }
 
 function toggleFullscreen() {
-    startscreen.requestFullscreen();
-    canvas.requestFullscreen();
+    screen.requestFullscreen();
 }

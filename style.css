@@ -31,40 +31,38 @@ h1 {
     text-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
 }
 
-#startscreen {
+#screen {
     display: block;
-    width: 720px;
-    height: 480px;
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 25px;
-    bottom: 0;
-    margin: auto;
-    opacity: 100;
-    transition: opacity 500ms ease-out;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
-.startscreen-img {
+#startscreen-img {
+    position: absolute;
     display: block;
     width: 100%;
     height: 100%;
     object-fit: cover;
+    opacity: 100;
+    transition: opacity 500ms ease-out;
 }
 
-.startscreen-start {
-    color: azure;
-    font-size: 48px;
-    margin: 0;
+#startscreen-start {
+    width: 30%;
+    height: 15%;
     position: absolute;
-    right: 85px;
-    bottom: 70px;
+    right: 15%;
+    bottom: 15%;
     cursor: pointer;
+    filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.5));
     transition: all 255ms ease-in-out;
 }
 
-.startscreen-start:hover {
-    text-shadow: 0 0 5px aqua;
+#startscreen-start:hover {
+    filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.2));
     transition: all 255ms ease-in-out;
 }
 
@@ -72,6 +70,7 @@ canvas {
     background-color: black;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
     display: block;
+    width: 100%;
 }
 
 .subtext {
@@ -88,11 +87,15 @@ canvas {
 
 @media only screen and (max-width: 720px) {
     canvas {
-        width: 100vw;
+        width: 100%;
     }
 
-    #startscreen {
-        width: 100vw;
+    #screen {
+        width: 100%;
+    }
+
+    #startscreen-img {
+        width: 100%;
     }
 }
 
@@ -101,8 +104,8 @@ canvas {
         height: 100vh;
     }
 
-    #startscreen {
-        width: 100vh;
+    #screen {
+        height: 100vh;
     }
 
     h1 {
@@ -111,5 +114,9 @@ canvas {
 
     .subtext {
         display: none;
+    }
+
+    #startscreen-img {
+        height: 100vh;
     }
 }
