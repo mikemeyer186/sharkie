@@ -4,6 +4,7 @@ class World {
     keyboard;
     camera_x = 0;
     sharkie = new Sharkie();
+    endboss = new Endboss();
     level = level1;
     lifeBar = new LifeBar();
     coinBar = new CoinBar();
@@ -22,6 +23,7 @@ class World {
         this.draw();
         this.setControls();
         this.activeInterval();
+        this.setSharkieX();
         this.audio_coin_pickup.volume = 0.3;
         this.audio_poison_pickup.volume = 0.7;
         this.audio_sharkie_hit.volume = 0.3;
@@ -32,6 +34,12 @@ class World {
         this.sharkie.control = this.keyboard;
         this.sharkie.camera_x = this.camera_x;
         this.sharkie.level = this.level;
+    }
+
+    setSharkieX() {
+        setInterval(() => {
+            this.endboss.sharkieX = this.sharkie.x;
+        }, 100);
     }
 
     activeInterval() {
