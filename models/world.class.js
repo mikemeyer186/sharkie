@@ -11,6 +11,7 @@ class World {
     poisonBar = new PoisonBar();
     poisonBubbles = [];
     availableBubbles = 0;
+    endbossIntro = false;
     audio_coin_pickup = new Audio('../audio/coin_pickup.mp3');
     audio_poison_pickup = new Audio('../audio/poison_pickup.mp3');
     audio_sharkie_hit = new Audio('../audio/sharkie_hit.mp3');
@@ -23,7 +24,6 @@ class World {
         this.draw();
         this.setControls();
         this.activeInterval();
-        this.setSharkieX();
         this.audio_coin_pickup.volume = 0.3;
         this.audio_poison_pickup.volume = 0.7;
         this.audio_sharkie_hit.volume = 0.3;
@@ -36,19 +36,21 @@ class World {
         this.sharkie.level = this.level;
     }
 
-    setSharkieX() {
-        setInterval(() => {
-            this.endboss.sharkieX = this.sharkie.x;
-        }, 100);
-    }
-
     activeInterval() {
         setInterval(() => {
             this.checkCollisions();
             this.checkCollisionsPoison();
             this.checkCollisionsCoins();
             this.checkBubbling();
+            this.checkEndbossArea();
         }, 50);
+    }
+
+    checkEndbossArea() {
+        if (this.sharkie.x >= 3200) {
+            this.endbossIntro = true;
+        }
+        console.log(this.endbossIntro);
     }
 
     checkCollisions() {
@@ -117,6 +119,7 @@ class World {
         this.ctx.translate(this.sharkie.camera_x, 0);
 
         this.addToCanvas(this.sharkie);
+        this.addToCanvas(this.endboss);
         this.addObjectsToCanvas(this.poisonBubbles);
         this.ctx.translate(-this.sharkie.camera_x, 0);
 

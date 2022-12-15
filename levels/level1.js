@@ -3,7 +3,7 @@ let level1;
 function startLevel1() {
     level1 = new Level(
         new Light(),
-        [new PufferFish(), new PufferFish(), new PufferFish(), new Endboss()],
+        [new PufferFish(), new PufferFish(), new PufferFish()],
         [
             new BackgroundObjects('../img/background/water/light2.png', -720),
             new BackgroundObjects('../img/background/fond_1/light2.png', -720),
@@ -50,6 +50,7 @@ function startLevel1() {
             new Coin(1000, 200),
             new Coin(1300, 400),
             new Coin(1600, 70),
-        ]
+        ],
+        [new Endboss()]
     );
 }

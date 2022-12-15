@@ -4,7 +4,7 @@ class Endboss extends MoveableObject {
     height = 300;
     width = 300;
     speed = 0;
-    sharkieX;
+    endbossIntro;
     images_spawning = [
         '../img/enemys/endboss/intro/1.png',
         '../img/enemys/endboss/intro/2.png',
@@ -37,19 +37,17 @@ class Endboss extends MoveableObject {
         super();
         this.loadImage('../img/enemys/endboss/swim/1.png');
         this.animate();
-        this.sharkieX = world && world.sharkie.x;
     }
 
     animate() {
         let i = 0;
 
         setInterval(() => {
-            console.log(this.sharkieX);
-            if (this.sharkieX == 3200) {
+            if (endbossIntro) {
                 i = 0;
             }
 
-            if (i < 20) {
+            if (i < 10) {
                 this.imageCache = [];
                 this.loadImages(this.images_spawning);
                 this.playAnimation(this.images_spawning);

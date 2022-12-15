@@ -52,7 +52,6 @@ class MoveableObject extends DrawableObject {
         } else {
             this.lastHurt = new Date().getTime();
         }
-        console.log(this.energy);
     }
 
     increasePoison() {
