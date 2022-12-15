@@ -1,10 +1,11 @@
 class Endboss extends MoveableObject {
-    x = 3600;
-    y = 40;
+    x = 1800;
+    y = -400;
     height = 300;
     width = 300;
     speed = 0;
     endbossIntro;
+    firstContact = false;
     images_spawning = [
         '../img/enemys/endboss/intro/1.png',
         '../img/enemys/endboss/intro/2.png',
@@ -36,6 +37,8 @@ class Endboss extends MoveableObject {
     constructor() {
         super();
         this.loadImage('../img/enemys/endboss/swim/1.png');
+        this.loadImages(this.images_spawning);
+        this.loadImages(this.images_swimming);
         this.animate();
     }
 
@@ -43,17 +46,15 @@ class Endboss extends MoveableObject {
         let i = 0;
 
         setInterval(() => {
-            if (endbossIntro) {
+            if (this.endbossIntro && !this.firstContact) {
                 i = 0;
+                this.y = 40;
+                this.firstContact = true;
             }
 
-            if (i < 10) {
-                this.imageCache = [];
-                this.loadImages(this.images_spawning);
+            if (i < 5) {
                 this.playAnimation(this.images_spawning);
             } else {
-                this.imageCache = [];
-                this.loadImages(this.images_swimming);
                 this.playAnimation(this.images_swimming);
             }
             i++;

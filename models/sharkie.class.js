@@ -100,6 +100,13 @@ class Sharkie extends MoveableObject {
         super();
         this.audio_swim_left_right.volume = 0.2;
         this.loadImage('../img/sharkie/swim/1.png');
+        this.loadImages(this.images_idle_long);
+        this.loadImages(this.images_idle_sleeping);
+        this.loadImages(this.images_idle);
+        this.loadImages(this.images_swimming);
+        this.loadImages(this.images_hurt);
+        this.loadImages(this.images_dead);
+        this.loadImages(this.images_bubbling);
         this.animate();
         this.setIdleTime();
     }
@@ -162,18 +169,14 @@ class Sharkie extends MoveableObject {
     }
 
     longIdleAnimation() {
-        this.imageCache = [];
         if (this.idleTime >= 6) {
             this.sleepAnimation();
         } else {
-            this.loadImages(this.images_idle_long);
             this.playAnimation(this.images_idle_long);
         }
     }
 
     sleepAnimation() {
-        this.imageCache = [];
-        this.loadImages(this.images_idle_sleeping);
         this.playAnimation(this.images_idle_sleeping);
         if (this.y < 250) {
             this.y += 1;
@@ -181,36 +184,26 @@ class Sharkie extends MoveableObject {
     }
 
     idleAnimation() {
-        this.imageCache = [];
-        this.loadImages(this.images_idle);
         this.playAnimation(this.images_idle);
     }
 
     swimAnimation() {
-        this.imageCache = [];
-        this.loadImages(this.images_swimming);
         this.playAnimation(this.images_swimming);
         this.idleTime = 0;
     }
 
     hurtAnimation() {
-        this.imageCache = [];
-        this.loadImages(this.images_hurt);
         this.playAnimation(this.images_hurt);
         this.idleTime = 0;
     }
 
     deadAnimation() {
-        this.imageCache = [];
-        this.loadImages(this.images_dead);
         this.playAnimation(this.images_dead);
         this.idleTime = 0;
         this.y -= 5;
     }
 
     bubbleAnimation() {
-        this.imageCache = [];
-        this.loadImages(this.images_bubbling);
         this.playOnceAnimation(this.images_bubbling);
         this.idleTime = 0;
     }

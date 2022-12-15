@@ -30,7 +30,7 @@ class DrawableObject {
         imgArray.forEach((path) => {
             let img = new Image();
             img.src = path;
-            this.imageCache.push(img);
+            this.imageCache[path] = img;
         });
     }
 }

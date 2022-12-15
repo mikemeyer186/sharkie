@@ -11,7 +11,6 @@ class World {
     poisonBar = new PoisonBar();
     poisonBubbles = [];
     availableBubbles = 0;
-    endbossIntro = false;
     audio_coin_pickup = new Audio('../audio/coin_pickup.mp3');
     audio_poison_pickup = new Audio('../audio/poison_pickup.mp3');
     audio_sharkie_hit = new Audio('../audio/sharkie_hit.mp3');
@@ -47,10 +46,9 @@ class World {
     }
 
     checkEndbossArea() {
-        if (this.sharkie.x >= 3200) {
-            this.endbossIntro = true;
+        if (this.sharkie.x >= 1450) {
+            this.endboss.endbossIntro = true;
         }
-        console.log(this.endbossIntro);
     }
 
     checkCollisions() {
