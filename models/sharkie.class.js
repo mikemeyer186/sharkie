@@ -8,6 +8,7 @@ class Sharkie extends MoveableObject {
     audio_swim_up_down = new Audio('../audio/swim_up_down.mp3');
     audio_swim_left_right = new Audio('../audio/swim_left_right.mp3');
     idleTime = 0;
+    deadTime = 0;
     offset = {
         top: 120,
         bottom: 60,
@@ -198,9 +199,14 @@ class Sharkie extends MoveableObject {
     }
 
     deadAnimation() {
-        this.playAnimation(this.images_dead);
-        this.idleTime = 0;
+        if (this.deadTime >= 10) {
+            this.loadImage(this.images_dead[11]);
+        } else {
+            this.playAnimation(this.images_dead);
+        }
         this.y -= 5;
+        this.idleTime = 0;
+        this.deadTime++;
     }
 
     bubbleAnimation() {

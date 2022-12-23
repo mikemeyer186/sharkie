@@ -6,6 +6,12 @@ class Endboss extends MoveableObject {
     speed = 0;
     endbossIntro;
     firstContact = false;
+    offset = {
+        top: 150,
+        bottom: 50,
+        left: 20,
+        right: 20,
+    };
     images_spawning = [
         '../img/enemys/endboss/intro/1.png',
         '../img/enemys/endboss/intro/2.png',

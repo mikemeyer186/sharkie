@@ -40,6 +40,7 @@ class World {
             this.checkCollisions();
             this.checkCollisionsPoison();
             this.checkCollisionsCoins();
+            this.checkCollisionsEndboss();
             this.checkBubbling();
             this.checkEndbossArea();
         }, 50);
@@ -59,6 +60,14 @@ class World {
                 this.lifeBar.setStatusBar(this.sharkie.energy);
             }
         });
+    }
+
+    checkCollisionsEndboss() {
+        if (this.sharkie.isColliding(this.endboss)) {
+            this.audio_sharkie_hit.play();
+            this.sharkie.decreaseEnergy();
+            this.lifeBar.setStatusBar(this.sharkie.energy);
+        }
     }
 
     checkCollisionsPoison() {
