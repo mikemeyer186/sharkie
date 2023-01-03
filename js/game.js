@@ -11,12 +11,16 @@ function init() {
     screen = document.getElementById('screen');
     startscreenImage = document.getElementById('startscreen-img');
     startscreenStart = document.getElementById('startscreen-start');
+    gameOverImage = document.getElementById('gameover-screen');
+    tryAgainButton = document.getElementById('try-again-btn');
     canvas = document.getElementById('canvas');
 }
 
 function startGame() {
     startscreenImage.classList.add('no-opacity');
     startscreenStart.classList.add('d-none');
+    gameOverImage.classList.add('no-opacity');
+    tryAgainButton.classList.add('d-none');
     startLevel1();
     world = new World(canvas, keyboard);
     playAudio();
@@ -63,5 +67,12 @@ function stopGame() {
 }
 
 function showGameOver() {
-    document.getElementById('gameover-screen').classList.remove('no-opacity');
+    gameOverImage.classList.remove('no-opacity');
+    showTryAgain();
+}
+
+function showTryAgain() {
+    setTimeout(() => {
+        tryAgainButton.classList.remove('d-none');
+    }, 3000);
 }
