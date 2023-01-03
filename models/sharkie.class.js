@@ -113,7 +113,7 @@ class Sharkie extends MoveableObject {
     }
 
     animate() {
-        setInterval(() => {
+        setStoppableInterval(() => {
             if (this.isSwimming()) {
                 this.swimAnimation();
             } else if (this.isDead()) {
@@ -129,7 +129,7 @@ class Sharkie extends MoveableObject {
             }
         }, 1000 / 10);
 
-        setInterval(() => {
+        setStoppableInterval(() => {
             this.audioPause();
 
             if (keyboard.ArrowRight && this.x < this.level.levelEnd_x) {
@@ -201,6 +201,8 @@ class Sharkie extends MoveableObject {
     deadAnimation() {
         if (this.deadTime >= 10) {
             this.loadImage(this.images_dead[11]);
+            stopGame();
+            showGameOver();
         } else {
             this.playAnimation(this.images_dead);
         }

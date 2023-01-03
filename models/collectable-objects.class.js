@@ -1,6 +1,6 @@
 class CollectableObjects extends MoveableObject {
     animateCollectables(images) {
-        setInterval(() => {
+        setStoppableInterval(() => {
             this.playAnimation(images);
         }, 1000 / 8);
     }

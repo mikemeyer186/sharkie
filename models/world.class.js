@@ -36,7 +36,7 @@ class World {
     }
 
     activeInterval() {
-        setInterval(() => {
+        setStoppableInterval(() => {
             this.checkCollisions();
             this.checkCollisionsPoison();
             this.checkCollisionsCoins();

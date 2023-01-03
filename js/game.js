@@ -5,6 +5,7 @@ let startscreenStart;
 let screen;
 let keyboard = new Keyboard();
 let audio_background = new Audio('../audio/background.mp3');
+let intervalIds = [];
 
 function init() {
     screen = document.getElementById('screen');
@@ -49,4 +50,18 @@ function playAudio() {
 
 function toggleFullscreen() {
     screen.requestFullscreen();
+}
+
+function setStoppableInterval(fn, time) {
+    let id = setInterval(fn, time);
+    intervalIds.push(id);
+}
+
+function stopGame() {
+    intervalIds.forEach(clearInterval);
+    audio_background.pause();
+}
+
+function showGameOver() {
+    document.getElementById('gameover-screen').classList.remove('no-opacity');
 }
