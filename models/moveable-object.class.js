@@ -1,6 +1,7 @@
 class MoveableObject extends DrawableObject {
     otherDirection = false;
     energy = 100;
+    bossLife = 100;
     poison = 0;
     coins = 0;
     lastHurt = 0;
@@ -17,8 +18,6 @@ class MoveableObject extends DrawableObject {
         this.img = this.imageCache[path];
         this.currentImage++;
     }
-
-    playOnceAnimation(imgArray) {}
 
     moveLeft(speed) {
         this.x -= speed;
@@ -53,6 +52,11 @@ class MoveableObject extends DrawableObject {
         } else {
             this.lastHurt = new Date().getTime();
         }
+    }
+
+    decreaseEnergyBoss() {
+        this.bossLife -= 40;
+        console.log(this.bossLife);
     }
 
     increasePoison() {

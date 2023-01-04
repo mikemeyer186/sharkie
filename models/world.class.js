@@ -7,6 +7,7 @@ class World {
     endboss = new Endboss();
     level = level1;
     lifeBar = new LifeBar();
+    lifeBarBoss = new LifeBarBoss();
     coinBar = new CoinBar();
     poisonBar = new PoisonBar();
     poisonBubbles = [];
@@ -43,12 +44,14 @@ class World {
             this.checkCollisionsEndboss();
             this.checkBubbling();
             this.checkEndbossArea();
+            this.checkBossBubbles();
         }, 50);
     }
 
     checkEndbossArea() {
         if (this.sharkie.x >= 1450) {
             this.endboss.endbossIntro = true;
+            this.lifeBarBoss.endbossArea = true;
         }
     }
 
@@ -68,6 +71,16 @@ class World {
             this.sharkie.decreaseEnergy();
             this.lifeBar.setStatusBar(this.sharkie.energy);
         }
+    }
+
+    checkBossBubbles() {
+        this.poisonBubbles.forEach((bubble, index) => {
+            if (this.endboss.isColliding(bubble)) {
+                this.endboss.decreaseEnergyBoss();
+                this.poisonBubbles.splice(index, 1);
+                this.lifeBarBoss.setStatusBar(this.endboss.bossLife);
+            }
+        });
     }
 
     checkCollisionsPoison() {
@@ -121,6 +134,7 @@ class World {
 
         this.ctx.translate(-this.sharkie.camera_x, 0);
         this.addToCanvas(this.lifeBar);
+        this.addToCanvas(this.lifeBarBoss);
         this.addToCanvas(this.coinBar);
         this.addToCanvas(this.poisonBar);
         this.ctx.translate(this.sharkie.camera_x, 0);

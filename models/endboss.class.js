@@ -39,12 +39,37 @@ class Endboss extends MoveableObject {
         '../img/enemys/endboss/swim/12.png',
         '../img/enemys/endboss/swim/13.png',
     ];
+    images_hurt = [
+        '../img/enemys/endboss/hurt/1.png',
+        '../img/enemys/endboss/hurt/2.png',
+        '../img/enemys/endboss/hurt/3.png',
+        '../img/enemys/endboss/hurt/4.png',
+    ];
+    images_attack = [
+        '../img/enemys/endboss/attack/1.png',
+        '../img/enemys/endboss/attack/2.png',
+        '../img/enemys/endboss/attack/3.png',
+        '../img/enemys/endboss/attack/4.png',
+        '../img/enemys/endboss/attack/5.png',
+        '../img/enemys/endboss/attack/6.png',
+    ];
+    images_dead = [
+        '../img/enemys/endboss/dead/1.png',
+        '../img/enemys/endboss/dead/2.png',
+        '../img/enemys/endboss/dead/3.png',
+        '../img/enemys/endboss/dead/4.png',
+        '../img/enemys/endboss/dead/5.png',
+        '../img/enemys/endboss/dead/6.png',
+    ];
 
     constructor() {
         super();
         this.loadImage('../img/enemys/endboss/swim/1.png');
         this.loadImages(this.images_spawning);
         this.loadImages(this.images_swimming);
+        this.loadImages(this.images_hurt);
+        this.loadImages(this.images_attack);
+        this.loadImages(this.images_dead);
         this.animate();
     }
 

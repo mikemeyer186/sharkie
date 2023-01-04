@@ -212,7 +212,7 @@ class Sharkie extends MoveableObject {
     }
 
     bubbleAnimation() {
-        this.playOnceAnimation(this.images_bubbling);
+        this.playAnimation(this.images_bubbling);
         this.idleTime = 0;
     }
 
