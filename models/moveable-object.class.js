@@ -56,6 +56,11 @@ class MoveableObject extends DrawableObject {
 
     decreaseEnergyBoss() {
         this.bossLife -= 40;
+        if (this.bossLife <= 0) {
+            this.bossLife = 0;
+        } else {
+            this.lastHurt = new Date().getTime();
+        }
         console.log(this.bossLife);
     }
 

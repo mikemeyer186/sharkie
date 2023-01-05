@@ -1,11 +1,13 @@
 class Endboss extends MoveableObject {
     x = 1800;
     y = -400;
+    i = 0;
     height = 300;
     width = 300;
     speed = 0;
     endbossIntro;
     firstContact = false;
+    deadTime = 0;
     offset = {
         top: 150,
         bottom: 50,
@@ -74,22 +76,49 @@ class Endboss extends MoveableObject {
     }
 
     animate() {
-        let i = 0;
-
         setStoppableInterval(() => {
-            if (this.endbossIntro && !this.firstContact) {
-                i = 0;
-                this.y = 40;
-                this.firstContact = true;
-                this.currentImage = 0;
-            }
-
-            if (i < 5) {
-                this.playAnimation(this.images_spawning);
+            if (this.bossIntro()) {
+                this.introAnimation();
+            } else if (this.isHurt()) {
+                this.hurtAnimation();
+            } else if (this.bossLife == 0) {
+                this.deadAnimation();
             } else {
-                this.playAnimation(this.images_swimming);
+                this.swimAnimation();
             }
-            i++;
         }, 1000 / 8);
+    }
+
+    bossIntro() {
+        if (this.endbossIntro && !this.firstContact) {
+            this.i = 0;
+            this.y = 40;
+            this.firstContact = true;
+            this.currentImage = 0;
+        }
+        this.i++;
+        return this.i <= 10;
+    }
+
+    swimAnimation() {
+        this.playAnimation(this.images_swimming);
+    }
+
+    introAnimation() {
+        this.playAnimation(this.images_spawning);
+    }
+
+    hurtAnimation() {
+        this.playAnimation(this.images_hurt);
+    }
+
+    deadAnimation() {
+        if (this.deadTime >= 5) {
+            this.loadImage(this.images_dead[5]);
+        } else {
+            this.playAnimation(this.images_dead);
+        }
+        this.y -= 3;
+        this.deadTime++;
     }
 }
