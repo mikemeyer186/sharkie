@@ -1,5 +1,7 @@
 class MoveableObject extends DrawableObject {
     otherDirection = false;
+    up = false;
+    down = false;
     energy = 100;
     bossLife = 100;
     poison = 0;
@@ -33,6 +35,15 @@ class MoveableObject extends DrawableObject {
 
     moveDown(speed) {
         this.y += speed;
+    }
+
+    moveUpAndDown(speed) {
+        if (this.up) {
+            this.moveUp(speed);
+        }
+        if (this.down) {
+            this.moveDown(speed);
+        }
     }
 
     isColliding(obj) {

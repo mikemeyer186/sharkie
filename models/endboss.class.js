@@ -4,12 +4,14 @@ class Endboss extends MoveableObject {
     i = 0;
     height = 300;
     width = 300;
-    speed = 0;
+    speed = 1;
     endbossIntro;
     firstContact = false;
     deadTime = 0;
     attackTime;
     lastAttack;
+    audio_bite = new Audio('../audio/attack.mp3');
+    audio_endboss = new Audio('../audio/endboss.mp3');
     offset = {
         top: 150,
         bottom: 50,
@@ -100,7 +102,12 @@ class Endboss extends MoveableObject {
             this.y = 40;
             this.firstContact = true;
             this.currentImage = 0;
-            this.attackTime = new Date().getTime() + 5000;
+            this.attackTime = new Date().getTime() + 1000;
+            this.movingAnimation();
+            this.down = true;
+            this.audio_endboss.volume = 0.7;
+            this.audio_endboss.play();
+            stopAudio();
         }
         this.i++;
         return this.i <= 10;
@@ -108,6 +115,19 @@ class Endboss extends MoveableObject {
 
     swimAnimation() {
         this.playAnimation(this.images_swimming);
+    }
+
+    movingAnimation() {
+        setInterval(() => {
+            if (this.y + this.height == 480) {
+                this.up = true;
+                this.down = false;
+            } else if (this.y == 0) {
+                this.up = false;
+                this.down = true;
+            }
+            this.moveUpAndDown(this.speed);
+        }, 1000 / 60);
     }
 
     introAnimation() {
@@ -130,6 +150,8 @@ class Endboss extends MoveableObject {
 
     attackAnimation() {
         this.playAnimation(this.images_attack);
+        this.audio_bite.volume = 0.2;
+        this.audio_bite.play();
     }
 
     setAttackTime() {

@@ -5,6 +5,7 @@ let startscreenStart;
 let screen;
 let keyboard = new Keyboard();
 let audio_background = new Audio('../audio/background.mp3');
+let audio_music = new Audio('../audio/background_music.mp3');
 let intervalIds = [];
 
 function init() {
@@ -46,10 +47,19 @@ document.addEventListener('keyup', () => {
 });
 
 function playAudio() {
+    audio_music.volume = 0.2;
     audio_background.play();
+    audio_music.play();
     audio_background.addEventListener('ended', () => {
         audio_background.play();
     });
+    audio_music.addEventListener('ended', () => {
+        audio_music.play();
+    });
+}
+
+function stopAudio() {
+    audio_music.pause();
 }
 
 function toggleFullscreen() {
@@ -64,6 +74,7 @@ function setStoppableInterval(fn, time) {
 function stopGame() {
     intervalIds.forEach(clearInterval);
     audio_background.pause();
+    audio_music.pause();
 }
 
 function showGameOver() {
