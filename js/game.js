@@ -58,7 +58,7 @@ function playAudio() {
     });
 }
 
-function stopAudio() {
+function stopBackgroundAudio() {
     audio_music.pause();
 }
 

@@ -107,7 +107,7 @@ class Endboss extends MoveableObject {
             this.down = true;
             this.audio_endboss.volume = 0.7;
             this.audio_endboss.play();
-            stopAudio();
+            stopBackgroundAudio();
         }
         this.i++;
         return this.i <= 10;
