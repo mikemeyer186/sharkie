@@ -8,6 +8,8 @@ class Endboss extends MoveableObject {
     endbossIntro;
     firstContact = false;
     deadTime = 0;
+    attackTime;
+    lastAttack;
     offset = {
         top: 150,
         bottom: 50,
@@ -73,6 +75,7 @@ class Endboss extends MoveableObject {
         this.loadImages(this.images_attack);
         this.loadImages(this.images_dead);
         this.animate();
+        this.setAttackTime();
     }
 
     animate() {
@@ -83,6 +86,8 @@ class Endboss extends MoveableObject {
                 this.hurtAnimation();
             } else if (this.bossLife == 0) {
                 this.deadAnimation();
+            } else if (this.isAttacking()) {
+                this.attackAnimation();
             } else {
                 this.swimAnimation();
             }
@@ -95,6 +100,7 @@ class Endboss extends MoveableObject {
             this.y = 40;
             this.firstContact = true;
             this.currentImage = 0;
+            this.attackTime = new Date().getTime() + 5000;
         }
         this.i++;
         return this.i <= 10;
@@ -120,5 +126,25 @@ class Endboss extends MoveableObject {
         }
         this.y -= 3;
         this.deadTime++;
+    }
+
+    attackAnimation() {
+        this.playAnimation(this.images_attack);
+    }
+
+    setAttackTime() {
+        setInterval(() => {
+            let time1 = new Date().getTime();
+            if (this.attackTime <= time1) {
+                this.lastAttack = new Date().getTime();
+                this.attackTime = new Date().getTime() + 5000;
+            }
+        }, 1000);
+    }
+
+    isAttacking() {
+        let timePassed = new Date().getTime() - this.lastAttack;
+        timePassed = timePassed / 1000;
+        return timePassed < 2;
     }
 }
