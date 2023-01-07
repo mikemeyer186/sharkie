@@ -11,7 +11,9 @@ class Endboss extends MoveableObject {
     attackTime;
     lastAttack;
     audio_bite = new Audio('../audio/attack.mp3');
-    audio_endboss = new Audio('../audio/endboss.mp3');
+    audio_endboss = new Audio('../audio/endboss_fight.mp3');
+    audio_hurt = new Audio('../audio/endboss_hit.mp3');
+    audio_dead = new Audio('../audio/endboss_dead.mp3');
     offset = {
         top: 150,
         bottom: 50,
@@ -78,6 +80,13 @@ class Endboss extends MoveableObject {
         this.loadImages(this.images_dead);
         this.animate();
         this.setAttackTime();
+        this.setAudioVolume();
+    }
+
+    setAudioVolume() {
+        this.audio_endboss.volume = 0.2;
+        this.audio_dead.volume = 0.4;
+        this.audio_bite.volume = 0.2;
     }
 
     animate() {
@@ -105,7 +114,6 @@ class Endboss extends MoveableObject {
             this.attackTime = new Date().getTime() + 1000;
             this.movingAnimation();
             this.down = true;
-            this.audio_endboss.volume = 0.7;
             this.audio_endboss.play();
             stopBackgroundAudio();
         }
@@ -135,6 +143,7 @@ class Endboss extends MoveableObject {
     }
 
     hurtAnimation() {
+        this.audio_hurt.play();
         this.playAnimation(this.images_hurt);
     }
 
@@ -142,6 +151,7 @@ class Endboss extends MoveableObject {
         if (this.deadTime >= 5) {
             this.loadImage(this.images_dead[5]);
         } else {
+            this.audio_dead.play();
             this.playAnimation(this.images_dead);
         }
         this.y -= 3;
@@ -150,7 +160,6 @@ class Endboss extends MoveableObject {
 
     attackAnimation() {
         this.playAnimation(this.images_attack);
-        this.audio_bite.volume = 0.2;
         this.audio_bite.play();
     }
 

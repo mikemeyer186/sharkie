@@ -5,7 +5,7 @@ let startscreenStart;
 let screen;
 let keyboard = new Keyboard();
 let audio_background = new Audio('../audio/background.mp3');
-let audio_music = new Audio('../audio/background_music.mp3');
+let audio_music = new Audio('../audio/background_happy.mp3');
 let intervalIds = [];
 
 function init() {

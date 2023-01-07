@@ -24,7 +24,11 @@ class World {
         this.draw();
         this.setControls();
         this.activeInterval();
-        this.audio_coin_pickup.volume = 0.3;
+        this.setAudioVolume();
+    }
+
+    setAudioVolume() {
+        this.audio_coin_pickup.volume = 0.2;
         this.audio_poison_pickup.volume = 0.7;
         this.audio_sharkie_hit.volume = 0.3;
         this.audio_poison_bubble.volume = 0.8;
