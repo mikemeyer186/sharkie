@@ -76,6 +76,15 @@ h1 {
     transition: opacity 2000ms ease-in-out;
 }
 
+#winning-screen {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.5));
+    opacity: 1;
+    transition: opacity 2000ms ease-in-out;
+}
+
 #try-again-btn {
     cursor: pointer;
     width: 30%;

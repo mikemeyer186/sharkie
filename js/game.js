@@ -4,8 +4,6 @@ let startscreenImage;
 let startscreenStart;
 let screen;
 let keyboard = new Keyboard();
-let audio_background = new Audio('../audio/background.mp3');
-let audio_music = new Audio('../audio/background_happy.mp3');
 let intervalIds = [];
 
 function init() {
@@ -13,8 +11,10 @@ function init() {
     startscreenImage = document.getElementById('startscreen-img');
     startscreenStart = document.getElementById('startscreen-start');
     gameOverImage = document.getElementById('gameover-screen');
+    winnerImage = document.getElementById('winning-screen');
     tryAgainButton = document.getElementById('try-again-btn');
     canvas = document.getElementById('canvas');
+    unmuteAllAudio();
 }
 
 function startGame() {
@@ -22,9 +22,10 @@ function startGame() {
     startscreenStart.classList.add('d-none');
     gameOverImage.classList.add('no-opacity');
     tryAgainButton.classList.add('d-none');
+    winnerImage.classList.add('d-none');
     startLevel1();
     world = new World(canvas, keyboard);
-    playAudio();
+    playBackgroundAudio();
     hideStartscreen();
 }
 
@@ -46,22 +47,6 @@ document.addEventListener('keyup', () => {
     keyboard.Space = false;
 });
 
-function playAudio() {
-    audio_music.volume = 0.2;
-    audio_background.play();
-    audio_music.play();
-    audio_background.addEventListener('ended', () => {
-        audio_background.play();
-    });
-    audio_music.addEventListener('ended', () => {
-        audio_music.play();
-    });
-}
-
-function stopBackgroundAudio() {
-    audio_music.pause();
-}
-
 function toggleFullscreen() {
     screen.requestFullscreen();
 }
@@ -78,6 +63,7 @@ function stopGame() {
 }
 
 function showGameOver() {
+    audio_level_loose.play();
     gameOverImage.classList.remove('no-opacity');
     showTryAgain();
 }
@@ -85,5 +71,11 @@ function showGameOver() {
 function showTryAgain() {
     setTimeout(() => {
         tryAgainButton.classList.remove('d-none');
-    }, 3000);
+    }, 4000);
+}
+
+function showWinningScreen() {
+    audio_level_win.play();
+    winnerImage.classList.remove('d-none');
+    showTryAgain();
 }

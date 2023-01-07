@@ -10,10 +10,6 @@ class Endboss extends MoveableObject {
     deadTime = 0;
     attackTime;
     lastAttack;
-    audio_bite = new Audio('../audio/attack.mp3');
-    audio_endboss = new Audio('../audio/endboss_fight.mp3');
-    audio_hurt = new Audio('../audio/endboss_hit.mp3');
-    audio_dead = new Audio('../audio/endboss_dead.mp3');
     offset = {
         top: 150,
         bottom: 50,
@@ -80,13 +76,6 @@ class Endboss extends MoveableObject {
         this.loadImages(this.images_dead);
         this.animate();
         this.setAttackTime();
-        this.setAudioVolume();
-    }
-
-    setAudioVolume() {
-        this.audio_endboss.volume = 0.2;
-        this.audio_dead.volume = 0.4;
-        this.audio_bite.volume = 0.2;
     }
 
     animate() {
@@ -99,6 +88,7 @@ class Endboss extends MoveableObject {
                 this.deadAnimation();
             } else if (this.isAttacking()) {
                 this.attackAnimation();
+                this.moveLeft(this.speed + 15);
             } else {
                 this.swimAnimation();
             }
@@ -112,9 +102,9 @@ class Endboss extends MoveableObject {
             this.firstContact = true;
             this.currentImage = 0;
             this.attackTime = new Date().getTime() + 1000;
-            this.movingAnimation();
             this.down = true;
-            this.audio_endboss.play();
+            this.movingAnimation();
+            playEndbossAudio();
             stopBackgroundAudio();
         }
         this.i++;
@@ -126,11 +116,11 @@ class Endboss extends MoveableObject {
     }
 
     movingAnimation() {
-        setInterval(() => {
-            if (this.y + this.height == 480) {
+        setStoppableInterval(() => {
+            if (this.y + this.height == 500) {
                 this.up = true;
                 this.down = false;
-            } else if (this.y == 0) {
+            } else if (this.y == -40) {
                 this.up = false;
                 this.down = true;
             }
@@ -143,15 +133,18 @@ class Endboss extends MoveableObject {
     }
 
     hurtAnimation() {
-        this.audio_hurt.play();
+        playEndbossHurtAudio();
         this.playAnimation(this.images_hurt);
     }
 
     deadAnimation() {
         if (this.deadTime >= 5) {
             this.loadImage(this.images_dead[5]);
+            showWinningScreen();
+            stopGame();
+            stopEndbossAudio();
         } else {
-            this.audio_dead.play();
+            playEndbossDeadAudio();
             this.playAnimation(this.images_dead);
         }
         this.y -= 3;
@@ -160,11 +153,11 @@ class Endboss extends MoveableObject {
 
     attackAnimation() {
         this.playAnimation(this.images_attack);
-        this.audio_bite.play();
+        playEndbossAttackAudio();
     }
 
     setAttackTime() {
-        setInterval(() => {
+        setStoppableInterval(() => {
             let time1 = new Date().getTime();
             if (this.attackTime <= time1) {
                 this.lastAttack = new Date().getTime();

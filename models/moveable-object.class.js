@@ -57,7 +57,7 @@ class MoveableObject extends DrawableObject {
     }
 
     decreaseEnergy() {
-        this.energy -= 2;
+        this.energy -= 1;
         if (this.energy <= 0) {
             this.energy = 0;
         } else {

@@ -28,6 +28,7 @@
     <script src="./models/endboss.class.js"></script>
     <script src="./models/light.class.js"></script>
     <script src="./models/keyboard.class.js"></script>
+    <script src="./js/audio.js"></script>
     <script src="./js/game.js"></script>
     <script src="./levels/level1.js"></script>
 
@@ -41,6 +42,7 @@
         <canvas id="canvas" width="720" height="480"></canvas>
         <img id="startscreen-start" src="./img/startscreen/4.png" alt="Start Game" onclick="startGame()">
         <img id="gameover-screen" class="no-opacity" src="./img/endscreen/game_over.png" alt="gameover">
+        <img id="winning-screen" class="d-none" src="./img/endscreen/win.png" alt="you win">
         <img id="try-again-btn" class="d-none" src="./img/endscreen/try_again.png" alt="tryagain" onclick="startGame()">
     </div>
     <p class="subtext" onclick="toggleFullscreen()">Fullscreen</p>

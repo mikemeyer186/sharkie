@@ -5,8 +5,6 @@ class Sharkie extends MoveableObject {
     camera_x;
     level;
     speed = 3;
-    audio_swim_up_down = new Audio('../audio/swim_up_down.mp3');
-    audio_swim_left_right = new Audio('../audio/swim_left_right.mp3');
     idleTime = 0;
     deadTime = 0;
     offset = {
@@ -99,7 +97,6 @@ class Sharkie extends MoveableObject {
 
     constructor() {
         super();
-        this.audio_swim_left_right.volume = 0.2;
         this.loadImage('../img/sharkie/swim/1.png');
         this.loadImages(this.images_idle_long);
         this.loadImages(this.images_idle_sleeping);
@@ -113,6 +110,37 @@ class Sharkie extends MoveableObject {
     }
 
     animate() {
+        this.sharkieAnimation();
+        this.sharkieMovement();
+    }
+
+    sharkieMovement() {
+        setStoppableInterval(() => {
+            pauseSharkieSwimAudio();
+
+            if (keyboard.ArrowRight && this.x < this.level.levelEnd_x) {
+                this.moveRight(this.speed);
+                this.otherDirection = false;
+                playSharkieSwimLeftRightAudio();
+            }
+            if (keyboard.ArrowLeft && this.x > -600) {
+                this.moveLeft(this.speed);
+                this.otherDirection = true;
+                playSharkieSwimLeftRightAudio();
+            }
+            if (keyboard.ArrowUp && this.y > -70) {
+                this.moveUp(this.speed);
+                playSharkieSwimUpDownAudio();
+            }
+            if (keyboard.ArrowDown && this.y < 250) {
+                this.moveDown(this.speed);
+                playSharkieSwimUpDownAudio();
+            }
+            this.camera_x = -this.x + 80;
+        }, 1000 / 60);
+    }
+
+    sharkieAnimation() {
         setStoppableInterval(() => {
             if (this.isSwimming()) {
                 this.swimAnimation();
@@ -128,35 +156,6 @@ class Sharkie extends MoveableObject {
                 this.idleAnimation();
             }
         }, 1000 / 10);
-
-        setStoppableInterval(() => {
-            this.audioPause();
-
-            if (keyboard.ArrowRight && this.x < this.level.levelEnd_x) {
-                this.moveRight(this.speed);
-                this.otherDirection = false;
-                this.audio_swim_left_right.play();
-            }
-            if (keyboard.ArrowLeft && this.x > -600) {
-                this.moveLeft(this.speed);
-                this.otherDirection = true;
-                this.audio_swim_left_right.play();
-            }
-            if (keyboard.ArrowUp && this.y > -70) {
-                this.moveUp(this.speed);
-                this.audio_swim_up_down.play();
-            }
-            if (keyboard.ArrowDown && this.y < 250) {
-                this.moveDown(this.speed);
-                this.audio_swim_up_down.play();
-            }
-            this.camera_x = -this.x + 80;
-        }, 1000 / 60);
-    }
-
-    audioPause() {
-        this.audio_swim_up_down.pause();
-        this.audio_swim_left_right.pause();
     }
 
     setIdleTime() {
@@ -203,6 +202,7 @@ class Sharkie extends MoveableObject {
             this.loadImage(this.images_dead[11]);
             stopGame();
             showGameOver();
+            stopEndbossAudio();
         } else {
             this.playAnimation(this.images_dead);
         }
@@ -217,7 +217,9 @@ class Sharkie extends MoveableObject {
     }
 
     isSwimming() {
-        return keyboard.ArrowRight || keyboard.ArrowLeft || keyboard.ArrowUp || keyboard.ArrowDown;
+        if (!this.isHurt()) {
+            return keyboard.ArrowRight || keyboard.ArrowLeft || keyboard.ArrowUp || keyboard.ArrowDown;
+        }
     }
 
     isBubbling() {
