@@ -12,7 +12,7 @@ class ThrowableObject extends MoveableObject {
     }
 
     poisonBubbling() {
-        setInterval(() => {
+        setStoppableInterval(() => {
             this.moveRight(this.speed);
         }, 1000 / 60);
     }
