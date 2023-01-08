@@ -7,6 +7,7 @@ class Sharkie extends MoveableObject {
     speed = 3;
     idleTime = 0;
     deadTime = 0;
+    bubbleTime;
     offset = {
         top: 120,
         bottom: 60,
@@ -107,6 +108,7 @@ class Sharkie extends MoveableObject {
         this.loadImages(this.images_bubbling);
         this.animate();
         this.setIdleTime();
+        this.bubbleTime = new Date().getTime();
     }
 
     animate() {
@@ -224,5 +226,11 @@ class Sharkie extends MoveableObject {
 
     isBubbling() {
         return keyboard.Space;
+    }
+
+    isBubbleTime() {
+        let newTime = new Date().getTime();
+        let difference = newTime - this.bubbleTime;
+        return difference > 1000;
     }
 }

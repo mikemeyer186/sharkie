@@ -89,8 +89,8 @@ class World {
 
     checkBubbling() {
         if (this.keyboard.Space) {
-            this.sharkie.idleTime = 0;
-            if (this.availableBubbles > 0) {
+            if (this.availableBubbles > 0 && this.sharkie.isBubbleTime()) {
+                this.sharkie.bubbleTime = new Date().getTime();
                 let poisonBubble = new ThrowableObject(this.sharkie.x, this.sharkie.y);
                 this.poisonBubbles.push(poisonBubble);
                 poisonBubble.poisonBubbling();

@@ -7,7 +7,7 @@ class ThrowableObject extends MoveableObject {
     constructor(x, y) {
         super();
         this.x = x + 180;
-        this.y = y + 150;
+        this.y = y + 140;
         this.loadImage(this.image);
     }
 
