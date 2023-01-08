@@ -40,7 +40,7 @@
     <div id="screen">
         <img id="startscreen-img" width="720" height="480" src="./img/startscreen/startscreen.png" alt="startscreen">
         <canvas id="canvas" width="720" height="480"></canvas>
-        <img id="startscreen-start" src="./img/startscreen/4.png" alt="Start Game" onclick="startGame()">
+        <img id="startscreen-start" src="./img/startscreen/start.png" alt="Start Game" onclick="startGame()">
         <img id="gameover-screen" class="no-opacity" src="./img/endscreen/game_over.png" alt="gameover">
         <img id="winning-screen" class="d-none" src="./img/endscreen/win.png" alt="you win">
         <img id="try-again-btn" class="d-none" src="./img/endscreen/try_again.png" alt="tryagain" onclick="startGame()">
@@ -49,7 +49,15 @@
                 onclick="clickUnmuteAudio()">
             <img id="unmuted-icon" src="./img/menu/unmuted.png" class="menu-icon" alt="Audio unmuted"
                 onclick="clickMuteAudio()">
-            <img src="./img/menu/info.png" class="menu-icon" alt="Open info">
+            <img src="./img/menu/info.png" class="menu-icon" alt="Open info" onclick="infoScreenToggle()">
+        </div>
+        <div id="info-screen" class="d-none">
+            <img class="info-instructions-img" src="./img/menu/instructions.png" alt="Instructions">
+            <p class="info-close" onclick="infoScreenToggle()">X</p>
+            <p class="info-text">Navigate Sharkie through the deeps of the ocean. Let him collect coins and poison
+                bottles, so you can
+                make bubbles against enemeys. But be aware of the dangerous fishes and don't let them kill you!
+            </p>
         </div>
     </div>
     <img class="subtext" src="./img/menu/fullscreen.png" alt="Fullscreen" onclick="toggleFullscreen()">

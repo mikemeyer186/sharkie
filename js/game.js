@@ -91,3 +91,7 @@ function clickUnmuteAudio() {
     document.getElementById('unmuted-icon').classList.remove('d-none');
     unmuteAllAudio();
 }
+
+function infoScreenToggle() {
+    document.getElementById('info-screen').classList.toggle('d-none');
+}
