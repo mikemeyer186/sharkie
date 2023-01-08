@@ -44,8 +44,15 @@
         <img id="gameover-screen" class="no-opacity" src="./img/endscreen/game_over.png" alt="gameover">
         <img id="winning-screen" class="d-none" src="./img/endscreen/win.png" alt="you win">
         <img id="try-again-btn" class="d-none" src="./img/endscreen/try_again.png" alt="tryagain" onclick="startGame()">
+        <div id="menu">
+            <img id="muted-icon" src="./img/menu/muted.png" class="menu-icon menu-icon-muted d-none" alt="Audio muted"
+                onclick="clickUnmuteAudio()">
+            <img id="unmuted-icon" src="./img/menu/unmuted.png" class="menu-icon" alt="Audio unmuted"
+                onclick="clickMuteAudio()">
+            <img src="./img/menu/info.png" class="menu-icon" alt="Open info">
+        </div>
     </div>
-    <p class="subtext" onclick="toggleFullscreen()">Fullscreen</p>
+    <img class="subtext" src="./img/menu/fullscreen.png" alt="Fullscreen" onclick="toggleFullscreen()">
 </body>
 
 </html>

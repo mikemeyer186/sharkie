@@ -95,6 +95,29 @@ h1 {
     transition: all 255ms ease-in-out;
 }
 
+#menu {
+    width: 4%;
+    height: 15%;
+    top: 0;
+    right: 0;
+    position: absolute;
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.menu-icon {
+    cursor: pointer;
+    width: 20px;
+    object-fit: cover;
+    margin: 5px;
+}
+
+.menu-icon-muted {
+    width: 17px;
+}
+
 canvas {
     background-color: black;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
@@ -103,7 +126,10 @@ canvas {
 }
 
 .subtext {
+    width: 7%;
+    object-fit: cover;
     cursor: pointer;
+    margin-top: 10px;
 }
 
 .no-opacity {

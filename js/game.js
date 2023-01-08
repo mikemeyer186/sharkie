@@ -24,9 +24,9 @@ function startGame() {
     tryAgainButton.classList.add('d-none');
     winnerImage.classList.add('d-none');
     startLevel1();
-    world = new World(canvas, keyboard);
     playBackgroundAudio();
     hideStartscreen();
+    world = new World(canvas, keyboard);
 }
 
 function hideStartscreen() {
@@ -78,4 +78,16 @@ function showWinningScreen() {
     audio_level_win.play();
     winnerImage.classList.remove('d-none');
     showTryAgain();
+}
+
+function clickMuteAudio() {
+    document.getElementById('muted-icon').classList.remove('d-none');
+    document.getElementById('unmuted-icon').classList.add('d-none');
+    muteAllAudio();
+}
+
+function clickUnmuteAudio() {
+    document.getElementById('muted-icon').classList.add('d-none');
+    document.getElementById('unmuted-icon').classList.remove('d-none');
+    unmuteAllAudio();
 }

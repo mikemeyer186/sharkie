@@ -46,7 +46,7 @@ function startLevel1() {
             new Coin(-305, 365),
             new Coin(-280, 400),
             new Coin(400, 200),
-            new Coin(700, 50),
+            new Coin(700, 250),
             new Coin(1000, 200),
             new Coin(1300, 400),
             new Coin(1600, 70),
