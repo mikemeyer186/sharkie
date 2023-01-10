@@ -13,6 +13,7 @@ function init() {
     gameOverImage = document.getElementById('gameover-screen');
     winnerImage = document.getElementById('winning-screen');
     tryAgainButton = document.getElementById('try-again-btn');
+    mobileBtnPanel = document.getElementById('mobile-btn-panel');
     canvas = document.getElementById('canvas');
     unmuteAllAudio();
 }
@@ -23,6 +24,7 @@ function startGame() {
     gameOverImage.classList.add('no-opacity');
     tryAgainButton.classList.add('d-none');
     winnerImage.classList.add('d-none');
+    mobileBtnPanel.classList.remove('d-none');
     startLevel1();
     playBackgroundAudio();
     hideStartscreen();
@@ -34,18 +36,6 @@ function hideStartscreen() {
         startscreenImage.classList.add('d-none');
     }, 1000);
 }
-
-document.addEventListener('keydown', (event) => {
-    keyboard[`${event.code}`] = true;
-});
-
-document.addEventListener('keyup', () => {
-    keyboard.ArrowLeft = false;
-    keyboard.ArrowRight = false;
-    keyboard.ArrowUp = false;
-    keyboard.ArrowDown = false;
-    keyboard.Space = false;
-});
 
 function toggleFullscreen() {
     screen.requestFullscreen();
@@ -65,6 +55,7 @@ function stopGame() {
 function showGameOver() {
     audio_level_loose.play();
     gameOverImage.classList.remove('no-opacity');
+    mobileBtnPanel.classList.add('d-none');
     showTryAgain();
 }
 
@@ -77,6 +68,7 @@ function showTryAgain() {
 function showWinningScreen() {
     audio_level_win.play();
     winnerImage.classList.remove('d-none');
+    mobileBtnPanel.classList.add('d-none');
     showTryAgain();
 }
 

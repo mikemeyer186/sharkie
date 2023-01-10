@@ -27,9 +27,7 @@
     <script src="./models/puffer-fish.class.js"></script>
     <script src="./models/endboss.class.js"></script>
     <script src="./models/light.class.js"></script>
-    <script src="./models/keyboard.class.js"></script>
     <script src="./js/audio.js"></script>
-    <script src="./js/game.js"></script>
     <script src="./levels/level1.js"></script>
 
     <title>Sharkie</title>
@@ -59,8 +57,29 @@
                 make bubbles against enemeys. But be aware of the dangerous fishes and don't let them bite you!!!
             </p>
         </div>
+        <div id="mobile-btn-panel" class="mobile-btn d-none">
+            <div class="mobile-btn-left">
+                <div class="mobile-btn-left-top">
+                    <img id="btnUp" class="arrow-btn arrow-btn-up" src="./img/menu/arrow_btn.png" alt="UP">
+                </div>
+                <div class="mobile-btn-left-mid">
+                    <img id="btnLeft" class="arrow-btn" src="./img/menu/arrow_btn.png" alt="LEFT">
+                    <img id="btnRight" class="arrow-btn arrow-btn-right" src="./img/menu/arrow_btn.png" alt="RIGHT">
+                </div>
+                <div class="mobile-btn-left-bottom">
+                    <img id="btnDown" class="arrow-btn arrow-btn-down" src="./img/menu/arrow_btn.png" alt="DOWN">
+                </div>
+            </div>
+            <div class="mobile-btn-right">
+                <img id="btnD" class="bubble-btn bubble-btn-water" src="./img/menu/bubble_water.png" alt="BUBBLE">
+                <img id="btnSpace" class="bubble-btn" src="./img/menu/bubble_poison.png" alt="POISON">
+            </div>
+        </div>
     </div>
     <img class="subtext" src="./img/menu/fullscreen.png" alt="Fullscreen" onclick="toggleFullscreen()">
+
+    <script src="./models/keyboard.class.js"></script>
+    <script src="./js/game.js"></script>
 </body>
 
 </html>
