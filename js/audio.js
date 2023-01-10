@@ -10,8 +10,9 @@ let audio_swim_up_down = new Audio('../audio/swim_up_down.mp3');
 let audio_swim_left_right = new Audio('../audio/swim_left_right.mp3');
 let audio_coin_pickup = new Audio('../audio/coin_pickup.mp3');
 let audio_poison_pickup = new Audio('../audio/poison_pickup.mp3');
-let audio_sharkie_hurt = new Audio('../audio/sharkie_hit.mp3');
 let audio_poison_bubble = new Audio('../audio/poison_bubble.mp3');
+let audio_sharkie_hurt = new Audio('../audio/sharkie_hit.mp3');
+let audio_sharkie_slap = new Audio('../audio/sharkie_slap.mp3');
 
 function unmuteAllAudio() {
     audio_endboss.volume = 0.2;
@@ -28,6 +29,7 @@ function unmuteAllAudio() {
     audio_poison_pickup.volume = 0.7;
     audio_sharkie_hurt.volume = 0.3;
     audio_poison_bubble.volume = 0.8;
+    audio_sharkie_slap.volume = 0.2;
 }
 
 function muteAllAudio() {
@@ -45,6 +47,7 @@ function muteAllAudio() {
     audio_poison_pickup.volume = 0;
     audio_sharkie_hurt.volume = 0;
     audio_poison_bubble.volume = 0;
+    audio_sharkie_slap.volume = 0;
 }
 
 function playBackgroundAudio() {
@@ -112,4 +115,8 @@ function playPoisonBubbleAudio() {
 
 function playSharkieHurtAudio() {
     audio_sharkie_hurt.play();
+}
+
+function playSharkieSlapAudio() {
+    audio_sharkie_slap.play();
 }

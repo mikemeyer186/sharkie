@@ -8,6 +8,8 @@ class Sharkie extends MoveableObject {
     idleTime = 0;
     deadTime = 0;
     bubbleTime;
+    shotTime;
+    slapTime;
     offset = {
         top: 120,
         bottom: 60,
@@ -95,6 +97,16 @@ class Sharkie extends MoveableObject {
         '../img/sharkie/bubbling/7.png',
         '../img/sharkie/bubbling/8.png',
     ];
+    images_slapping = [
+        '../img/sharkie/attack/1.png',
+        '../img/sharkie/attack/2.png',
+        '../img/sharkie/attack/3.png',
+        '../img/sharkie/attack/4.png',
+        '../img/sharkie/attack/5.png',
+        '../img/sharkie/attack/6.png',
+        '../img/sharkie/attack/7.png',
+        '../img/sharkie/attack/8.png',
+    ];
 
     constructor() {
         super();
@@ -106,6 +118,7 @@ class Sharkie extends MoveableObject {
         this.loadImages(this.images_hurt);
         this.loadImages(this.images_dead);
         this.loadImages(this.images_bubbling);
+        this.loadImages(this.images_slapping);
         this.animate();
         this.setIdleTime();
         this.bubbleTime = new Date().getTime();
@@ -150,10 +163,12 @@ class Sharkie extends MoveableObject {
                 this.deadAnimation();
             } else if (this.isHurt()) {
                 this.hurtAnimation();
-            } else if (this.isIdleLong()) {
+            } else if (this.isIdleLong() && !this.isBubbling() && !this.isSlapping()) {
                 this.longIdleAnimation();
             } else if (this.isBubbling()) {
                 this.bubbleAnimation();
+            } else if (this.isSlapping()) {
+                this.slapAnimation();
             } else {
                 this.idleAnimation();
             }
@@ -218,6 +233,11 @@ class Sharkie extends MoveableObject {
         this.idleTime = 0;
     }
 
+    slapAnimation() {
+        this.playAnimation(this.images_slapping);
+        playSharkieSlapAudio();
+    }
+
     isSwimming() {
         if (!this.isHurt()) {
             return keyboard.ArrowRight || keyboard.ArrowLeft || keyboard.ArrowUp || keyboard.ArrowDown;
@@ -225,7 +245,27 @@ class Sharkie extends MoveableObject {
     }
 
     isBubbling() {
-        return keyboard.Space;
+        let timeNow = new Date().getTime();
+        let difference;
+        if (keyboard.Space) {
+            this.shotTime = new Date().getTime() + 700;
+            this.currentImage = 0;
+            this.idleTime = 0;
+        }
+        difference = this.shotTime - timeNow;
+        return difference > 0;
+    }
+
+    isSlapping() {
+        let timeNow = new Date().getTime();
+        let difference;
+        if (keyboard.KeyD) {
+            this.slapTime = new Date().getTime() + 1000;
+            this.currentImage = 0;
+            this.idleTime = 0;
+        }
+        difference = this.slapTime - timeNow;
+        return difference > 0;
     }
 
     isBubbleTime() {

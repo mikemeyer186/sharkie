@@ -94,7 +94,6 @@ class World {
                 let poisonBubble = new ThrowableObject(this.sharkie.x, this.sharkie.y);
                 this.poisonBubbles.push(poisonBubble);
                 poisonBubble.poisonBubbling();
-                playPoisonBubbleAudio();
                 this.sharkie.decreasePoison();
                 this.poisonBar.setStatusBar(this.sharkie.poison);
                 this.availableBubbles -= 1;
