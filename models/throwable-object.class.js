@@ -15,7 +15,18 @@ class ThrowableObject extends MoveableObject {
 
     poisonBubbling() {
         playPoisonBubbleAudio();
+        this.checkdirection();
+        this.moveBubble();
+    }
 
+    checkdirection() {
+        if (world.sharkie.otherDirection) {
+            this.speed = -this.speed;
+            this.x = this.x - 150;
+        }
+    }
+
+    moveBubble() {
         setTimeout(() => {
             setStoppableInterval(() => {
                 this.moveRight(this.speed);
