@@ -66,6 +66,7 @@ function startLevel1() {
             new Coin(1600, 115),
             new Coin(1600, 160),
         ],
-        [new Endboss()]
+        [new Endboss()],
+        [new Barrier(-670, 70, 150, 400, 2)]
     );
 }
