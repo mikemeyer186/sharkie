@@ -49,6 +49,12 @@ class JellyFish extends MoveableObject {
     }
 
     deadAnimation() {
-        console.log('no animation');
+        if (this.up) {
+            this.up = false;
+            this.down = true;
+        } else {
+            this.up = true;
+            this.down = false;
+        }
     }
 }
