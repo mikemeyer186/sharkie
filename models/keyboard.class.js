@@ -5,6 +5,7 @@ class Keyboard {
     ArrowDown = false;
     Space = false;
     KeyD = false;
+    slapKey = false;
     BtnUp = document.getElementById('btnUp');
     BtnDown = document.getElementById('btnDown');
     BtnLeft = document.getElementById('btnLeft');
@@ -20,6 +21,7 @@ class Keyboard {
     bindKeyboardEvents() {
         document.addEventListener('keydown', (event) => {
             this[`${event.code}`] = true;
+            this.slapKeyPressed();
         });
 
         document.addEventListener('keyup', () => {
@@ -104,5 +106,16 @@ class Keyboard {
             this.BtnD.classList.remove('touched-btn');
             this.KeyD = false;
         });
+    }
+
+    slapKeyPressed() {
+        if (this.KeyD) {
+            setTimeout(() => {
+                this.slapKey = true;
+                console.log(this.slapKey);
+                return this.slapKey;
+            }, 500);
+        }
+        this.slapKey = false;
     }
 }

@@ -56,6 +56,17 @@ class MoveableObject extends DrawableObject {
         //obj.onCollisionCourse // Optional: hiermit könnten wir schauen, ob ein Objekt sich in die richtige Richtung bewegt. Nur dann kollidieren wir. Nützlich bei Gegenständen, auf denen man stehen kann.
     }
 
+    isNearToSharkie(obj) {
+        let roomX = 10;
+        let roomY = 2;
+        return (
+            this.x + this.width - this.offset.right + roomX >= obj.x + obj.offset.left - roomX &&
+            this.x + this.offset.left - roomX <= obj.x + obj.width - obj.offset.right + roomX &&
+            this.y + this.height - this.offset.bottom + roomY >= obj.y + obj.offset.top - roomY &&
+            this.y + this.offset.top - roomY <= obj.y + obj.height - obj.offset.bottom + roomY
+        );
+    }
+
     decreaseEnergy() {
         this.energy -= 1;
         if (this.energy <= 0) {

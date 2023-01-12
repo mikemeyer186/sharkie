@@ -37,6 +37,7 @@ class World {
             this.checkBubbling();
             this.checkEndbossArea();
             this.checkBossBubbles();
+            this.checkSlapping();
         }, 50);
     }
 
@@ -49,7 +50,7 @@ class World {
 
     checkCollisions() {
         this.level.enemies.forEach((enemy) => {
-            if (this.sharkie.isColliding(enemy)) {
+            if (this.sharkie.isColliding(enemy) && !this.sharkie.isSlapping()) {
                 playSharkieHurtAudio();
                 this.sharkie.decreaseEnergy();
                 this.lifeBar.setStatusBar(this.sharkie.energy);
@@ -108,6 +109,14 @@ class World {
                 this.sharkie.increaseCoin();
                 this.coinBar.setStatusBar(this.sharkie.coins);
                 this.level.coins.splice(index, 1);
+            }
+        });
+    }
+
+    checkSlapping() {
+        this.level.enemies.forEach((enemy) => {
+            if (this.sharkie.isNearToSharkie(enemy) && this.keyboard.slapKey && !this.sharkie.isHurt()) {
+                enemy.deadAnimation(this.sharkie.otherDirection);
             }
         });
     }

@@ -11,10 +11,10 @@ class Endboss extends MoveableObject {
     attackTime;
     lastAttack;
     offset = {
-        top: 150,
+        top: 170,
         bottom: 50,
-        left: 20,
-        right: 20,
+        left: 50,
+        right: 50,
     };
     images_spawning = [
         '../img/enemys/endboss/intro/1.png',
