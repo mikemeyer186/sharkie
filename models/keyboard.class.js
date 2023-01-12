@@ -19,16 +19,16 @@ class Keyboard {
 
     bindKeyboardEvents() {
         document.addEventListener('keydown', (event) => {
-            keyboard[`${event.code}`] = true;
+            this[`${event.code}`] = true;
         });
 
         document.addEventListener('keyup', () => {
-            keyboard.ArrowLeft = false;
-            keyboard.ArrowRight = false;
-            keyboard.ArrowUp = false;
-            keyboard.ArrowDown = false;
-            keyboard.Space = false;
-            keyboard.KeyD = false;
+            this.ArrowLeft = false;
+            this.ArrowRight = false;
+            this.ArrowUp = false;
+            this.ArrowDown = false;
+            this.Space = false;
+            this.KeyD = false;
         });
     }
 
