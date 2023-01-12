@@ -14,6 +14,8 @@ function startLevel1() {
             new PufferFish(1800),
             new PufferFish(2000),
             new PufferFish(2000),
+            new JellyFish(1535),
+            new JellyFish(1635),
         ],
         [
             new BackgroundObjects('../img/background/water/light2.png', -720),
@@ -49,7 +51,7 @@ function startLevel1() {
             new BackgroundObjects('../img/background/fond_2/light1.png', 720 * 6),
             new BackgroundObjects('../img/background/floor/light1.png', 720 * 6),
         ],
-        [new Poison(-360, 380), new Poison(300, 380), new Poison(500, 380), new Poison(700, 380), new Poison(1000, 380), new Poison(1200, 380)],
+        [new Poison(-360, 380), new Poison(300, 380), new Poison(500, 380), new Poison(700, 380), new Poison(1000, 380), new Poison(1600, 380)],
         [
             new Coin(-420, 400),
             new Coin(-395, 365),
@@ -61,6 +63,8 @@ function startLevel1() {
             new Coin(1000, 200),
             new Coin(1300, 400),
             new Coin(1600, 70),
+            new Coin(1600, 115),
+            new Coin(1600, 160),
         ],
         [new Endboss()]
     );

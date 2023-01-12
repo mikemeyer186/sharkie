@@ -19,7 +19,7 @@ class PufferFish extends MoveableObject {
 
     constructor(x) {
         super();
-        this.loadImage(this.images_dead[0]);
+        this.loadImage(this.images_swimming[0]);
         this.loadImages(this.images_swimming);
         this.x = x;
         this.y = 40 + Math.random() * 350;

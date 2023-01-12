@@ -17,7 +17,14 @@ class DrawableObject {
     }
 
     drawRectangle(ctx) {
-        if (this instanceof Sharkie || this instanceof PufferFish || this instanceof Endboss || this instanceof Poison || this instanceof Coin) {
+        if (
+            this instanceof Sharkie ||
+            this instanceof PufferFish ||
+            this instanceof Endboss ||
+            this instanceof Poison ||
+            this instanceof Coin ||
+            this instanceof JellyFish
+        ) {
             ctx.beginPath();
             ctx.lineWidth = '3';
             ctx.strokeStyle = 'blue';

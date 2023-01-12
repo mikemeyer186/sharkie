@@ -112,7 +112,6 @@ class Keyboard {
         if (this.KeyD) {
             setTimeout(() => {
                 this.slapKey = true;
-                console.log(this.slapKey);
                 return this.slapKey;
             }, 500);
         }

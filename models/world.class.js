@@ -42,7 +42,7 @@ class World {
     }
 
     checkEndbossArea() {
-        if (this.sharkie.x >= 1450) {
+        if (this.sharkie.x >= 2450) {
             this.endboss.endbossIntro = true;
             this.lifeBarBoss.endbossArea = true;
         }
