@@ -4,6 +4,7 @@ class Sharkie extends MoveableObject {
     control;
     camera_x;
     level;
+    world;
     speed = 3;
     idleTime = 0;
     deadTime = 0;
@@ -138,13 +139,11 @@ class Sharkie extends MoveableObject {
             pauseSharkieSwimAudio();
 
             if (this.control.ArrowRight && this.x < this.level.levelEnd_x && !this.collisionBarrierLeft) {
-                //console.log(this.collisionBarrierLeft);
                 this.moveRight(this.speed);
                 this.otherDirection = false;
                 playSharkieSwimLeftRightAudio();
             }
             if (this.control.ArrowLeft && this.x > -600 && !this.collisionBarrierRight) {
-                //console.log(this.collisionBarrierRight);
                 this.moveLeft(this.speed);
                 this.otherDirection = true;
                 playSharkieSwimLeftRightAudio();

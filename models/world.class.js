@@ -27,6 +27,7 @@ class World {
         this.sharkie.control = this.keyboard;
         this.sharkie.camera_x = this.camera_x;
         this.sharkie.level = this.level;
+        this.sharkie.world = this;
     }
 
     activeInterval() {
@@ -87,8 +88,6 @@ class World {
                 this.sharkie.collisionBarrierTop = false;
                 this.sharkie.collisionBarrierBottom = false;
             }
-            console.log('left', this.sharkie.collisionBarrierLeft);
-            console.log('right', this.sharkie.collisionBarrierRight);
         });
     }
 
