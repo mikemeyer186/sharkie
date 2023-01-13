@@ -51,13 +51,13 @@ function startLevel1() {
             new BackgroundObjects('../img/background/fond_2/light1.png', 720 * 6),
             new BackgroundObjects('../img/background/floor/light1.png', 720 * 6),
         ],
-        [new Poison(-360, 380), new Poison(300, 380), new Poison(500, 380), new Poison(700, 380), new Poison(1000, 380), new Poison(1600, 380)],
+        [new Poison(-400, 380), new Poison(300, 380), new Poison(500, 380), new Poison(700, 380), new Poison(1000, 380), new Poison(1600, 380)],
         [
-            new Coin(-420, 400),
-            new Coin(-395, 365),
-            new Coin(-350, 345),
-            new Coin(-305, 365),
-            new Coin(-280, 400),
+            new Coin(-460, 400),
+            new Coin(-435, 365),
+            new Coin(-390, 345),
+            new Coin(-345, 365),
+            new Coin(-320, 400),
             new Coin(400, 200),
             new Coin(700, 250),
             new Coin(1000, 200),
@@ -67,6 +67,6 @@ function startLevel1() {
             new Coin(1600, 160),
         ],
         [new Endboss()],
-        [new Barrier(-670, 70, 150, 400, 2)]
+        [new Barrier(-670, 70, 150, 400, 2), new Barrier(-240, 130, 380, 340, 1)]
     );
 }

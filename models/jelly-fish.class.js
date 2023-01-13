@@ -5,8 +5,8 @@ class JellyFish extends MoveableObject {
     offset = {
         top: 10,
         bottom: 10,
-        left: 0,
-        right: 0,
+        left: 15,
+        right: 15,
     };
     images_swimming = [
         '../img/enemys/jelly-fish/swim/violet_1.png',
@@ -18,6 +18,7 @@ class JellyFish extends MoveableObject {
     constructor(x) {
         super();
         this.x = x;
+        this.y = 40 + Math.random() * 410;
         this.loadImage(this.images_swimming[0]);
         this.loadImages(this.images_swimming);
         this.animate();

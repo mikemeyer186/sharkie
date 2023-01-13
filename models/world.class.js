@@ -31,6 +31,7 @@ class World {
     activeInterval() {
         setStoppableInterval(() => {
             this.checkCollisions();
+            this.checkCollisionsBarrier();
             this.checkCollisionsPoison();
             this.checkCollisionsCoins();
             this.checkCollisionsEndboss();
@@ -54,6 +55,19 @@ class World {
                 playSharkieHurtAudio();
                 this.sharkie.decreaseEnergy();
                 this.lifeBar.setStatusBar(this.sharkie.energy);
+            }
+        });
+    }
+
+    checkCollisionsBarrier() {
+        this.level.barrier.forEach((barrier) => {
+            if (this.sharkie.isColliding(barrier)) {
+                this.sharkie.checkBarrierSide();
+            } else {
+                this.sharkie.collisionBarrierLeft = false;
+                this.sharkie.collisionBarrierRight = false;
+                this.sharkie.collisionBarrierTop = false;
+                this.sharkie.collisionBarrierBottom = false;
             }
         });
     }

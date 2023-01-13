@@ -133,21 +133,21 @@ class Sharkie extends MoveableObject {
         setStoppableInterval(() => {
             pauseSharkieSwimAudio();
 
-            if (keyboard.ArrowRight && this.x < this.level.levelEnd_x) {
+            if (keyboard.ArrowRight && this.x < this.level.levelEnd_x && !this.collisionBarrierLeft) {
                 this.moveRight(this.speed);
                 this.otherDirection = false;
                 playSharkieSwimLeftRightAudio();
             }
-            if (keyboard.ArrowLeft && this.x > -600) {
+            if (keyboard.ArrowLeft && this.x > -600 && !this.collisionBarrierRight) {
                 this.moveLeft(this.speed);
                 this.otherDirection = true;
                 playSharkieSwimLeftRightAudio();
             }
-            if (keyboard.ArrowUp && this.y > -70) {
+            if (keyboard.ArrowUp && this.y > -70 && !this.collisionBarrierBottom) {
                 this.moveUp(this.speed);
                 playSharkieSwimUpDownAudio();
             }
-            if (keyboard.ArrowDown && this.y < 250) {
+            if (keyboard.ArrowDown && this.y < 250 && !this.collisionBarrierTop) {
                 this.moveDown(this.speed);
                 playSharkieSwimUpDownAudio();
             }

@@ -7,6 +7,10 @@ class MoveableObject extends DrawableObject {
     poison = 0;
     coins = 0;
     lastHurt = 0;
+    collisionBarrierLeft = false;
+    collisionBarrierRight = false;
+    collisionBarrierTop = false;
+    collisionBarrierBottom = false;
     offset = {
         top: 0,
         bottom: 0,
@@ -65,6 +69,22 @@ class MoveableObject extends DrawableObject {
             this.y + this.height - this.offset.bottom + roomY >= obj.y + obj.offset.top - roomY &&
             this.y + this.offset.top - roomY <= obj.y + obj.height - obj.offset.bottom + roomY
         );
+    }
+
+    checkBarrierSide() {
+        if (keyboard.ArrowRight) {
+            this.collisionBarrierLeft = true;
+            console.log('left', this.collisionBarrierLeft);
+        } else if (keyboard.ArrowLeft) {
+            this.collisionBarrierRight = true;
+            console.log('right', this.collisionBarrierRight);
+        } else if (keyboard.ArrowDown) {
+            this.collisionBarrierTop = true;
+            console.log('top', this.collisionBarrierTop);
+        } else if (keyboard.ArrowTop) {
+            this.collisionBarrierBottom = true;
+            console.log('bottom', this.collisionBarrierBottom);
+        }
     }
 
     decreaseEnergy() {
