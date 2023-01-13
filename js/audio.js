@@ -1,18 +1,18 @@
-let audio_background = new Audio('../audio/background.mp3');
-let audio_music = new Audio('../audio/background_happy.mp3');
-let audio_level_win = new Audio('../audio/level_win.mp3');
-let audio_level_loose = new Audio('../audio/level_gameover.mp3');
-let audio_endboss = new Audio('../audio/endboss_fight.mp3');
-let audio_endboss_attack = new Audio('../audio/endboss_attack.mp3');
-let audio_endboss_hurt = new Audio('../audio/endboss_hit.mp3');
-let audio_endboss_dead = new Audio('../audio/endboss_dead.mp3');
-let audio_swim_up_down = new Audio('../audio/swim_up_down.mp3');
-let audio_swim_left_right = new Audio('../audio/swim_left_right.mp3');
-let audio_coin_pickup = new Audio('../audio/coin_pickup.mp3');
-let audio_poison_pickup = new Audio('../audio/poison_pickup.mp3');
-let audio_poison_bubble = new Audio('../audio/poison_bubble.mp3');
-let audio_sharkie_hurt = new Audio('../audio/sharkie_hit.mp3');
-let audio_sharkie_slap = new Audio('../audio/sharkie_slap.mp3');
+let audio_background = new Audio('audio/background.mp3');
+let audio_music = new Audio('audio/background_happy.mp3');
+let audio_level_win = new Audio('audio/level_win.mp3');
+let audio_level_loose = new Audio('audio/level_gameover.mp3');
+let audio_endboss = new Audio('audio/endboss_fight.mp3');
+let audio_endboss_attack = new Audio('audio/endboss_attack.mp3');
+let audio_endboss_hurt = new Audio('audio/endboss_hit.mp3');
+let audio_endboss_dead = new Audio('audio/endboss_dead.mp3');
+let audio_swim_up_down = new Audio('audio/swim_up_down.mp3');
+let audio_swim_left_right = new Audio('audio/swim_left_right.mp3');
+let audio_coin_pickup = new Audio('audio/coin_pickup.mp3');
+let audio_poison_pickup = new Audio('audio/poison_pickup.mp3');
+let audio_poison_bubble = new Audio('audio/poison_bubble.mp3');
+let audio_sharkie_hurt = new Audio('audio/sharkie_hit.mp3');
+let audio_sharkie_slap = new Audio('audio/sharkie_slap.mp3');
 
 function unmuteAllAudio() {
     audio_endboss.volume = 0.2;

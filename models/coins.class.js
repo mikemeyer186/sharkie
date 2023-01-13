@@ -8,12 +8,7 @@ class Coin extends CollectableObjects {
         right: 5,
     };
 
-    coins = [
-        '../img/collectables/coins/1.png',
-        '../img/collectables/coins/2.png',
-        '../img/collectables/coins/3.png',
-        '../img/collectables/coins/4.png',
-    ];
+    coins = ['img/collectables/coins/1.png', 'img/collectables/coins/2.png', 'img/collectables/coins/3.png', 'img/collectables/coins/4.png'];
 
     constructor(x, y) {
         super();

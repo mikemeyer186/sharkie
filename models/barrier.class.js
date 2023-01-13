@@ -5,7 +5,7 @@ class Barrier extends MoveableObject {
         left: 50,
         right: 50,
     };
-    images_barrier = ['../img/background/barrier/3.png'];
+    images_barrier = ['img/background/barrier/3.png'];
 
     constructor(x, y, width, height) {
         super();

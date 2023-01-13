@@ -7,7 +7,7 @@ class Light extends MoveableObject {
 
     constructor() {
         super();
-        this.loadImage('../img/background/light/complete.png');
+        this.loadImage('img/background/light/complete.png');
         this.moveLeft(this.speed);
     }
 }

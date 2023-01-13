@@ -6,17 +6,17 @@ class LifeBarBoss extends StatusBar {
     endbossArea = false;
 
     images = [
-        '../img/statusbar/life-boss/0.png',
-        '../img/statusbar/life-boss/20.png',
-        '../img/statusbar/life-boss/40.png',
-        '../img/statusbar/life-boss/60.png',
-        '../img/statusbar/life-boss/80.png',
-        '../img/statusbar/life-boss/100.png',
+        'img/statusbar/life-boss/0.png',
+        'img/statusbar/life-boss/20.png',
+        'img/statusbar/life-boss/40.png',
+        'img/statusbar/life-boss/60.png',
+        'img/statusbar/life-boss/80.png',
+        'img/statusbar/life-boss/100.png',
     ];
 
     constructor() {
         super();
-        this.loadImage('../img/statusbar/life-boss/100.png');
+        this.loadImage(this.images[5]);
         this.loadImages(this.images);
         this.setStatusBar(100);
         this.showLifeBar();

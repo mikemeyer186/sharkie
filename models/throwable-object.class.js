@@ -4,7 +4,7 @@ class ThrowableObject extends MoveableObject {
     speed = 1;
     delayTime = 600;
     delayY = 1000;
-    image = '../img/sharkie/bubbling/poison_bubble.png';
+    image = 'img/sharkie/bubbling/poison_bubble.png';
 
     constructor(x, y) {
         super();

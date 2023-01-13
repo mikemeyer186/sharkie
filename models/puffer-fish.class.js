@@ -9,13 +9,13 @@ class PufferFish extends MoveableObject {
         right: 5,
     };
     images_swimming = [
-        '../img/enemys/puffer-fish/swim/green_swim1.png',
-        '../img/enemys/puffer-fish/swim/green_swim2.png',
-        '../img/enemys/puffer-fish/swim/green_swim3.png',
-        '../img/enemys/puffer-fish/swim/green_swim4.png',
-        '../img/enemys/puffer-fish/swim/green_swim5.png',
+        'img/enemys/puffer-fish/swim/green_swim1.png',
+        'img/enemys/puffer-fish/swim/green_swim2.png',
+        'img/enemys/puffer-fish/swim/green_swim3.png',
+        'img/enemys/puffer-fish/swim/green_swim4.png',
+        'img/enemys/puffer-fish/swim/green_swim5.png',
     ];
-    images_dead = ['../img/enemys/puffer-fish/dead/1.png'];
+    images_dead = ['img/enemys/puffer-fish/dead/1.png'];
 
     constructor(x) {
         super();

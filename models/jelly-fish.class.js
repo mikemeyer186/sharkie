@@ -9,10 +9,10 @@ class JellyFish extends MoveableObject {
         right: 15,
     };
     images_swimming = [
-        '../img/enemys/jelly-fish/swim/violet_1.png',
-        '../img/enemys/jelly-fish/swim/violet_2.png',
-        '../img/enemys/jelly-fish/swim/violet_3.png',
-        '../img/enemys/jelly-fish/swim/violet_4.png',
+        'img/enemys/jelly-fish/swim/violet_1.png',
+        'img/enemys/jelly-fish/swim/violet_2.png',
+        'img/enemys/jelly-fish/swim/violet_3.png',
+        'img/enemys/jelly-fish/swim/violet_4.png',
     ];
 
     constructor(x) {

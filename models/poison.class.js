@@ -9,14 +9,14 @@ class Poison extends CollectableObjects {
     };
 
     poison = [
-        '../img/collectables/poison/1.png',
-        '../img/collectables/poison/2.png',
-        '../img/collectables/poison/3.png',
-        '../img/collectables/poison/4.png',
-        '../img/collectables/poison/5.png',
-        '../img/collectables/poison/6.png',
-        '../img/collectables/poison/7.png',
-        '../img/collectables/poison/8.png',
+        'img/collectables/poison/1.png',
+        'img/collectables/poison/2.png',
+        'img/collectables/poison/3.png',
+        'img/collectables/poison/4.png',
+        'img/collectables/poison/5.png',
+        'img/collectables/poison/6.png',
+        'img/collectables/poison/7.png',
+        'img/collectables/poison/8.png',
     ];
 
     constructor(x, y) {
