@@ -12,6 +12,7 @@ class World {
     poisonBar = new PoisonBar();
     poisonBubbles = [];
     availableBubbles = 0;
+    isCollidingWithBarrier = false;
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
@@ -31,7 +32,8 @@ class World {
     activeInterval() {
         setStoppableInterval(() => {
             this.checkCollisions();
-            this.checkCollisionsBarrier();
+            this.checkBarrierCollision();
+            this.checkBarrierSide();
             this.checkCollisionsPoison();
             this.checkCollisionsCoins();
             this.checkCollisionsEndboss();
@@ -59,16 +61,34 @@ class World {
         });
     }
 
-    checkCollisionsBarrier() {
-        this.level.barrier.forEach((barrier) => {
+    checkBarrierCollision() {
+        this.level.barriers.forEach((barrier) => {
             if (this.sharkie.isColliding(barrier)) {
-                this.sharkie.checkBarrierSide();
+                this.isCollidingWithBarrier = true;
             } else {
+                this.isCollidingWithBarrier = false;
+            }
+        });
+    }
+
+    checkBarrierSide() {
+        this.level.barriers.forEach((barrier) => {
+            if (this.sharkie.isColliding(barrier) && this.sharkie.isCollidingBarrierRight(barrier)) {
+                this.sharkie.collisionBarrierRight = true;
+            } else if (this.sharkie.isColliding(barrier) && this.sharkie.isCollidingBarrierLeft(barrier)) {
+                this.sharkie.collisionBarrierLeft = true;
+            } else if (this.sharkie.isColliding(barrier) && this.sharkie.isCollidingBarrierTop(barrier)) {
+                this.sharkie.collisionBarrierTop = true;
+            } else if (this.sharkie.isColliding(barrier) && this.sharkie.isCollidingBarrierBottom(barrier)) {
+                this.sharkie.collisionBarrierBottom = true;
+            } else if (!this.isCollidingWithBarrier) {
                 this.sharkie.collisionBarrierLeft = false;
                 this.sharkie.collisionBarrierRight = false;
                 this.sharkie.collisionBarrierTop = false;
                 this.sharkie.collisionBarrierBottom = false;
             }
+            console.log('left', this.sharkie.collisionBarrierLeft);
+            console.log('right', this.sharkie.collisionBarrierRight);
         });
     }
 
@@ -141,7 +161,7 @@ class World {
         this.ctx.translate(this.sharkie.camera_x, 0);
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
         this.addObjectsToCanvas(this.level.background);
-        this.addObjectsToCanvas(this.level.barrier);
+        this.addObjectsToCanvas(this.level.barriers);
         this.addObjectsToCanvas(this.level.coins);
         this.addObjectsToCanvas(this.level.poison);
         this.addToCanvas(this.level.light);

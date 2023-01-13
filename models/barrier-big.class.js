@@ -1,11 +1,11 @@
-class Barrier extends MoveableObject {
+class BarrierBig extends MoveableObject {
     offset = {
         top: 10,
         bottom: 10,
         left: 50,
         right: 50,
     };
-    images_barrier = ['../img/background/barrier/3.png'];
+    images_barrier = ['../img/background/barrier/2.png'];
 
     constructor(x, y, width, height) {
         super();

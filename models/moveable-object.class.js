@@ -7,10 +7,6 @@ class MoveableObject extends DrawableObject {
     poison = 0;
     coins = 0;
     lastHurt = 0;
-    collisionBarrierLeft = false;
-    collisionBarrierRight = false;
-    collisionBarrierTop = false;
-    collisionBarrierBottom = false;
     offset = {
         top: 0,
         bottom: 0,
@@ -71,20 +67,20 @@ class MoveableObject extends DrawableObject {
         );
     }
 
-    checkBarrierSide() {
-        if (keyboard.ArrowRight) {
-            this.collisionBarrierLeft = true;
-            console.log('left', this.collisionBarrierLeft);
-        } else if (keyboard.ArrowLeft) {
-            this.collisionBarrierRight = true;
-            console.log('right', this.collisionBarrierRight);
-        } else if (keyboard.ArrowDown) {
-            this.collisionBarrierTop = true;
-            console.log('top', this.collisionBarrierTop);
-        } else if (keyboard.ArrowTop) {
-            this.collisionBarrierBottom = true;
-            console.log('bottom', this.collisionBarrierBottom);
-        }
+    isCollidingBarrierLeft(obj) {
+        return keyboard.ArrowRight && this.x + this.width - this.offset.right >= obj.x + obj.offset.left;
+    }
+
+    isCollidingBarrierRight(obj) {
+        return keyboard.ArrowLeft && this.x + this.offset.left <= obj.x + obj.width - obj.offset.right;
+    }
+
+    isCollidingBarrierTop(obj) {
+        return keyboard.ArrowDown && this.y + this.height - this.offset.bottom >= obj.y + obj.offset.top;
+    }
+
+    isCollidingBarrierBottom(obj) {
+        return keyboard.ArrowTop && this.y + this.offset.top <= obj.y + obj.height - obj.offset.bottom;
     }
 
     decreaseEnergy() {
