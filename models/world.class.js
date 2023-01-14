@@ -176,7 +176,6 @@ class World {
         }
 
         object.draw(this.ctx);
-        object.drawRectangle(this.ctx);
 
         if (object.otherDirection) {
             this.flipImageReset(object);

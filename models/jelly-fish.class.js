@@ -3,10 +3,10 @@ class JellyFish extends MoveableObject {
     width = 70;
     speed = 0.6;
     offset = {
-        top: 10,
-        bottom: 10,
-        left: 15,
-        right: 15,
+        top: 30,
+        bottom: 30,
+        left: 25,
+        right: 25,
     };
     images_swimming = [
         'img/enemys/jelly-fish/swim/violet_1.png',
