@@ -12,7 +12,6 @@ class World {
     poisonBar = new PoisonBar();
     poisonBubbles = [];
     availableBubbles = 0;
-    isCollidingWithBarrier = false;
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
@@ -34,7 +33,7 @@ class World {
         setStoppableInterval(() => {
             this.checkCollisions();
             this.checkBarrierCollision();
-            this.checkBarrierSide();
+            this.checkNoBarrierCollision();
             this.checkCollisionsPoison();
             this.checkCollisionsCoins();
             this.checkCollisionsEndboss();
@@ -65,30 +64,18 @@ class World {
     checkBarrierCollision() {
         this.level.barriers.forEach((barrier) => {
             if (this.sharkie.isColliding(barrier)) {
-                this.isCollidingWithBarrier = true;
-            } else {
-                this.isCollidingWithBarrier = false;
+                this.sharkie.collisionBarrier = true;
+                this.sharkie.collisionBarrierObject = barrier;
             }
         });
     }
 
-    checkBarrierSide() {
-        this.level.barriers.forEach((barrier) => {
-            if (this.sharkie.isColliding(barrier) && this.sharkie.isCollidingBarrierRight(barrier)) {
-                this.sharkie.collisionBarrierRight = true;
-            } else if (this.sharkie.isColliding(barrier) && this.sharkie.isCollidingBarrierLeft(barrier)) {
-                this.sharkie.collisionBarrierLeft = true;
-            } else if (this.sharkie.isColliding(barrier) && this.sharkie.isCollidingBarrierTop(barrier)) {
-                this.sharkie.collisionBarrierTop = true;
-            } else if (this.sharkie.isColliding(barrier) && this.sharkie.isCollidingBarrierBottom(barrier)) {
-                this.sharkie.collisionBarrierBottom = true;
-            } else if (!this.isCollidingWithBarrier) {
-                this.sharkie.collisionBarrierLeft = false;
-                this.sharkie.collisionBarrierRight = false;
-                this.sharkie.collisionBarrierTop = false;
-                this.sharkie.collisionBarrierBottom = false;
+    checkNoBarrierCollision() {
+        if (this.sharkie.collisionBarrier) {
+            if (!this.sharkie.isColliding(this.sharkie.collisionBarrierObject)) {
+                this.sharkie.collisionBarrier = false;
             }
-        });
+        }
     }
 
     checkCollisionsEndboss() {

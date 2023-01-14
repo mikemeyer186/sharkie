@@ -68,19 +68,19 @@ class MoveableObject extends DrawableObject {
     }
 
     isCollidingBarrierLeft(obj) {
-        return keyboard.ArrowRight && this.x + this.width - this.offset.right >= obj.x + obj.offset.left;
+        return this.x + this.width - this.offset.right >= obj.x + obj.offset.left && this.x < obj.x;
     }
 
     isCollidingBarrierRight(obj) {
-        return keyboard.ArrowLeft && this.x + this.offset.left <= obj.x + obj.width - obj.offset.right;
+        return this.x + this.offset.left <= obj.x + obj.width - obj.offset.right && this.x + this.width > obj.x + obj.width;
     }
 
     isCollidingBarrierTop(obj) {
-        return keyboard.ArrowDown && this.y + this.height - this.offset.bottom >= obj.y + obj.offset.top;
+        return this.y + this.height - this.offset.bottom >= obj.y + obj.offset.top && this.y < obj.y;
     }
 
     isCollidingBarrierBottom(obj) {
-        return keyboard.ArrowTop && this.y + this.offset.top <= obj.y + obj.height - obj.offset.bottom;
+        return this.y + this.offset.top <= obj.y + obj.height - obj.offset.bottom && this.y > obj.y + obj.height;
     }
 
     decreaseEnergy() {

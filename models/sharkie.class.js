@@ -11,10 +11,12 @@ class Sharkie extends MoveableObject {
     bubbleTime;
     shotTime;
     slapTime;
-    collisionBarrierLeft;
-    collisionBarrierRight;
-    collisionBarrierTop;
-    collisionBarrierBottom;
+    collisionBarrier = false;
+    collisionBarrierObject;
+    collisionBarrierLeft = false;
+    collisionBarrierRight = false;
+    collisionBarrierTop = false;
+    collisionBarrierBottom = false;
     offset = {
         top: 120,
         bottom: 60,
@@ -131,6 +133,7 @@ class Sharkie extends MoveableObject {
     sharkieMovement() {
         setStoppableInterval(() => {
             pauseSharkieSwimAudio();
+            this.barrierCollision();
 
             if (this.control.ArrowRight && this.x < this.level.levelEnd_x && !this.collisionBarrierLeft) {
                 this.moveRight(this.speed);
@@ -172,6 +175,28 @@ class Sharkie extends MoveableObject {
                 this.idleAnimation();
             }
         }, 1000 / 10);
+    }
+
+    barrierCollision() {
+        if (this.collisionBarrier) {
+            if (this.isCollidingBarrierRight(this.collisionBarrierObject)) {
+                this.collisionBarrierRight = true;
+            }
+            if (this.isCollidingBarrierLeft(this.collisionBarrierObject)) {
+                this.collisionBarrierLeft = true;
+            }
+            if (this.isCollidingBarrierTop(this.collisionBarrierObject)) {
+                this.collisionBarrierTop = true;
+            }
+            if (this.isCollidingBarrierBottom(this.collisionBarrierObject)) {
+                this.collisionBarrierBottom = true;
+            }
+        } else {
+            this.collisionBarrierRight = false;
+            this.collisionBarrierLeft = false;
+            this.collisionBarrierTop = false;
+            this.collisionBarrierBottom = false;
+        }
     }
 
     setIdleTime() {
