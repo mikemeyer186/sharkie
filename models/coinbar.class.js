@@ -12,7 +12,7 @@ class CoinBar extends StatusBar {
 
     constructor() {
         super();
-        this.loadImage('../img/statusbar/coins/coin_0.png');
+        this.loadImage(this.images[5]);
         this.loadImages(this.images);
         this.setStatusBar(0);
     }
