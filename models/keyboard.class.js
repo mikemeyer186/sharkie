@@ -99,6 +99,7 @@ class Keyboard {
             event.preventDefault();
             this.BtnD.classList.add('touched-btn');
             this.KeyD = true;
+            this.slapKeyPressed();
         });
 
         this.BtnD.addEventListener('touchend', (event) => {
