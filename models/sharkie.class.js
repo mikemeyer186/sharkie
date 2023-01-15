@@ -219,7 +219,7 @@ class Sharkie extends MoveableObject {
 
     sleepAnimation() {
         this.playAnimation(this.images_idle_sleeping);
-        if (this.y < 250) {
+        if (this.y < 250 && !this.collisionBarrierTop) {
             this.y += 1;
         }
     }

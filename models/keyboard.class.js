@@ -115,7 +115,11 @@ class Keyboard {
                 this.slapKey = true;
                 return this.slapKey;
             }, 500);
+            setTimeout(() => {
+                this.slapKey = false;
+            }, 1000);
+        } else {
+            this.slapKey = false;
         }
-        this.slapKey = false;
     }
 }

@@ -137,6 +137,7 @@ class World {
         this.level.enemies.forEach((enemy) => {
             if (this.sharkie.isNearToSharkie(enemy) && this.keyboard.slapKey && !this.sharkie.isHurt()) {
                 enemy.deadAnimation(this.sharkie.otherDirection);
+                this.keyboard.slapKey = false;
             }
         });
     }
