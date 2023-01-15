@@ -147,7 +147,13 @@ class World {
 
         this.ctx.translate(this.sharkie.camera_x, 0);
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+
+        this.ctx.translate(-this.sharkie.camera_x, 0);
+        this.ctx.translate(this.sharkie.camera_x / this.level.background.layer, 0);
         this.addObjectsToCanvas(this.level.background);
+        this.ctx.translate(-this.sharkie.camera_x / this.level.background.layer, 0);
+        this.ctx.translate(this.sharkie.camera_x, 0);
+
         this.addObjectsToCanvas(this.level.barriers);
         this.addObjectsToCanvas(this.level.coins);
         this.addObjectsToCanvas(this.level.poison);
