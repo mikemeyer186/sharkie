@@ -45,7 +45,7 @@ class World {
     }
 
     checkEndbossArea() {
-        if (this.sharkie.x >= 2450) {
+        if (this.sharkie.x >= 3170) {
             this.endboss.endbossIntro = true;
             this.lifeBarBoss.endbossArea = true;
         }
@@ -147,17 +147,10 @@ class World {
 
         this.ctx.translate(this.sharkie.camera_x, 0);
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-
-        this.ctx.translate(-this.sharkie.camera_x, 0);
-        this.ctx.translate(this.sharkie.camera_x / this.level.background.layer, 0);
-        this.addObjectsToCanvas(this.level.background);
-        this.ctx.translate(-this.sharkie.camera_x / this.level.background.layer, 0);
-        this.ctx.translate(this.sharkie.camera_x, 0);
-
+        this.drawBackgroundObjects();
         this.addObjectsToCanvas(this.level.barriers);
         this.addObjectsToCanvas(this.level.coins);
         this.addObjectsToCanvas(this.level.poison);
-        this.addToCanvas(this.level.light);
         this.addObjectsToCanvas(this.level.enemies);
 
         this.ctx.translate(-this.sharkie.camera_x, 0);
@@ -174,6 +167,16 @@ class World {
 
         requestAnimationFrame(() => {
             self.draw();
+        });
+    }
+
+    drawBackgroundObjects() {
+        this.level.background.forEach((object, index) => {
+            this.ctx.translate(-this.sharkie.camera_x, 0);
+            this.ctx.translate(this.sharkie.camera_x / this.level.background[index].layer, 0);
+            this.addToCanvas(this.level.background[index]);
+            this.ctx.translate(-this.sharkie.camera_x / this.level.background[index].layer, 0);
+            this.ctx.translate(this.sharkie.camera_x, 0);
         });
     }
 

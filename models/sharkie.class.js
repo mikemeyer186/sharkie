@@ -1,5 +1,5 @@
 class Sharkie extends MoveableObject {
-    x = 80;
+    x = 800;
     y = 70;
     control;
     camera_x;

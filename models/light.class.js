@@ -3,11 +3,12 @@ class Light extends MoveableObject {
     y = 0;
     height = 450;
     width = 720;
-    speed = 0.05;
+    speed = 0.2;
+    layer;
 
-    constructor() {
+    constructor(layer) {
         super();
         this.loadImage('img/background/light/complete.png');
-        this.moveLeft(this.speed);
+        this.layer = layer;
     }
 }
