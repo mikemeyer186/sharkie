@@ -80,7 +80,7 @@ class MoveableObject extends DrawableObject {
     }
 
     isCollidingBarrierBottom(obj) {
-        return this.y + this.offset.top <= obj.y + obj.height - obj.offset.bottom && this.y > obj.y + obj.height;
+        return this.y + this.offset.top <= obj.y + obj.height - obj.offset.bottom && this.y + this.height > obj.y + obj.height;
     }
 
     decreaseEnergy() {
