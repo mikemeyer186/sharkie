@@ -5,6 +5,7 @@ let startscreenStart;
 let screen;
 let keyboard = new Keyboard();
 let intervalIds = [];
+let portraitModus;
 
 function init() {
     screen = document.getElementById('screen');
@@ -16,6 +17,8 @@ function init() {
     mobileBtnPanel = document.getElementById('mobile-btn-panel');
     canvas = document.getElementById('canvas');
     unmuteAllAudio();
+    checkPortraitModus();
+    checkPortraitEvent();
 }
 
 function startGame() {
@@ -86,4 +89,43 @@ function clickUnmuteAudio() {
 
 function infoScreenToggle() {
     document.getElementById('info-screen').classList.toggle('d-none');
+}
+
+function checkPortraitEvent() {
+    window.matchMedia('(orientation: portrait)').addEventListener('change', (e) => {
+        let portrait = e.matches;
+        if (portrait) {
+            portraitModus = true;
+            showPortraitScreen();
+        } else {
+            portraitModus = false;
+            hidePortraitScreen();
+        }
+    });
+}
+
+function checkPortraitModus() {
+    portraitModus = window.matchMedia('(orientation: portrait)').matches;
+
+    if (portraitModus) {
+        showPortraitScreen();
+    } else {
+        hidePortraitScreen();
+    }
+}
+
+function showPortraitScreen() {
+    document.getElementById('portraitScreen').classList.remove('d-none');
+    spinPortraitImage();
+}
+
+function hidePortraitScreen() {
+    document.getElementById('portraitScreen').classList.add('d-none');
+    document.getElementById('portraitImage').style.transform = 'none';
+}
+
+function spinPortraitImage() {
+    setTimeout(() => {
+        document.getElementById('portraitImage').style.transform = 'rotate(90deg)';
+    }, 500);
 }
