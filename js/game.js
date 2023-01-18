@@ -129,3 +129,8 @@ function spinPortraitImage() {
         document.getElementById('portraitImage').style.transform = 'rotate(90deg)';
     }, 500);
 }
+
+function mobileButtonsToggle() {
+    mobileBtnPanel.style.display = 'block';
+    //hide controller
+}
