@@ -39,6 +39,7 @@ h1 {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    overflow: hidden;
 }
 
 #startscreen-img {
@@ -97,8 +98,32 @@ h1 {
 }
 
 #menu {
-    width: 4%;
-    height: 15%;
+    width: 140px;
+    height: 150px;
+    top: 0;
+    right: 0;
+    position: absolute;
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: center;
+    align-items: flex-start;
+    background-color: rgba(0, 0, 0, 0.3);
+    border-top-left-radius: 30px;
+    border-bottom-left-radius: 30px;
+    padding-left: 10px;
+    transform: translateX(200px);
+    transition: all 500ms ease-in-out;
+}
+
+.slideIn {
+    transform: translateX(0) !important;
+    transition: all 500ms ease-in-out;
+}
+
+#settings {
+    cursor: pointer;
+    width: 25px;
+    object-fit: cover;
     top: 0;
     right: 0;
     position: absolute;
@@ -106,13 +131,36 @@ h1 {
     flex-direction: column-reverse;
     justify-content: flex-end;
     align-items: center;
+    z-index: 3;
+    transform: rotate(270deg);
+    transition: all 500ms ease-in-out;
+}
+
+.rotate {
+    transform: rotate(0deg) !important;
+    transition: all 500ms ease-in-out;
 }
 
 .menu-icon {
     cursor: pointer;
     width: 20px;
     object-fit: cover;
-    margin: 5px;
+    margin: 5px 10px 5px 5px;
+}
+
+.menu-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    cursor: pointer;
+}
+
+.menu-row-text {
+    font-size: 12px;
+    font-family: sans-serif;
+    color: white;
+    margin: 0;
 }
 
 .controller-icon {
@@ -176,7 +224,7 @@ canvas {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    z-index: 2;
+    z-index: 4;
 }
 
 .info-title {

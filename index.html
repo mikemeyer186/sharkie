@@ -49,14 +49,31 @@
         <img id="gameover-screen" class="no-opacity" src="./img/endscreen/game_over.png" alt="gameover">
         <img id="winning-screen" class="d-none" src="./img/endscreen/win.png" alt="you win">
         <img id="try-again-btn" class="d-none" src="./img/endscreen/try_again.png" alt="tryagain" onclick="startGame()">
+        <img id="settings" src="./img/menu/menu_settings.png" alt="Settings" onclick="toggleMenu()">
         <div id="menu">
-            <img src="./img/menu/controller.png" class="menu-icon controller-icon" alt="Controller"
-                onclick="mobileButtonsToggle()">
-            <img id="muted-icon" src="./img/menu/muted.png" class="menu-icon menu-icon-muted d-none" alt="Audio muted"
-                onclick="clickUnmuteAudio()">
-            <img id="unmuted-icon" src="./img/menu/unmuted.png" class="menu-icon" alt="Audio unmuted"
-                onclick="clickMuteAudio()">
-            <img src="./img/menu/info.png" class="menu-icon" alt="Open info" onclick="infoScreenToggle()">
+            <div class="menu-row" onclick="toggleFullscreen()">
+                <img id="fullscreen-icon-start" src="./img/menu/menu_fullscreen_on.png" class="menu-icon"
+                    alt="Start fullscreen">
+                <img id="fullscreen-icon-exit" src="./img/menu/menu_fullscreen_exit.png" class="menu-icon d-none"
+                    alt="Exit fullscreen">
+                <p class="menu-row-text">Fullscreen</p>
+            </div>
+            <div class="menu-row" onclick="toggleMobilePanel()">
+                <img id="controller-icon-on" src="./img/menu/menu_controller_on.png" class="menu-icon"
+                    alt="Controller on">
+                <img id="controller-icon-off" src="./img/menu/menu_controller_off.png" class="menu-icon d-none"
+                    alt="Controller off">
+                <p class="menu-row-text">Controller</p>
+            </div>
+            <div class="menu-row" onclick="toggleMuteAudio()">
+                <img id="muted-icon" src="./img/menu/menu_vol_off.png" class="menu-icon d-none" alt="Audio muted">
+                <img id="unmuted-icon" src="./img/menu/menu_vol_up.png" class="menu-icon" alt="Audio unmuted">
+                <p class="menu-row-text">Volume</p>
+            </div>
+            <div class="menu-row" onclick="infoScreenToggle()">
+                <img src="./img/menu/menu_info.png" class="menu-icon" alt="Instructions">
+                <p class="menu-row-text">Instruction</p>
+            </div>
         </div>
         <div id="info-screen" class="d-none">
             <h2 class="info-title">Instructions</h2>
@@ -113,7 +130,7 @@
             </div>
         </div>
     </div>
-    <img class="subtext" src="./img/menu/fullscreen.png" alt="Fullscreen" onclick="toggleFullscreen()">
+    <img class="subtext" src="./img/menu/fullscreen.png" alt="Fullscreen" onclick="startFullscreen()">
 
     <script src="./models/keyboard.class.js"></script>
     <script src="./js/game.js"></script>

@@ -41,7 +41,38 @@ function hideStartscreen() {
 }
 
 function toggleFullscreen() {
-    screen.requestFullscreen();
+    let iconStart = document.getElementById('fullscreen-icon-start');
+    let iconExit = document.getElementById('fullscreen-icon-exit');
+
+    if (iconStart.classList.contains('d-none')) {
+        iconStart.classList.remove('d-none');
+        iconExit.classList.add('d-none');
+        closeFullscreen();
+    } else {
+        iconStart.classList.add('d-none');
+        iconExit.classList.remove('d-none');
+        startFullscreen();
+    }
+}
+
+function startFullscreen() {
+    if (screen.requestFullscreen) {
+        screen.requestFullscreen();
+    } else if (screen.webkitRequestFullscreen) {
+        screen.webkitRequestFullscreen();
+    } else if (screen.msRequestFullscreen) {
+        screen.msRequestFullscreen();
+    }
+}
+
+function closeFullscreen() {
+    if (document.exitFullscreen) {
+        document.exitFullscreen();
+    } else if (document.webkitExitFullscreen) {
+        document.webkitExitFullscreen();
+    } else if (document.msExitFullscreen) {
+        document.msExitFullscreen();
+    }
 }
 
 function setStoppableInterval(fn, time) {
@@ -75,15 +106,26 @@ function showWinningScreen() {
     showTryAgain();
 }
 
-function clickMuteAudio() {
-    document.getElementById('muted-icon').classList.remove('d-none');
-    document.getElementById('unmuted-icon').classList.add('d-none');
+function toggleMuteAudio() {
+    let iconOn = document.getElementById('unmuted-icon');
+    let iconOff = document.getElementById('muted-icon');
+
+    if (iconOn.classList.contains('d-none')) {
+        iconOn.classList.remove('d-none');
+        iconOff.classList.add('d-none');
+        unmuteAudio();
+    } else {
+        iconOn.classList.add('d-none');
+        iconOff.classList.remove('d-none');
+        muteAudio();
+    }
+}
+
+function muteAudio() {
     muteAllAudio();
 }
 
-function clickUnmuteAudio() {
-    document.getElementById('muted-icon').classList.add('d-none');
-    document.getElementById('unmuted-icon').classList.remove('d-none');
+function unmuteAudio() {
     unmuteAllAudio();
 }
 
@@ -130,7 +172,29 @@ function spinPortraitImage() {
     }, 500);
 }
 
+function toggleMobilePanel() {
+    let iconOn = document.getElementById('controller-icon-on');
+    let iconOff = document.getElementById('controller-icon-off');
+
+    if (iconOn.classList.contains('d-none')) {
+        iconOn.classList.remove('d-none');
+        iconOff.classList.add('d-none');
+    } else {
+        iconOn.classList.add('d-none');
+        iconOff.classList.remove('d-none');
+    }
+    mobileButtonsToggle();
+}
+
 function mobileButtonsToggle() {
-    mobileBtnPanel.style.display = 'block';
-    //hide controller
+    if (mobileBtnPanel.style.display == 'none') {
+        mobileBtnPanel.style.display = 'block';
+    } else {
+        mobileBtnPanel.style.display = 'none';
+    }
+}
+
+function toggleMenu() {
+    document.getElementById('menu').classList.toggle('slideIn');
+    document.getElementById('settings').classList.toggle('rotate');
 }
