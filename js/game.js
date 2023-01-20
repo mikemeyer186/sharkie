@@ -198,3 +198,9 @@ function toggleMenu() {
     document.getElementById('menu').classList.toggle('slideIn');
     document.getElementById('settings').classList.toggle('rotate');
 }
+
+window.addEventListener('load', function () {
+    setTimeout(function () {
+        window.scrollTo(0, 1);
+    }, 0);
+});
