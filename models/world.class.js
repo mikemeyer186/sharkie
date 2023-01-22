@@ -186,8 +186,8 @@ class World {
         this.ctx.translate(this.sharkie.camera_x, 0);
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
         this.drawBackgroundObjects();
-        this.drawingFixedObjects();
         this.drawMovingObjects();
+        this.drawingFixedObjects();
         this.ctx.translate(-this.sharkie.camera_x, 0);
 
         requestAnimationFrame(() => {

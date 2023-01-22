@@ -90,7 +90,7 @@ class MoveableObject extends DrawableObject {
      * @returns
      */
     isNearToSharkie(obj) {
-        let roomX = 10;
+        let roomX = 20;
         let roomY = 2;
         return (
             this.x + this.width - this.offset.right + roomX >= obj.x + obj.offset.left - roomX &&

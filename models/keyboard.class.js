@@ -28,14 +28,8 @@ class Keyboard {
             this.slapKeyPressed();
         });
 
-        document.addEventListener('keyup', () => {
-            this.ArrowLeft = false;
-            this.ArrowRight = false;
-            this.ArrowUp = false;
-            this.ArrowDown = false;
-            this.Space = false;
-            this.KeyD = false;
-            this.Escape = false;
+        document.addEventListener('keyup', (event) => {
+            this[`${event.code}`] = false;
         });
     }
 

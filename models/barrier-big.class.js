@@ -1,6 +1,6 @@
 class BarrierBig extends MoveableObject {
     offset = {
-        top: 10,
+        top: 50,
         bottom: 10,
         left: 50,
         right: 50,

@@ -3,10 +3,10 @@ class PufferFish extends MoveableObject {
     width = 70;
     speed = 0.2;
     offset = {
-        top: 15,
-        bottom: 25,
-        left: 15,
-        right: 15,
+        top: 25,
+        bottom: 35,
+        left: 25,
+        right: 25,
     };
     images_swimming = [
         'img/enemys/puffer-fish/swim/green_swim1.png',

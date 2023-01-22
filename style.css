@@ -70,9 +70,7 @@ h1 {
 
 #gameover-screen {
     width: 90%;
-    height: 30%;
     position: absolute;
-    bottom: 40%;
     filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.5));
     opacity: 1;
     transition: opacity 2000ms ease-in-out;
@@ -90,7 +88,7 @@ h1 {
 #try-again-btn {
     cursor: pointer;
     width: 30%;
-    height: 15%;
+    height: 10%;
     position: absolute;
     bottom: 10%;
     filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.5));
@@ -113,6 +111,7 @@ h1 {
     padding-left: 10px;
     transform: translateX(200px);
     transition: all 500ms ease-in-out;
+    z-index: 3;
 }
 
 .slideIn {
@@ -211,6 +210,8 @@ canvas {
 #portraitImage {
     transform: rotate(0);
     transition: all 1000ms ease-in-out;
+    width: 60%;
+    object-fit: cover;
 }
 
 #info-screen {
@@ -396,6 +397,7 @@ canvas {
 @media only screen and (max-width: 920px) {
     canvas {
         width: 100vw;
+        /*height: 100%;*/
     }
 
     #screen {
