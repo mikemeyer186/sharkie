@@ -230,11 +230,18 @@ class Sharkie extends MoveableObject {
                 this.collisionBarrierBottom = true;
             }
         } else {
-            this.collisionBarrierRight = false;
-            this.collisionBarrierLeft = false;
-            this.collisionBarrierTop = false;
-            this.collisionBarrierBottom = false;
+            this.settingCollisionBooleansFalse();
         }
+    }
+
+    /**
+     * setting collision booleans to false
+     */
+    settingCollisionBooleansFalse() {
+        this.collisionBarrierRight = false;
+        this.collisionBarrierLeft = false;
+        this.collisionBarrierTop = false;
+        this.collisionBarrierBottom = false;
     }
 
     /**
