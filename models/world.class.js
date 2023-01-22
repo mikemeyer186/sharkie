@@ -22,6 +22,9 @@ class World {
         this.activeInterval();
     }
 
+    /**
+     * giving variables to object "sharkie"
+     */
     setControls() {
         this.sharkie.control = this.keyboard;
         this.sharkie.camera_x = this.camera_x;
@@ -29,6 +32,9 @@ class World {
         this.sharkie.world = this;
     }
 
+    /**
+     * initial interval
+     */
     activeInterval() {
         setStoppableInterval(() => {
             this.checkCollisions();
@@ -44,6 +50,9 @@ class World {
         }, 50);
     }
 
+    /**
+     * checking if sharkie is in endboss area
+     */
     checkEndbossArea() {
         if (this.sharkie.x >= 3170) {
             this.endboss.endbossIntro = true;
@@ -51,6 +60,9 @@ class World {
         }
     }
 
+    /**
+     * checking collisions with enemies
+     */
     checkCollisions() {
         this.level.enemies.forEach((enemy) => {
             if (this.sharkie.isColliding(enemy) && !this.sharkie.isSlapping()) {
@@ -61,6 +73,9 @@ class World {
         });
     }
 
+    /**
+     * checking collisions with barriers
+     */
     checkBarrierCollision() {
         this.level.barriers.forEach((barrier) => {
             if (this.sharkie.isColliding(barrier)) {
@@ -70,6 +85,9 @@ class World {
         });
     }
 
+    /**
+     * checking if there is no collision with barriers
+     */
     checkNoBarrierCollision() {
         if (this.sharkie.collisionBarrier) {
             if (!this.sharkie.isColliding(this.sharkie.collisionBarrierObject)) {
@@ -78,6 +96,9 @@ class World {
         }
     }
 
+    /**
+     * checking collision with endboss
+     */
     checkCollisionsEndboss() {
         if (this.sharkie.isColliding(this.endboss)) {
             playSharkieHurtAudio();
@@ -86,6 +107,9 @@ class World {
         }
     }
 
+    /**
+     * checking if poison bubbles hits endboss
+     */
     checkBossBubbles() {
         this.poisonBubbles.forEach((bubble, index) => {
             if (this.endboss.isColliding(bubble)) {
@@ -96,6 +120,9 @@ class World {
         });
     }
 
+    /**
+     * checking if sharkie collects poison bottles
+     */
     checkCollisionsPoison() {
         this.level.poison.forEach((poison, index) => {
             if (this.sharkie.isColliding(poison)) {
@@ -108,6 +135,9 @@ class World {
         });
     }
 
+    /**
+     * checking if sharkie is bubbling
+     */
     checkBubbling() {
         if (this.keyboard.Space) {
             if (this.availableBubbles > 0 && this.sharkie.isBubbleTime()) {
@@ -122,6 +152,9 @@ class World {
         }
     }
 
+    /**
+     * checking if sharkie is collecting coins
+     */
     checkCollisionsCoins() {
         this.level.coins.forEach((coin, index) => {
             if (this.sharkie.isColliding(coin)) {
@@ -133,6 +166,9 @@ class World {
         });
     }
 
+    /**
+     * chekcing if sharkie is slapping
+     */
     checkSlapping() {
         this.level.enemies.forEach((enemy) => {
             if (this.sharkie.isNearToSharkie(enemy) && this.keyboard.slapKey && !this.sharkie.isHurt()) {
@@ -142,27 +178,16 @@ class World {
         });
     }
 
+    /**
+     * drawing objects in canvas
+     */
     draw() {
         let self = this;
-
         this.ctx.translate(this.sharkie.camera_x, 0);
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
         this.drawBackgroundObjects();
-        this.addObjectsToCanvas(this.level.barriers);
-        this.addObjectsToCanvas(this.level.coins);
-        this.addObjectsToCanvas(this.level.poison);
-        this.addObjectsToCanvas(this.level.enemies);
-
-        this.ctx.translate(-this.sharkie.camera_x, 0);
-        this.addToCanvas(this.lifeBar);
-        this.addToCanvas(this.lifeBarBoss);
-        this.addToCanvas(this.coinBar);
-        this.addToCanvas(this.poisonBar);
-        this.ctx.translate(this.sharkie.camera_x, 0);
-
-        this.addToCanvas(this.sharkie);
-        this.addToCanvas(this.endboss);
-        this.addObjectsToCanvas(this.poisonBubbles);
+        this.drawingFixedObjects();
+        this.drawMovingObjects();
         this.ctx.translate(-this.sharkie.camera_x, 0);
 
         requestAnimationFrame(() => {
@@ -170,6 +195,22 @@ class World {
         });
     }
 
+    /**
+     * drawing moving objects
+     */
+    drawMovingObjects() {
+        this.addObjectsToCanvas(this.level.barriers);
+        this.addObjectsToCanvas(this.level.coins);
+        this.addObjectsToCanvas(this.level.poison);
+        this.addObjectsToCanvas(this.level.enemies);
+        this.addToCanvas(this.sharkie);
+        this.addToCanvas(this.endboss);
+        this.addObjectsToCanvas(this.poisonBubbles);
+    }
+
+    /**
+     * drawing background objects
+     */
     drawBackgroundObjects() {
         this.level.background.forEach((object, index) => {
             this.ctx.translate(-this.sharkie.camera_x, 0);
@@ -180,6 +221,22 @@ class World {
         });
     }
 
+    /**
+     * drawing fixed objects
+     */
+    drawingFixedObjects() {
+        this.ctx.translate(-this.sharkie.camera_x, 0);
+        this.addToCanvas(this.lifeBar);
+        this.addToCanvas(this.lifeBarBoss);
+        this.addToCanvas(this.coinBar);
+        this.addToCanvas(this.poisonBar);
+        this.ctx.translate(this.sharkie.camera_x, 0);
+    }
+
+    /**
+     * adding one object to canvas
+     * @param {object} object - drawing object
+     */
     addToCanvas(object) {
         if (object.otherDirection) {
             this.flipImage(object);
@@ -192,12 +249,20 @@ class World {
         }
     }
 
+    /**
+     * adding multiple objects to canvas
+     * @param {object} objects - drawing objects
+     */
     addObjectsToCanvas(objects) {
         objects.forEach((o) => {
             this.addToCanvas(o);
         });
     }
 
+    /**
+     * flipping image to left if moved to other direction
+     * @param {object} object - drawing object
+     */
     flipImage(object) {
         this.ctx.save();
         this.ctx.translate(object.width, 0);
@@ -205,6 +270,10 @@ class World {
         object.x = object.x * -1;
     }
 
+    /**
+     * resetting flipped image back to normal
+     * @param {object} object - drawing object
+     */
     flipImageReset(object) {
         this.ctx.save();
         this.ctx.translate(object.width, 0);

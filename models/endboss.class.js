@@ -78,6 +78,9 @@ class Endboss extends MoveableObject {
         this.setAttackTime();
     }
 
+    /**
+     * animating endboss
+     */
     animate() {
         setStoppableInterval(() => {
             if (this.bossIntro()) {
@@ -95,6 +98,10 @@ class Endboss extends MoveableObject {
         }, 1000 / 8);
     }
 
+    /**
+     * animation when endboss spawns first time
+     * @returns - true for seconds
+     */
     bossIntro() {
         if (this.endbossIntro && !this.firstContact) {
             this.i = 0;
@@ -111,10 +118,16 @@ class Endboss extends MoveableObject {
         return this.i <= 10;
     }
 
+    /**
+     * swimming animation
+     */
     swimAnimation() {
         this.playAnimation(this.images_swimming);
     }
 
+    /**
+     * moving animation
+     */
     movingAnimation() {
         setStoppableInterval(() => {
             if (this.y + this.height == 500) {
@@ -128,15 +141,24 @@ class Endboss extends MoveableObject {
         }, 1000 / 60);
     }
 
+    /**
+     * spawning animation
+     */
     introAnimation() {
         this.playAnimation(this.images_spawning);
     }
 
+    /**
+     * hurting animation
+     */
     hurtAnimation() {
         playEndbossHurtAudio();
         this.playAnimation(this.images_hurt);
     }
 
+    /**
+     * animation when andboss is killed
+     */
     deadAnimation() {
         if (this.deadTime >= 5) {
             this.loadImage(this.images_dead[5]);
@@ -151,11 +173,17 @@ class Endboss extends MoveableObject {
         this.deadTime++;
     }
 
+    /**
+     * atacking animation
+     */
     attackAnimation() {
         this.playAnimation(this.images_attack);
         playEndbossAttackAudio();
     }
 
+    /**
+     * setting attacktime (attacking every 5 seconds)
+     */
     setAttackTime() {
         setStoppableInterval(() => {
             let time1 = new Date().getTime();
@@ -166,6 +194,10 @@ class Endboss extends MoveableObject {
         }, 1000);
     }
 
+    /**
+     * checking time for attack animation
+     * @returns - true for 2 seconds
+     */
     isAttacking() {
         let timePassed = new Date().getTime() - this.lastAttack;
         timePassed = timePassed / 1000;

@@ -125,38 +125,73 @@ class Sharkie extends MoveableObject {
         this.bubbleTime = new Date().getTime();
     }
 
+    /**
+     * animating sharkie
+     */
     animate() {
         this.sharkieAnimation();
         this.sharkieMovement();
     }
 
+    /**
+     * moving sharkie
+     */
     sharkieMovement() {
         setStoppableInterval(() => {
             pauseSharkieSwimAudio();
             this.barrierCollision();
-
-            if (this.control.ArrowRight && this.x < this.level.levelEnd_x && !this.collisionBarrierLeft) {
-                this.moveRight(this.speed);
-                this.otherDirection = false;
-                playSharkieSwimLeftRightAudio();
-            }
-            if (this.control.ArrowLeft && this.x > -600 && !this.collisionBarrierRight) {
-                this.moveLeft(this.speed);
-                this.otherDirection = true;
-                playSharkieSwimLeftRightAudio();
-            }
-            if (this.control.ArrowUp && this.y > -70 && !this.collisionBarrierBottom) {
-                this.moveUp(this.speed);
-                playSharkieSwimUpDownAudio();
-            }
-            if (this.control.ArrowDown && this.y < 250 && !this.collisionBarrierTop) {
-                this.moveDown(this.speed);
-                playSharkieSwimUpDownAudio();
-            }
+            this.checkSwimmingRight();
+            this.checkSwimmingLeft();
+            this.checkSwimmingUp();
+            this.checkSwimmingDown();
             this.camera_x = -this.x + 80;
         }, 1000 / 60);
     }
 
+    /**
+     * checking if sharkie swims to the right
+     */
+    checkSwimmingRight() {
+        if (this.control.ArrowRight && this.x < this.level.levelEnd_x && !this.collisionBarrierLeft) {
+            this.moveRight(this.speed);
+            this.otherDirection = false;
+            playSharkieSwimLeftRightAudio();
+        }
+    }
+
+    /**
+     * checking if sharkie swims to the left
+     */
+    checkSwimmingLeft() {
+        if (this.control.ArrowLeft && this.x > -600 && !this.collisionBarrierRight) {
+            this.moveLeft(this.speed);
+            this.otherDirection = true;
+            playSharkieSwimLeftRightAudio();
+        }
+    }
+
+    /**
+     * checking if sharkie swims up
+     */
+    checkSwimmingUp() {
+        if (this.control.ArrowUp && this.y > -70 && !this.collisionBarrierBottom) {
+            this.moveUp(this.speed);
+            playSharkieSwimUpDownAudio();
+        }
+    }
+    /**
+     * checking if sharkie swims down
+     */
+    checkSwimmingDown() {
+        if (this.control.ArrowDown && this.y < 250 && !this.collisionBarrierTop) {
+            this.moveDown(this.speed);
+            playSharkieSwimUpDownAudio();
+        }
+    }
+
+    /**
+     * animating sharkie for special events
+     */
     sharkieAnimation() {
         setStoppableInterval(() => {
             if (this.isSwimming()) {
@@ -177,6 +212,9 @@ class Sharkie extends MoveableObject {
         }, 1000 / 10);
     }
 
+    /**
+     * checking barrier collision
+     */
     barrierCollision() {
         if (this.collisionBarrier) {
             if (this.isCollidingBarrierRight(this.collisionBarrierObject)) {
@@ -199,16 +237,26 @@ class Sharkie extends MoveableObject {
         }
     }
 
+    /**
+     * setting idle time
+     */
     setIdleTime() {
         setInterval(() => {
             this.idleTime++;
         }, 1000);
     }
 
+    /**
+     * setting long idle time
+     * @returns
+     */
     isIdleLong() {
         return this.idleTime >= 5;
     }
 
+    /**
+     * animating when sharkie is idle long
+     */
     longIdleAnimation() {
         if (this.idleTime >= 6) {
             this.sleepAnimation();
@@ -217,6 +265,9 @@ class Sharkie extends MoveableObject {
         }
     }
 
+    /**
+     * animating when sharkie sleeps
+     */
     sleepAnimation() {
         this.playAnimation(this.images_idle_sleeping);
         if (this.y < 250 && !this.collisionBarrierTop) {
@@ -224,20 +275,32 @@ class Sharkie extends MoveableObject {
         }
     }
 
+    /**
+     * animating when sharkie is idle
+     */
     idleAnimation() {
         this.playAnimation(this.images_idle);
     }
 
+    /**
+     * animating when sharkie swims
+     */
     swimAnimation() {
         this.playAnimation(this.images_swimming);
         this.idleTime = 0;
     }
 
+    /**
+     * animating when sharkie is hurt
+     */
     hurtAnimation() {
         this.playAnimation(this.images_hurt);
         this.idleTime = 0;
     }
 
+    /**
+     * animating when sharkie is dead
+     */
     deadAnimation() {
         if (this.deadTime >= 10) {
             this.loadImage(this.images_dead[11]);
@@ -252,22 +315,36 @@ class Sharkie extends MoveableObject {
         this.deadTime++;
     }
 
+    /**
+     * animating when sharkie makes a bubble
+     */
     bubbleAnimation() {
         this.playAnimation(this.images_bubbling);
         this.idleTime = 0;
     }
 
+    /**
+     * animating when sharkie is slapping
+     */
     slapAnimation() {
         this.playAnimation(this.images_slapping);
         playSharkieSlapAudio();
     }
 
+    /**
+     * checking if sharkie is moved
+     * @returns
+     */
     isSwimming() {
         if (!this.isHurt()) {
             return keyboard.ArrowRight || keyboard.ArrowLeft || keyboard.ArrowUp || keyboard.ArrowDown;
         }
     }
 
+    /**
+     * setting bubbling time
+     * @returns - true for 700ms
+     */
     isBubbling() {
         let timeNow = new Date().getTime();
         let difference;
@@ -280,6 +357,10 @@ class Sharkie extends MoveableObject {
         return difference > 0;
     }
 
+    /**
+     * setting slap time
+     * @returns - true for 1 second
+     */
     isSlapping() {
         let timeNow = new Date().getTime();
         let difference;
@@ -292,6 +373,10 @@ class Sharkie extends MoveableObject {
         return difference > 0;
     }
 
+    /**
+     * set bubble time that only every 1 second sharkie can make a bubble
+     * @returns - true for 1 second
+     */
     isBubbleTime() {
         let newTime = new Date().getTime();
         let difference = newTime - this.bubbleTime;

@@ -27,23 +27,36 @@ class PufferFish extends MoveableObject {
         this.animate();
     }
 
+    /**
+     * animating puffer fisches
+     */
     animate() {
         this.swimAnimation();
         this.moveAnimation();
     }
 
+    /**
+     * swimming animation
+     */
     swimAnimation() {
         setStoppableInterval(() => {
             this.playAnimation(this.images_swimming);
         }, 1000 / 10);
     }
 
+    /**
+     * moving animation
+     */
     moveAnimation() {
         setStoppableInterval(() => {
             this.moveLeft(this.speed);
         }, 1000 / 60);
     }
 
+    /**
+     * animation when puffer fishes are dead
+     * @param {boolean} otherDirection - direction of sharkie
+     */
     deadAnimation(otherDirection) {
         setStoppableInterval(() => {
             this.img.src = this.images_dead[0];
@@ -52,6 +65,10 @@ class PufferFish extends MoveableObject {
         }, 1);
     }
 
+    /**
+     * moving dead fish out of canvas
+     * @param {boolean} otherDirection - direction of sharkie
+     */
     moveDeadFish(otherDirection) {
         if (!otherDirection) {
             this.moveRight(1);

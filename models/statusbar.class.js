@@ -4,11 +4,20 @@ class StatusBar extends DrawableObject {
     width = 200;
     height = 50;
 
+    /**
+     * setting right image of statusbar with index of array
+     * @param {number} percentage - percentage of status bar
+     */
     setStatusBar(percentage) {
         let index = this.returnImgIndex(percentage);
         this.img.src = this.images[index];
     }
 
+    /**
+     * returning index of image of status bar
+     * @param {number} percentage  - percentage of status bar
+     * @returns
+     */
     returnImgIndex(percentage) {
         if (percentage <= 100 && percentage > 81) {
             return 5;

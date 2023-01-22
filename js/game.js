@@ -7,6 +7,9 @@ let keyboard = new Keyboard();
 let intervalIds = [];
 let portraitModus;
 
+/**
+ * initial function when page loads
+ */
 function init() {
     screen = document.getElementById('screen');
     startscreenImage = document.getElementById('startscreen-img');
@@ -21,6 +24,9 @@ function init() {
     checkPortraitEvent();
 }
 
+/**
+ * starting the game
+ */
 function startGame() {
     startscreenImage.classList.add('no-opacity');
     startscreenStart.classList.add('d-none');
@@ -34,17 +40,26 @@ function startGame() {
     world = new World(canvas, keyboard);
 }
 
+/**
+ * eventlistener when page loads for hiding the adressbar on mobile devices
+ */
 document.addEventListener('load', () => {
     setTimeout(function () {
         document.scrollTo(0, 1);
     }, 1);
 });
 
+/**
+ * eventlisteners when fullscreen mode changes
+ */
 document.addEventListener('fullscreenchange', changeFullscreenIcon);
 document.addEventListener('webkitfullscreenchange', changeFullscreenIcon);
 document.addEventListener('mozfullscreenchange', changeFullscreenIcon);
 document.addEventListener('MSFullscreenChange', changeFullscreenIcon);
 
+/**
+ * changing fullscreen icon in menu when fullscreen mode changes
+ */
 function changeFullscreenIcon() {
     let iconStart = document.getElementById('fullscreen-icon-start');
     let iconExit = document.getElementById('fullscreen-icon-exit');
@@ -58,12 +73,18 @@ function changeFullscreenIcon() {
     }
 }
 
+/**
+ * hiding the startscreen when game starts
+ */
 function hideStartscreen() {
     setTimeout(() => {
         startscreenImage.classList.add('d-none');
     }, 1000);
 }
 
+/**
+ * toggling the fullscreen mode
+ */
 function toggleFullscreen() {
     let iconStart = document.getElementById('fullscreen-icon-start');
 
@@ -74,6 +95,9 @@ function toggleFullscreen() {
     }
 }
 
+/**
+ * starting the fullscreen mode
+ */
 function startFullscreen() {
     if (screen.requestFullscreen) {
         screen.requestFullscreen();
@@ -84,6 +108,9 @@ function startFullscreen() {
     }
 }
 
+/**
+ * exiting the fullscreen mode
+ */
 function closeFullscreen() {
     if (document.exitFullscreen) {
         document.exitFullscreen();
@@ -94,17 +121,28 @@ function closeFullscreen() {
     }
 }
 
+/**
+ * function to create an array with all stoppable intervals
+ * @param {function} fn - function of interval
+ * @param {number} time - time of interval
+ */
 function setStoppableInterval(fn, time) {
     let id = setInterval(fn, time);
     intervalIds.push(id);
 }
 
+/**
+ * stopping all intervals and pausing the audio
+ */
 function stopGame() {
     intervalIds.forEach(clearInterval);
     audio_background.pause();
     audio_music.pause();
 }
 
+/**
+ * showing game over screen
+ */
 function showGameOver() {
     audio_level_loose.play();
     gameOverImage.classList.remove('no-opacity');
@@ -112,12 +150,18 @@ function showGameOver() {
     showTryAgain();
 }
 
+/**
+ * showing try again screen
+ */
 function showTryAgain() {
     setTimeout(() => {
         tryAgainButton.classList.remove('d-none');
     }, 4000);
 }
 
+/**
+ * showing winning screen
+ */
 function showWinningScreen() {
     audio_level_win.play();
     winnerImage.classList.remove('d-none');
@@ -125,6 +169,9 @@ function showWinningScreen() {
     showTryAgain();
 }
 
+/**
+ * toggling the audio mute/unmute in menu
+ */
 function toggleMuteAudio() {
     let iconOn = document.getElementById('unmuted-icon');
     let iconOff = document.getElementById('muted-icon');
@@ -140,18 +187,30 @@ function toggleMuteAudio() {
     }
 }
 
+/**
+ * muting audio
+ */
 function muteAudio() {
     muteAllAudio();
 }
 
+/**
+ * unmuting audio
+ */
 function unmuteAudio() {
     unmuteAllAudio();
 }
 
+/**
+ * showing info screen
+ */
 function infoScreenToggle() {
     document.getElementById('info-screen').classList.toggle('d-none');
 }
 
+/**
+ * checking if device is in portrait mode when mode changed (event)
+ */
 function checkPortraitEvent() {
     window.matchMedia('(orientation: portrait)').addEventListener('change', (e) => {
         let portrait = e.matches;
@@ -165,6 +224,9 @@ function checkPortraitEvent() {
     });
 }
 
+/**
+ * checking if device is in portait mode when page loads
+ */
 function checkPortraitModus() {
     portraitModus = window.matchMedia('(orientation: portrait)').matches;
 
@@ -175,22 +237,34 @@ function checkPortraitModus() {
     }
 }
 
+/**
+ * showing portrait mode screen
+ */
 function showPortraitScreen() {
     document.getElementById('portraitScreen').classList.remove('d-none');
     spinPortraitImage();
 }
 
+/**
+ * hiding portrait mode screen
+ */
 function hidePortraitScreen() {
     document.getElementById('portraitScreen').classList.add('d-none');
     document.getElementById('portraitImage').style.transform = 'none';
 }
 
+/**
+ * rotating the image in portrait screen
+ */
 function spinPortraitImage() {
     setTimeout(() => {
         document.getElementById('portraitImage').style.transform = 'rotate(90deg)';
     }, 500);
 }
 
+/**
+ * toggling the mobile panel icon in menu and triggering next function
+ */
 function toggleMobilePanel() {
     let iconOn = document.getElementById('controller-icon-on');
     let iconOff = document.getElementById('controller-icon-off');
@@ -205,6 +279,9 @@ function toggleMobilePanel() {
     mobileButtonsToggle();
 }
 
+/**
+ * toggling mobile buttons in game
+ */
 function mobileButtonsToggle() {
     if (mobileBtnPanel.style.display == 'none') {
         mobileBtnPanel.style.display = 'block';
@@ -213,6 +290,9 @@ function mobileButtonsToggle() {
     }
 }
 
+/**
+ * toggling the settings menu
+ */
 function toggleMenu() {
     document.getElementById('menu').classList.toggle('slideIn');
     document.getElementById('settings').classList.toggle('rotate');

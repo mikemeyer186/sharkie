@@ -25,17 +25,26 @@ class JellyFish extends MoveableObject {
         this.down = true;
     }
 
+    /**
+     * animation of jelly fish
+     */
     animate() {
         this.swimAnimation();
         this.moveAnimation();
     }
 
+    /**
+     * swimming animation
+     */
     swimAnimation() {
         setStoppableInterval(() => {
             this.playAnimation(this.images_swimming);
         }, 1000 / 10);
     }
 
+    /**
+     * moving animation
+     */
     moveAnimation() {
         setStoppableInterval(() => {
             if (this.y + this.height >= 450) {
@@ -49,6 +58,9 @@ class JellyFish extends MoveableObject {
         }, 1000 / 60);
     }
 
+    /**
+     * animation when slapped
+     */
     deadAnimation() {
         if (this.up) {
             this.up = false;

@@ -1,5 +1,8 @@
 let level1;
 
+/**
+ * level design
+ */
 function startLevel1() {
     level1 = new Level(
         [

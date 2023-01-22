@@ -22,6 +22,9 @@ class LifeBarBoss extends StatusBar {
         this.showLifeBar();
     }
 
+    /**
+     * showing endboss life bar when sharkie is in the area of endboss
+     */
     showLifeBar() {
         setInterval(() => {
             if (this.endbossArea) {

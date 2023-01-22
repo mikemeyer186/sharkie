@@ -13,12 +13,18 @@ class ThrowableObject extends MoveableObject {
         this.loadImage(this.image);
     }
 
+    /**
+     * animating poison bubble
+     */
     poisonBubbling() {
         playPoisonBubbleAudio();
         this.checkdirection();
         this.moveBubble();
     }
 
+    /**
+     * checking direction of sharkie
+     */
     checkdirection() {
         if (world.sharkie.otherDirection) {
             this.speed = -this.speed;
@@ -26,6 +32,9 @@ class ThrowableObject extends MoveableObject {
         }
     }
 
+    /**
+     * moving poison bubble
+     */
     moveBubble() {
         setTimeout(() => {
             setStoppableInterval(() => {

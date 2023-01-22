@@ -14,6 +14,9 @@ let audio_poison_bubble = new Audio('audio/poison_bubble.mp3');
 let audio_sharkie_hurt = new Audio('audio/sharkie_hit.mp3');
 let audio_sharkie_slap = new Audio('audio/sharkie_slap.mp3');
 
+/**
+ * unmute audio and set volume of audio files
+ */
 function unmuteAllAudio() {
     audio_endboss.volume = 0.2;
     audio_music.volume = 0.2;
@@ -32,6 +35,9 @@ function unmuteAllAudio() {
     audio_sharkie_slap.volume = 0.2;
 }
 
+/**
+ * mute audio and set volume to 0
+ */
 function muteAllAudio() {
     audio_music.volume = 0;
     audio_level_win.volume = 0;
@@ -50,6 +56,9 @@ function muteAllAudio() {
     audio_sharkie_slap.volume = 0;
 }
 
+/**
+ * playing background audio and loops it
+ */
 function playBackgroundAudio() {
     audio_background.play();
     audio_music.play();
@@ -61,10 +70,16 @@ function playBackgroundAudio() {
     });
 }
 
+/**
+ * pausing background audio
+ */
 function stopBackgroundAudio() {
     audio_music.pause();
 }
 
+/**
+ * playig background audio for bossfight
+ */
 function playEndbossAudio() {
     audio_endboss.play();
     audio_endboss.addEventListener('ended', () => {
@@ -72,9 +87,22 @@ function playEndbossAudio() {
     });
 }
 
+/**
+ * pausing the background audio for bossfight
+ */
 function stopEndbossAudio() {
     audio_endboss.pause();
 }
+
+/**
+ * pausing the swim audio of sharkie
+ */
+function pauseSharkieSwimAudio() {
+    audio_swim_left_right.pause();
+    audio_swim_up_down.pause();
+}
+
+/* the following functions triggers audios for special events and movements */
 
 function playEndbossAttackAudio() {
     audio_endboss_attack.play();
@@ -94,11 +122,6 @@ function playSharkieSwimLeftRightAudio() {
 
 function playSharkieSwimUpDownAudio() {
     audio_swim_up_down.play();
-}
-
-function pauseSharkieSwimAudio() {
-    audio_swim_left_right.pause();
-    audio_swim_up_down.pause();
 }
 
 function playCoinPickupAudio() {

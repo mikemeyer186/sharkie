@@ -19,6 +19,9 @@ class Keyboard {
         this.bindKeyboardEvents();
     }
 
+    /**
+     * binding keyboard events when key is pressed
+     */
     bindKeyboardEvents() {
         document.addEventListener('keydown', (event) => {
             this[`${event.code}`] = true;
@@ -36,6 +39,9 @@ class Keyboard {
         });
     }
 
+    /**
+     * binding keyboard events when mobile touch buttons are pressed
+     */
     bindTouchEvents() {
         this.BtnUp.addEventListener('touchstart', (event) => {
             event.preventDefault();
@@ -111,6 +117,9 @@ class Keyboard {
         });
     }
 
+    /**
+     * setting slap key true after 500ms and false after 1000ms
+     */
     slapKeyPressed() {
         if (this.KeyD) {
             setTimeout(() => {

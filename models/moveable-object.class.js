@@ -14,6 +14,10 @@ class MoveableObject extends DrawableObject {
         right: 0,
     };
 
+    /**
+     * animating images
+     * @param {array} imgArray - paths of images
+     */
     playAnimation(imgArray) {
         let m = this.currentImage % imgArray.length;
         let path = imgArray[m];
@@ -21,22 +25,42 @@ class MoveableObject extends DrawableObject {
         this.currentImage++;
     }
 
+    /**
+     * moving left
+     * @param {number} speed - speed of object
+     */
     moveLeft(speed) {
         this.x -= speed;
     }
 
+    /**
+     * moving right
+     * @param {number} speed - speed of object
+     */
     moveRight(speed) {
         this.x += speed;
     }
 
+    /**
+     * moving up
+     * @param {number} speed - speed of object
+     */
     moveUp(speed) {
         this.y -= speed;
     }
 
+    /**
+     * moving down
+     * @param {number} speed - speed of object
+     */
     moveDown(speed) {
         this.y += speed;
     }
 
+    /**
+     * moving up and down
+     * @param {number} speed - speed of object
+     */
     moveUpAndDown(speed) {
         if (this.up) {
             this.moveUp(speed);
@@ -46,16 +70,25 @@ class MoveableObject extends DrawableObject {
         }
     }
 
+    /**
+     * checking if object is collding with other object
+     * @param {object} obj - checking object
+     * @returns
+     */
     isColliding(obj) {
         return (
             this.x + this.width - this.offset.right >= obj.x + obj.offset.left &&
             this.x + this.offset.left <= obj.x + obj.width - obj.offset.right &&
             this.y + this.height - this.offset.bottom >= obj.y + obj.offset.top &&
             this.y + this.offset.top <= obj.y + obj.height - obj.offset.bottom
-        ); //&&
-        //obj.onCollisionCourse // Optional: hiermit könnten wir schauen, ob ein Objekt sich in die richtige Richtung bewegt. Nur dann kollidieren wir. Nützlich bei Gegenständen, auf denen man stehen kann.
+        );
     }
 
+    /**
+     * checking if object is near to another object
+     * @param {object} obj - checking object
+     * @returns
+     */
     isNearToSharkie(obj) {
         let roomX = 10;
         let roomY = 2;
@@ -67,22 +100,45 @@ class MoveableObject extends DrawableObject {
         );
     }
 
+    /**
+     * cheking if sharkie is colliding with barrier from the left
+     * @param {object} obj - barrier
+     * @returns
+     */
     isCollidingBarrierLeft(obj) {
         return this.x + this.width - this.offset.right >= obj.x + obj.offset.left && this.x < obj.x;
     }
 
+    /**
+     * cheking if sharkie is colliding with barrier from the right
+     * @param {object} obj - barrier
+     * @returns
+     */
     isCollidingBarrierRight(obj) {
         return this.x + this.offset.left <= obj.x + obj.width - obj.offset.right && this.x + this.width > obj.x + obj.width;
     }
 
+    /**
+     * cheking if sharkie is colliding with barrier from the top
+     * @param {object} obj - barrier
+     * @returns
+     */
     isCollidingBarrierTop(obj) {
         return this.y + this.height - this.offset.bottom >= obj.y + obj.offset.top && this.y < obj.y;
     }
 
+    /**
+     * cheking if sharkie is colliding with barrier from the bottom
+     * @param {object} obj - barrier
+     * @returns
+     */
     isCollidingBarrierBottom(obj) {
         return this.y + this.offset.top <= obj.y + obj.height - obj.offset.bottom && this.y + this.height > obj.y + obj.height;
     }
 
+    /**
+     * decreasing energy of object when hurts
+     */
     decreaseEnergy() {
         this.energy -= 2;
         if (this.energy <= 0) {
@@ -92,6 +148,9 @@ class MoveableObject extends DrawableObject {
         }
     }
 
+    /**
+     * decreasing energy of endboss when hurts
+     */
     decreaseEnergyBoss() {
         this.bossLife -= 40;
         if (this.bossLife <= 0) {
@@ -101,6 +160,9 @@ class MoveableObject extends DrawableObject {
         }
     }
 
+    /**
+     * increasing poison when collected
+     */
     increasePoison() {
         this.poison += 20;
         if (this.poison >= 100) {
@@ -108,6 +170,9 @@ class MoveableObject extends DrawableObject {
         }
     }
 
+    /**
+     * decreasing poison when bubbled
+     */
     decreasePoison() {
         this.poison -= 20;
         if (this.poison <= 0) {
@@ -115,6 +180,9 @@ class MoveableObject extends DrawableObject {
         }
     }
 
+    /**
+     * increasing coins when collected
+     */
     increaseCoin() {
         this.coins += 10;
         if (this.coins >= 100) {
@@ -122,10 +190,18 @@ class MoveableObject extends DrawableObject {
         }
     }
 
+    /**
+     * checking if object is dead
+     * @returns
+     */
     isDead() {
         return this.energy == 0;
     }
 
+    /**
+     * checking if object is hurt and returns true for 1 second
+     * @returns
+     */
     isHurt() {
         let timePassed = new Date().getTime() - this.lastHurt;
         timePassed = timePassed / 1000;
