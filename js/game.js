@@ -156,7 +156,7 @@ function showGameOver() {
 function showTryAgain() {
     setTimeout(() => {
         tryAgainButton.classList.remove('d-none');
-    }, 4000);
+    }, 3000);
 }
 
 /**
