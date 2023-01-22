@@ -131,7 +131,7 @@ h1 {
     flex-direction: column-reverse;
     justify-content: flex-end;
     align-items: center;
-    z-index: 3;
+    z-index: 4;
     transform: rotate(270deg);
     transition: all 500ms ease-in-out;
 }
@@ -224,7 +224,7 @@ canvas {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    z-index: 4;
+    z-index: 5;
 }
 
 .info-title {
@@ -456,5 +456,13 @@ canvas {
 
     .mobile-btn {
         display: block;
+    }
+
+    .info-instructions {
+        gap: 10px;
+    }
+
+    .instruction-text {
+        font-size: 16px;
     }
 }

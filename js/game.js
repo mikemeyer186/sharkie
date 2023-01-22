@@ -34,6 +34,30 @@ function startGame() {
     world = new World(canvas, keyboard);
 }
 
+document.addEventListener('load', () => {
+    setTimeout(function () {
+        document.scrollTo(0, 1);
+    }, 1);
+});
+
+document.addEventListener('fullscreenchange', changeFullscreenIcon);
+document.addEventListener('webkitfullscreenchange', changeFullscreenIcon);
+document.addEventListener('mozfullscreenchange', changeFullscreenIcon);
+document.addEventListener('MSFullscreenChange', changeFullscreenIcon);
+
+function changeFullscreenIcon() {
+    let iconStart = document.getElementById('fullscreen-icon-start');
+    let iconExit = document.getElementById('fullscreen-icon-exit');
+
+    if (iconStart.classList.contains('d-none')) {
+        iconStart.classList.remove('d-none');
+        iconExit.classList.add('d-none');
+    } else {
+        iconStart.classList.add('d-none');
+        iconExit.classList.remove('d-none');
+    }
+}
+
 function hideStartscreen() {
     setTimeout(() => {
         startscreenImage.classList.add('d-none');
@@ -42,15 +66,10 @@ function hideStartscreen() {
 
 function toggleFullscreen() {
     let iconStart = document.getElementById('fullscreen-icon-start');
-    let iconExit = document.getElementById('fullscreen-icon-exit');
 
     if (iconStart.classList.contains('d-none')) {
-        iconStart.classList.remove('d-none');
-        iconExit.classList.add('d-none');
         closeFullscreen();
     } else {
-        iconStart.classList.add('d-none');
-        iconExit.classList.remove('d-none');
         startFullscreen();
     }
 }
@@ -70,7 +89,7 @@ function closeFullscreen() {
         document.exitFullscreen();
     } else if (document.webkitExitFullscreen) {
         document.webkitExitFullscreen();
-    } else if (document.msExitFullscreen) {
+    } else if (screen.msExitFullscreen) {
         document.msExitFullscreen();
     }
 }
@@ -198,9 +217,3 @@ function toggleMenu() {
     document.getElementById('menu').classList.toggle('slideIn');
     document.getElementById('settings').classList.toggle('rotate');
 }
-
-window.addEventListener('load', function () {
-    setTimeout(function () {
-        window.scrollTo(0, 1);
-    }, 0);
-});

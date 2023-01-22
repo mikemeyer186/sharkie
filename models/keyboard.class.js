@@ -5,6 +5,7 @@ class Keyboard {
     ArrowDown = false;
     Space = false;
     KeyD = false;
+    Escape = false;
     slapKey = false;
     BtnUp = document.getElementById('btnUp');
     BtnDown = document.getElementById('btnDown');
@@ -31,6 +32,7 @@ class Keyboard {
             this.ArrowDown = false;
             this.Space = false;
             this.KeyD = false;
+            this.Escape = false;
         });
     }
 
