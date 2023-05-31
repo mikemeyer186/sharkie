@@ -22,6 +22,27 @@ function init() {
     unmuteAllAudio();
     checkPortraitModus();
     checkPortraitEvent();
+    preloadImages();
+}
+
+/**
+ * preloading all images
+ */
+function preloadImages() {
+    let images = preloadingImages;
+    let imagesLoaded = 0;
+    for (let i = 0; i < images.length; i++) {
+        let img = new Image();
+        img.src = images[i];
+        img.onload = () => {
+            imagesLoaded++;
+            console.log(imagesLoaded);
+            console.log('Image loaded: ' + images[i]);
+            if (imagesLoaded == images.length) {
+                console.log('All images loaded');
+            }
+        };
+    }
 }
 
 /**
