@@ -32,6 +32,19 @@ h1 {
     text-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
 }
 
+.login-legal {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    text-decoration: none;
+    cursor: pointer;
+    color: white;
+}
+
+.login-legal:hover {
+    text-decoration: underline;
+}
+
 #screen {
     display: block;
     position: relative;

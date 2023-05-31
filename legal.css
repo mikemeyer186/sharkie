@@ -1,0 +1,44 @@
+.legal-wrapper {
+    padding: 48px;
+    font-family: sans-serif;
+}
+
+h1 {
+    color: black;
+}
+
+h2 {
+    color: black;
+    word-break: break-all;
+}
+
+.legal-wrapper a {
+    word-break: break-all;
+}
+
+.arrow-back {
+    position: absolute;
+    width: 60px;
+    object-fit: cover;
+    cursor: pointer;
+    z-index: 1;
+    left: 48px;
+    top: 20px;
+    transition: all 125ms ease-in-out;
+}
+
+.arrow-back:hover {
+    filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.5));
+    transition: all 125ms ease-in-out;
+}
+
+@media (max-width: 400px) {
+    .legal-wrapper {
+        padding: 24px;
+    }
+
+    .arrow-back {
+        top: 10px;
+        left: 24px;
+    }
+}
