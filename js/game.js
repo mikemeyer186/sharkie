@@ -6,6 +6,10 @@ let screen;
 let keyboard = new Keyboard();
 let intervalIds = [];
 let portraitModus;
+let gameDataLoaded = 0;
+let gameDataTotal = preloadingImages.length + preloadingAudio.length;
+let gameDataProgress = 0;
+let gameDateLoadingComplete = false;
 
 /**
  * initial function when page loads
@@ -14,6 +18,7 @@ function init() {
     screen = document.getElementById('screen');
     startscreenImage = document.getElementById('startscreen-img');
     startscreenStart = document.getElementById('startscreen-start');
+    loadingProgress = document.getElementById('loading-progress');
     gameOverImage = document.getElementById('gameover-screen');
     winnerImage = document.getElementById('winning-screen');
     tryAgainButton = document.getElementById('try-again-btn');
@@ -30,19 +35,43 @@ function init() {
  */
 function preloadImages() {
     let images = preloadingImages;
-    let imagesLoaded = 0;
     for (let i = 0; i < images.length; i++) {
         let img = new Image();
         img.src = images[i];
         img.onload = () => {
-            imagesLoaded++;
-            console.log(imagesLoaded);
-            console.log('Image loaded: ' + images[i]);
-            if (imagesLoaded == images.length) {
-                console.log('All images loaded');
+            gameDataLoaded++;
+            gameDataProgress = ((gameDataLoaded / gameDataTotal) * 100).toFixed(0);
+            console.log(gameDataProgress);
+            if (gameDataLoaded == images.length) {
+                preloadAudio();
             }
         };
     }
+}
+
+/**
+ * preloading all audios
+ */
+function preloadAudio() {
+    let audios = preloadingAudio;
+    for (let i = 0; i < audios.length; i++) {
+        let audio = new Audio();
+        audio.src = audios[i];
+        audio.oncanplaythrough = () => {
+            gameDataLoaded++;
+            gameDataProgress = ((gameDataLoaded / gameDataTotal) * 100).toFixed(0);
+            console.log(gameDataProgress);
+            gameDateLoadingComplete = true;
+            showLoadingScreen();
+        };
+    }
+}
+
+function showLoadingScreen() {
+    setTimeout(() => {
+        startscreenStart.classList.remove('d-none');
+        loadingProgress.classList.add('d-none');
+    }, 2000);
 }
 
 /**

@@ -76,6 +76,17 @@ h1 {
     transition: all 255ms ease-in-out;
 }
 
+#loading-progress {
+    width: 35%;
+    height: 5%;
+    background-color: transparent;
+    border: 2px solid white;
+    position: absolute;
+    right: 15%;
+    bottom: 15%;
+    z-index: 5;
+}
+
 #startscreen-start:hover {
     filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.2));
     transition: all 255ms ease-in-out;

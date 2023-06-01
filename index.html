@@ -31,7 +31,7 @@
     <script src="./models/endboss.class.js"></script>
     <script src="./models/light.class.js"></script>
     <script src="./js/audio.js"></script>
-    <script src="./js/images.js"></script>
+    <script src="./js/data.js"></script>
     <script src="./levels/level1.js"></script>
 
     <title>Sharkie</title>
@@ -47,7 +47,11 @@
     <div id="screen">
         <img id="startscreen-img" width="720" height="480" src="./img/startscreen/startscreen.png" alt="startscreen">
         <canvas id="canvas" width="720" height="480"></canvas>
-        <img id="startscreen-start" src="./img/startscreen/start.png" alt="Start Game" onclick="startGame()">
+        <img id="startscreen-start" class="d-none" src="./img/startscreen/start.png" alt="Start Game"
+            onclick="startGame()">
+        <div id="loading-progress" class="loading-progress">
+            <div id="loading-progress-bar" class="loading-progress-bar"></div>
+        </div>
         <img id="gameover-screen" class="no-opacity" src="./img/endscreen/game_over.png" alt="gameover">
         <img id="winning-screen" class="d-none" src="./img/endscreen/win.png" alt="you win">
         <img id="try-again-btn" class="d-none" src="./img/endscreen/try_again.png" alt="tryagain" onclick="startGame()">
