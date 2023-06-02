@@ -41,7 +41,7 @@ function preloadImages() {
         img.onload = () => {
             gameDataLoaded++;
             gameDataProgress = ((gameDataLoaded / gameDataTotal) * 100).toFixed(0);
-            console.log(gameDataProgress);
+            progressBarAnimation(gameDataProgress);
             if (gameDataLoaded == images.length) {
                 preloadAudio();
             }
@@ -60,18 +60,35 @@ function preloadAudio() {
         audio.oncanplaythrough = () => {
             gameDataLoaded++;
             gameDataProgress = ((gameDataLoaded / gameDataTotal) * 100).toFixed(0);
-            console.log(gameDataProgress);
-            gameDateLoadingComplete = true;
-            showLoadingScreen();
+            progressBarAnimation(gameDataProgress);
+            if (gameDataLoaded == gameDataTotal) {
+                gameDateLoadingComplete = true;
+                showStartButton();
+            }
         };
     }
 }
 
-function showLoadingScreen() {
+/**
+ * showing start button after loading
+ */
+function showStartButton() {
     setTimeout(() => {
         startscreenStart.classList.remove('d-none');
         loadingProgress.classList.add('d-none');
     }, 2000);
+}
+
+/**
+ * animating the progressbar
+ * @param {numer} gameDataProgress - progress of loading
+ */
+function progressBarAnimation(gameDataProgress) {
+    let progressBar = document.getElementById('loading-progress-bar');
+    let progressBarText = document.getElementById('loading-progress-percent');
+    let width = gameDataProgress;
+    progressBar.style.width = width + '%';
+    progressBarText.innerHTML = width + '%';
 }
 
 /**

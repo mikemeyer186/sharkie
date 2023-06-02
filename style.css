@@ -78,13 +78,30 @@ h1 {
 
 #loading-progress {
     width: 35%;
-    height: 5%;
-    background-color: transparent;
+    height: 8%;
     border: 2px solid white;
     position: absolute;
-    right: 15%;
-    bottom: 15%;
+    right: 13%;
+    bottom: 18%;
     z-index: 5;
+    border-radius: 30px;
+    overflow: hidden;
+}
+
+#loading-progress-bar {
+    width: 0%;
+    height: 100%;
+    background-color: rgb(191, 6, 127);
+}
+
+#loading-progress-percent {
+    position: absolute;
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 20px;
+    font-weight: 300;
 }
 
 #startscreen-start:hover {
@@ -465,7 +482,7 @@ canvas {
     }
 
     #screen {
-        height: 100vh;
+        height: 100dvh;
     }
 
     h1 {
