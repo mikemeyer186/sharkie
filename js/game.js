@@ -57,15 +57,15 @@ function preloadAudio() {
     for (let i = 0; i < audios.length; i++) {
         let audio = new Audio();
         audio.src = audios[i];
-        audio.oncanplaythrough = () => {
-            gameDataLoaded++;
-            gameDataProgress = ((gameDataLoaded / gameDataTotal) * 100).toFixed(0);
-            progressBarAnimation(gameDataProgress);
-            if (gameDataLoaded == gameDataTotal) {
-                gameDateLoadingComplete = true;
-                showStartButton();
-            }
-        };
+        audio.load();
+        gameDataLoaded++;
+        gameDataProgress = ((gameDataLoaded / gameDataTotal) * 100).toFixed(0);
+        progressBarAnimation(gameDataProgress);
+
+        if (gameDataLoaded == gameDataTotal) {
+            gameDateLoadingComplete = true;
+            showStartButton();
+        }
     }
 }
 
