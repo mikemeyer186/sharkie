@@ -478,7 +478,7 @@ canvas {
 
 @media only screen and (max-height: 540px) {
     canvas {
-        height: 100vh;
+        height: 100svh;
     }
 
     #screen {

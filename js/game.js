@@ -55,7 +55,7 @@ function preloadImages() {
 function preloadAudio() {
     let audios = preloadingAudio;
     for (let i = 0; i < audios.length; i++) {
-        let audio = new Audio();
+        let audio = new Audio(audios[i]);
         audio.src = audios[i];
         audio.load();
         gameDataLoaded++;
