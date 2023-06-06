@@ -477,6 +477,10 @@ canvas {
 }
 
 @media only screen and (max-height: 540px) {
+    body, html {
+        height: 100svh;
+    }
+
     canvas {
         height: 100svh;
     }

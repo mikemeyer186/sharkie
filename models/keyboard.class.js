@@ -116,4 +116,35 @@ class Keyboard {
             this.slapKey = false;
         }
     }
+
+    click(button) {
+        switch (button) {
+            case 'ArrowUp':
+                this.ArrowUp = true;
+                console.log('up');
+                break;
+            case 'ArrowDown':
+                this.ArrowDown = true;
+                break;
+            case 'ArrowLeft':
+                this.ArrowLeft = true;
+                break;
+            case 'ArrowRight':
+                this.ArrowRight = true;
+                break;
+            case 'Space':
+                this.Space = true;
+                break;
+            case 'KeyD':
+                this.KeyD = true;
+                this.slapKeyPressed();
+                break;
+        }
+        this.ArrowUp = false;
+        this.ArrowDown = false;
+        this.ArrowLeft = false;
+        this.ArrowRight = false;
+        this.Space = false;
+        this.KeyD = false;
+    }
 }
