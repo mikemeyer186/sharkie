@@ -1,7 +1,7 @@
 class ThrowableObject extends MoveableObject {
     width = 40;
     height = 40;
-    speed = 1;
+    speed = 3;
     delayTime = 600;
     delayY = 1000;
     image = 'img/sharkie/bubbling/poison_bubble.png';

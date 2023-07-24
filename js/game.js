@@ -10,6 +10,7 @@ let gameDataLoaded = 0;
 let gameDataTotal = preloadingImages.length + preloadingAudio.length;
 let gameDataProgress = 0;
 let gameDateLoadingComplete = false;
+let preloadedAudios = [];
 
 /**
  * initial function when page loads
@@ -55,13 +56,12 @@ function preloadImages() {
 function preloadAudio() {
     let audios = preloadingAudio;
     for (let i = 0; i < audios.length; i++) {
-        let audio = new Audio(audios[i]);
+        let audio = new Audio();
         audio.src = audios[i];
-        audio.load();
+        preloadedAudios.push(audio);
         gameDataLoaded++;
         gameDataProgress = ((gameDataLoaded / gameDataTotal) * 100).toFixed(0);
         progressBarAnimation(gameDataProgress);
-
         if (gameDataLoaded == gameDataTotal) {
             gameDateLoadingComplete = true;
             showStartButton();
@@ -76,7 +76,7 @@ function showStartButton() {
     setTimeout(() => {
         startscreenStart.classList.remove('d-none');
         loadingProgress.classList.add('d-none');
-    }, 2000);
+    }, 500);
 }
 
 /**
