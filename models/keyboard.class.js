@@ -17,6 +17,7 @@ class Keyboard {
     constructor() {
         this.bindTouchEvents();
         this.bindKeyboardEvents();
+        this.bindClickEvents();
     }
 
     /**
@@ -38,63 +39,152 @@ class Keyboard {
      */
     bindTouchEvents() {
         this.BtnUp.addEventListener('touchstart', (event) => {
+            event.preventDefault();
             this.BtnUp.classList.add('touched-btn');
             this.ArrowUp = true;
         });
 
         this.BtnUp.addEventListener('touchend', (event) => {
+            event.preventDefault();
             this.BtnUp.classList.remove('touched-btn');
             this.ArrowUp = false;
         });
 
         this.BtnDown.addEventListener('touchstart', (event) => {
+            event.preventDefault();
             this.BtnDown.classList.add('touched-btn');
             this.ArrowDown = true;
         });
 
         this.BtnDown.addEventListener('touchend', (event) => {
+            event.preventDefault();
             this.BtnDown.classList.remove('touched-btn');
             this.ArrowDown = false;
         });
 
         this.BtnLeft.addEventListener('touchstart', (event) => {
+            event.preventDefault();
             this.BtnLeft.classList.add('touched-btn');
             this.ArrowLeft = true;
         });
 
         this.BtnLeft.addEventListener('touchend', (event) => {
+            event.preventDefault();
             this.BtnLeft.classList.remove('touched-btn');
             this.ArrowLeft = false;
         });
 
         this.BtnRight.addEventListener('touchstart', (event) => {
+            event.preventDefault();
             this.BtnRight.classList.add('touched-btn');
             this.ArrowRight = true;
         });
 
         this.BtnRight.addEventListener('touchend', (event) => {
+            event.preventDefault();
             this.BtnRight.classList.remove('touched-btn');
             this.ArrowRight = false;
         });
 
         this.BtnSpace.addEventListener('touchstart', (event) => {
+            event.preventDefault();
             this.BtnSpace.classList.add('touched-btn');
             this.Space = true;
         });
 
         this.BtnSpace.addEventListener('touchend', (event) => {
+            event.preventDefault();
             this.BtnSpace.classList.remove('touched-btn');
             this.Space = false;
         });
 
         this.BtnD.addEventListener('touchstart', (event) => {
+            event.preventDefault();
             this.BtnD.classList.add('touched-btn');
             this.KeyD = true;
             this.slapKeyPressed();
         });
 
         this.BtnD.addEventListener('touchend', (event) => {
-            //event.preventDefault();
+            event.preventDefault();
+            this.BtnD.classList.remove('touched-btn');
+            this.KeyD = false;
+        });
+    }
+
+    /**
+     * binding click events when mobile touch buttons are clicked
+     */
+    bindClickEvents() {
+        this.BtnUp.addEventListener('mousedown', (event) => {
+            event.preventDefault();
+            this.BtnUp.classList.add('touched-btn');
+            this.ArrowUp = true;
+        });
+
+        this.BtnUp.addEventListener('mouseup', (event) => {
+            event.preventDefault();
+            this.BtnUp.classList.remove('touched-btn');
+            this.ArrowUp = false;
+        });
+
+        this.BtnDown.addEventListener('mousedown', (event) => {
+            event.preventDefault();
+            this.BtnDown.classList.add('touched-btn');
+            this.ArrowDown = true;
+        });
+
+        this.BtnDown.addEventListener('mouseup', (event) => {
+            event.preventDefault();
+            this.BtnDown.classList.remove('touched-btn');
+            this.ArrowDown = false;
+        });
+
+        this.BtnLeft.addEventListener('mousedown', (event) => {
+            event.preventDefault();
+            this.BtnLeft.classList.add('touched-btn');
+            this.ArrowLeft = true;
+        });
+
+        this.BtnLeft.addEventListener('mouseup', (event) => {
+            event.preventDefault();
+            this.BtnLeft.classList.remove('touched-btn');
+            this.ArrowLeft = false;
+        });
+
+        this.BtnRight.addEventListener('mousedown', (event) => {
+            event.preventDefault();
+            this.BtnRight.classList.add('touched-btn');
+            this.ArrowRight = true;
+        });
+
+        this.BtnRight.addEventListener('mouseup', (event) => {
+            event.preventDefault();
+            this.BtnRight.classList.remove('touched-btn');
+            this.ArrowRight = false;
+        });
+
+        this.BtnSpace.addEventListener('mousedown', (event) => {
+            event.preventDefault();
+            this.BtnSpace.classList.add('touched-btn');
+            this.Space = true;
+        });
+
+        this.BtnSpace.addEventListener('mouseup', (event) => {
+            event.preventDefault();
+            this.BtnSpace.classList.remove('touched-btn');
+            this.Space = false;
+        });
+
+        this.BtnD.addEventListener('mousedown', (event) => {
+            event.preventDefault();
+            this.BtnD.classList.add('touched-btn');
+            this.KeyD = true;
+            this.slapKeyPressed();
+        });
+
+        this.BtnD.addEventListener('mouseup', (event) => {
+            event.preventDefault();
             this.BtnD.classList.remove('touched-btn');
             this.KeyD = false;
         });
@@ -115,36 +205,5 @@ class Keyboard {
         } else {
             this.slapKey = false;
         }
-    }
-
-    click(button) {
-        switch (button) {
-            case 'ArrowUp':
-                this.ArrowUp = true;
-                console.log('up');
-                break;
-            case 'ArrowDown':
-                this.ArrowDown = true;
-                break;
-            case 'ArrowLeft':
-                this.ArrowLeft = true;
-                break;
-            case 'ArrowRight':
-                this.ArrowRight = true;
-                break;
-            case 'Space':
-                this.Space = true;
-                break;
-            case 'KeyD':
-                this.KeyD = true;
-                this.slapKeyPressed();
-                break;
-        }
-        this.ArrowUp = false;
-        this.ArrowDown = false;
-        this.ArrowLeft = false;
-        this.ArrowRight = false;
-        this.Space = false;
-        this.KeyD = false;
     }
 }

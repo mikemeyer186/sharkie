@@ -33,6 +33,7 @@
     <script src="./js/audio.js"></script>
     <script src="./js/data.js"></script>
     <script src="./levels/level1.js"></script>
+    <script src="./models/keyboard.class.js"></script>
 
     <title>Sharkie</title>
 </head>
@@ -125,26 +126,26 @@
             <div class="mobile-btn-left">
                 <div class="mobile-btn-left-top">
                     <img id="btnUp" class="arrow-btn arrow-btn-up" src="./img/menu/arrow_btn.png" alt="UP"
-                        onclick="click('ArrowUp')">
+                        oncontextmenu="return false;">
                 </div>
                 <div class="mobile-btn-left-mid">
-                    <img id="btnLeft" class="arrow-btn" src="./img/menu/arrow_btn.png" alt="LEFT">
-                    <img id="btnRight" class="arrow-btn arrow-btn-right" src="./img/menu/arrow_btn.png" alt="RIGHT">
+                    <img id="btnLeft" class="arrow-btn" src="./img/menu/arrow_btn.png" alt="LEFT" oncontextmenu="return false;">
+                    <img id="btnRight" class="arrow-btn arrow-btn-right" src="./img/menu/arrow_btn.png" alt="RIGHT" oncontextmenu="return false;">
                 </div>
                 <div class="mobile-btn-left-bottom">
-                    <img id="btnDown" class="arrow-btn arrow-btn-down" src="./img/menu/arrow_btn.png" alt="DOWN">
+                    <img id="btnDown" class="arrow-btn arrow-btn-down" src="./img/menu/arrow_btn.png" alt="DOWN" oncontextmenu="return false;">
                 </div>
             </div>
             <div class="mobile-btn-right">
-                <img id="btnD" class="bubble-btn bubble-btn-slap" src="./img/menu/finslap.png" alt="FINSLAP">
-                <img id="btnSpace" class="bubble-btn" src="./img/menu/bubble_poison.png" alt="POISON">
+                <img id="btnD" class="bubble-btn bubble-btn-slap" src="./img/menu/finslap.png" alt="FINSLAP" oncontextmenu="return false;">
+                <img id="btnSpace" class="bubble-btn" src="./img/menu/bubble_poison.png" alt="POISON" oncontextmenu="return false;">
             </div>
         </div>
     </div>
     <img class="subtext" src="./img/menu/fullscreen.png" alt="Fullscreen" onclick="toggleFullscreen()">
 
-    <script src="./models/keyboard.class.js"></script>
     <script src="./js/game.js"></script>
+
 </body>
 
 </html>

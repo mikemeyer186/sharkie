@@ -364,3 +364,7 @@ function toggleMenu() {
     document.getElementById('menu').classList.toggle('slideIn');
     document.getElementById('settings').classList.toggle('rotate');
 }
+
+function click(button) {
+    console.log(button);
+}

@@ -230,7 +230,7 @@ canvas {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    z-index: 5;
+    z-index: 6;
     padding: 20px;
 }
 
@@ -380,6 +380,9 @@ canvas {
     object-fit: cover;
     cursor: pointer;
     transition: all 225ms ease-in-out;
+    -webkit-user-select: none;
+    user-select: none;
+    -webkit-touch-callout: none;
 }
 
 .arrow-btn-up {
@@ -400,12 +403,18 @@ canvas {
     object-fit: cover;
     cursor: pointer;
     transition: all 225ms ease-in-out;
+    -webkit-user-select: none;
+    user-select: none;
+    -webkit-touch-callout: none;
 }
 
 .bubble-btn-slap {
     width: 100px;
     transform: translate(-6px, -12px);
     padding-bottom: 3px;
+    -webkit-user-select: none;
+    user-select: none;
+    -webkit-touch-callout: none;
 }
 
 .arrow-btn:hover,
