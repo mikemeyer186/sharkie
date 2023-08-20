@@ -28,7 +28,8 @@ h2 {
 }
 
 .arrow-back:hover {
-    filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.5));
+    transform: scale(1.1);
+    opacity: 0.8;
     transition: all 125ms ease-in-out;
 }
 
